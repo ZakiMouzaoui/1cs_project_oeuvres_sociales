@@ -1,0 +1,138 @@
+<form action="" method="post" id="modifier_annonce_form" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="form-group">
+              <label for="select_annonce" class="control-label">Annonce:</label>
+              <select id="select_annonce" class="form-control" name="annonce" required>
+                  <option value="">Choisir une annonce</option>
+                  {% for annonce in annonces_ %}
+                    <option value="{{ annonce.id}}">{{annonce.titre}}</option>
+                  {% endfor %}
+              </select>
+
+            </div>
+            <div class="form-group">
+              <label for="annonce_titre2" class="control-label">Titre de l'annonce:</label>
+              <input type="number" class="form-control" placeholder="Ajouter un titre" name="titre" required id="annonce_titre2">
+                <p class="error" id="titre_error2" style="color:#f24646;"></p>
+            </div>
+
+            <div class="form-group">
+              <label for="annonce_budget2" class="control-label">Titre de l'annonce:</label>
+              <input type="text" class="form-control" placeholder="Entrer le budget(en da)" name="titre" required id="annonce_budget2">
+                <p class="error" id="budget_error2" style="color:#f24646;"></p>
+            </div>
+
+              <div class="form-group">
+              <label for="date_debut2" class="control-label">Inscriptions commence le :</label>
+              <input id="date_debut2" type="date" class="form-control" required name="date_debut">
+                <p class="error" id="date_debut_error2" style="color:#f24646;"></p>
+            </div>
+
+            <div class="form-group">
+              <label for="date_fin2" class="control-label">Inscriptions ouvertes jusqu'à:</label>
+              <input id="date_fin2" type="date" class="form-control" required name="date_fin">
+                <p class="error" id="date_fin_error2" style="color:#f24646;"></p>
+            </div>
+
+
+            <div class="form-group">
+              <label for="annonce_image2" class="control-label">Ajoutez une image pour illustrer votre annonce:</label>
+              <input id="annonce_image2" type="file" name="photo" class="image-upload" accept="image/*" />
+            </div>
+
+            <div class="form-group">
+              <label for="annonce_detail2" class="control-label">Ajoutez une image contenant les détails de votre annonce:</label>
+              <input type="file" id="annonce_detail2" name="detail" class="image-upload" accept="image/*" />
+            </div>
+              <div class="alert alert-success text-center" role="alert" style="display:none;">
+                  <span class="close_alert" >&times;</span>
+                  <p>Annonce modifiée</p>
+              </div>
+              <div class="alert alert-danger text-center" role="alert" style="display:none;">
+                  <span class="close_alert" >&times;</span>
+                  <p></p>
+              </div>
+          <div class="modal-footer">
+          <button id="fermer_modifier_annonce_modal" type="button" class="btn btn-secondary fermer_modal" data-dismiss="modal">Fermer</button>
+          <button type="submit" class="btn btn-primary" >Confirmer</button>
+        </div>
+          </form>
+
+<script>
+  $("#select_annonce").change(function(){
+    var annonce = $(this).val();
+    if(annonce != ""){
+      $.ajax({
+        url:"ajax_update_annonce",
+        data:{"annonce_id": annonce},
+        success: function(data){
+          $("#annonce_titre2").val(data.titre);
+          $("#date_debut2").val(data.date_debut);
+          $("#date_fin2").val(data.date_fin);
+          $("#annonce_image2").val(data.photo);
+          $("#annonce_detail2").val(data.detail);
+        }
+      });
+    }
+    else{
+      $("#annonce_titre2").val("");
+      $("#date_debut2").val("");
+      $("#date_fin2").val("");
+      $("#annonce_image2").val("");
+      $("#annonce_detail2").val("");
+    }
+  });
+
+  $("#modifier_annonce_form").submit(function(){
+    var formData = new FormData($(this)[0]);
+    $.ajax({
+        url:"update_annonce",
+        data: formData,
+        method: 'post',
+        dataType: 'json',
+        processData: false,
+        contentType: false,
+        mimeType: "multipart/form-data",
+        success: function(data){
+            if(data.valid){
+                $("#modifier_annonce_modal").modal("hide");
+                $("#modifier_annonce_modal .alert-danger").hide();
+                $("#modifier_annonce_modal .error").text("");
+                var photo = data.photo;
+                var detail = data.detail;
+                $("#img"+data.annonce.id).attr("src", photo);
+                $("#detail"+data.annonce.id).attr("href", detail);
+                $("#titre"+data.annonce.id).text(data.annonce.titre);
+                $("#date"+data.annonce.id).text("Jusqu'à "+data.annonce.date_fin);
+            }
+                        else{
+                            if(data.non_fields){
+                                $("#modifier_annonce_modal .alert-danger").fadeIn(300);
+                            }
+                            else
+                                $("#modifier_annonce_modal .alert-danger").hide();
+                            $("#modifier_annonce_modal .alert-danger p").text("La date fin ne peut pas etre inférieure à la date début");
+                            for(field in data.field_errors)
+                                $("#"+field+"_error2").text(data.field_errors[field]);
+                            for(field in data.field_valid)
+                                $("#"+data.field_valid[field]+"_error2").text("");
+                        }
+        }
+    });
+    return false;
+  });
+
+  //The buttons
+                $(".close_alert").click(function(){
+                    $("#modifier_annonce_modal .alert-success").fadeOut(300);
+                    $("#modifier_annonce_modal .alert-danger").fadeOut(300);
+                });
+
+                $("#fermer_modifier_annonce_modal").click(function(){
+                    $("#modifier_annonce_form").trigger("reset");
+                    $("#modifier_annonce_modal .alert-success").hide();
+                    $("#modifier_annonce_modal .error").text("");
+                    $("#modifier_annonce_modal .alert-danger").hide();
+
+                });
+</script>

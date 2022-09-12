@@ -1,0 +1,27 @@
+{% for employee in employees %}
+<tr id="employee_list">
+  <td>
+    <span class="custom-checkbox">
+      <input type="checkbox" id="checkbox{{ employee.id }}" name="employees" value="{{ employee.id }}">
+      <label for="checkbox{{ employee.id }}"></label>
+    </span>
+  </td>
+  <td>{{ employee.nom }}</td>
+  <td>{{ employee.prenom }}</td>
+  <td>{{ employee.date_naissance }}</td>
+  <td>{{ employee.adresse }}</td>
+  <td>{{ employee.poste }}</td>
+  <td>{{ employee.ccp }}</td>
+  <td>{{ employee.nss }}</td>
+  <td>{{ employee.email }}</td>
+  <td>{{ employee.num_tel }}</td>
+  <td>{{ employee.date_deb }}</td>
+  <td>{{ employee.date_sortie }}</td>
+  <td>{{ employee.sex }}</td>
+
+  <td>
+    <a href="#" data-url="{{employee.id}}" class="js-update-employee edit"><i class="material-icons" title="Edit">&#xE254;</i></a>
+    <a href="#" data-url="{% url 'delete_employee' employee.id %}" class="js-delete-employee delete"><i class="material-icons" title="Supprimer">&#xE872;</i></a>
+  </td>
+</tr>
+{% endfor %}

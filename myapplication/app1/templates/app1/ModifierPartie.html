@@ -1,0 +1,129 @@
+<form id="modifier_partie_form" action="" method="post">
+        {% csrf_token %}
+
+        <label for="partie_select2">Partie</label>
+        <select id="partie_select2" name="partie" class="form-select form-control form-group" aria-label="Default " required>
+            <option id="first_select" value="">Choisir une partie</option>
+            {% for partie in parties %}
+                <option value="{{partie.id}}">{{partie}}</option>
+            {% endfor %}
+        </select>
+
+		<div class="form-group">
+			<label for="titre4">Titre</label>
+			<input style="color: #2a3638;" type="text" placeholder="Entrez un titre" class="form-control" name="titre" id="titre4" required>
+            <p style="color:#d9534f;" class="error" id="titre_error4"></p>
+		</div>
+		<div class="form-group">
+			<label for="budget4">Budget</label>
+			<input type="number" placeholder="Entrez un budget(en da)" class="form-control" name="budget" id="budget4" required>
+            <p style="color:#d9534f;" class="error" id="budget_error4"></p>
+		</div>
+
+        <div class="form-group alert alert-info text-center">
+			<p>Budget restant : {{solde}} da</p>
+		</div>
+
+        <div style="display: none;" class="form-group alert alert-success text-center">
+            <span class="close_alert" >&times;</span>
+			<p></p>
+		</div>
+
+        <div style="display: none;" class="form-group alert alert-danger text-center">
+            <span class="close_alert" >&times;</span>
+			<p></p>
+		</div>
+
+        <div class="modal-footer">
+            <button id="fermer_modifier_partie_modal" type="button" class="btn btn-secondary fermer_modal" data-dismiss="modal">Fermer</button>
+            <button id="submit_btn" type="submit" class="btn">Confirmer</button>
+        </div>
+	</form>
+
+<script>
+    $(function(){
+        $("#modifier_partie_form").on("submit", function(event){
+            var form = $(this);
+            $.ajax({
+                data: form.serialize(),
+                dataType: 'json',
+                url: 'partie_update',
+                method: 'post',
+                success: function(data){
+                    if(data.valid_form){
+                        $("#titre_error4").text("");
+                        $("#budget_error4").text("");
+
+                        if(data.depassement){
+                            $(".modifier_partie_modal .alert-danger p").text(data.message);
+                            $(".modifier_partie_modal .alert-danger").fadeIn(300);
+                        }
+
+                        else{
+                            $(".modifier_partie_modal .alert-danger").hide();
+                            $(".modifier_partie_modal .alert-success").fadeIn(300);
+                            $(".modifier_partie_modal .alert-success p").text(data.message);
+                            $('#partie_select2 option[value='+data.partie.id+']').text(data.partie.titre);
+                            $('#partie_select3 option[value='+data.partie.id+']').text(data.partie.titre);
+                        }
+
+                        $(".modifier_partie_modal .alert-info p").text("Budget restant : "+ data.solde+ " da");
+                    }
+                    else{
+                        $(".modifier_partie_modal .alert-success").hide();
+                        $(".modifier_partie_modal .alert-danger").fadeIn(300);
+
+                        if(!data.changed){
+                            $(".modifier_partie_modal .error").text("");
+                            $(".modifier_partie_modal .alert-danger p").text(data.message);
+                        }
+                        else{
+                            for(field in data.field_errors)
+                                $("#"+field+"_error4").text(data.field_errors[field]);
+
+                            for(field in data.valid_fields)
+                                $("#"+data.valid_fields[field]+"_error4").text("");
+
+                            $(".modifier_partie_modal .alert-danger p").text("Echec. Veuillez réessayer");
+                        }
+                    }
+                }
+            });
+            return false;
+        });
+
+        $("#partie_select2").change(function(){
+            var partie = $(this).val();
+            if (partie != ""){
+                $.ajax({
+                    url:"ajax_update_partie",
+                    data: {"partie": partie},
+                    success: function(data){
+                        $("#titre4").val(data.partie.titre);
+                        $("#budget4").val(data.partie.budget);
+                        $(".modifier_partie_modal .error").text("");
+                        $(".modifier_partie_modal .alert-success").hide();
+                        $(".modifier_partie_modal .alert-danger").hide();
+                    }
+                });
+            }
+            else{
+                $("#titre4").val("");
+                $("#budget4").val("");
+            }
+        });
+
+        //The buttons
+        $(".close_alert").click(function(){
+            $(".modifier_partie_modal .alert-success").fadeOut(500);
+            $(".modifier_partie_modal .alert-danger").fadeOut(500);
+        });
+
+        $("#fermer_modifier_partie_modal").click(function(){
+            $("#modifier_partie_form").trigger("reset");
+            $(".modifier_partie_modal .alert-danger").hide();
+            $(".modifier_partie_modal .alert-success").hide();
+            $(".modifier_partie_modal .error").text("");
+        });
+    });
+</script>

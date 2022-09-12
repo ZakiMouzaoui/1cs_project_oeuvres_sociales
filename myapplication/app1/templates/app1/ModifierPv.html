@@ -1,0 +1,128 @@
+{% load i18n %}
+{% load l10n %}
+
+
+<form id="modifier_pv_form" method="post" action="" enctype="multipart/form-data">
+                                      {% csrf_token %}
+                                      <div class="form-group">
+                                          <b><label for="pv_id">Choisir un PV</label></b>
+                                          <select class="form-control" name="pv_id" id="pv_id" required
+                                                  oninvalid="this.setCustomValidity('Veuillez choisir un PV')"
+                                                  oninput="this.setCustomValidity('')">
+                                              <option value="">Choisir un PV</option>
+                                              {% for pv in pvs %}
+                                                <option value="{{ pv.id }}">{{ pv.titre }}</option>
+                                              {% endfor %}
+                                          </select>
+                                      </div>
+                                      <div class="form-group">
+                                          <b><label for="titre_pv2">Titre du PV</label></b><br>
+                                          <input id="titre_pv2" name='titre' type="text" class="form-control"
+                                                 oninvalid="this.setCustomValidity('Veuillez remplir ce champ')"
+                                                  oninput="this.setCustomValidity('')" required placeholder="Entrer un titre"/>
+                                      </div>
+                                      <div class="form-group">
+                                          <b><label for="pv2">Joindre fichier(pdf)</label></b><br>
+                                          <input style="color: black;" id="pv2" name='pv' type="file"
+                                                 oninvalid="this.setCustomValidity('Veuillez choisir un fichier')"
+                                                  oninput="this.setCustomValidity('')" required accept="application/pdf"/>
+                                      </div>
+                                      <div style="display: none;" class="form-group alert alert-success text-center">
+                                          <span class="close_alert" >&times;</span>
+                                          <p>Modification effectuée</p>
+                                      </div>
+                                      <div style="display: none; background-color: #751a15;" class="form-group alert alert-danger text-center">
+                                          <span class="close_alert" >&times;</span>
+                                          <p></p>
+                                      </div>
+
+                                      <div class="modal-footer">
+                                          <button id="fermer_modifier_pv" type="button" class="btn btn-secondary fermer_modal" data-dismiss="modal">Fermer</button>
+                                          <button class="submit_btn_pv btn" type="submit">Confirmer</button>
+                                      </div>
+                                  </form>
+
+<script>
+              $("#pv_id").change(function(){
+                    var id=$(this).val();
+                    if(id != ""){
+                        $.ajax({
+                            url:'pv_ajax',
+                            data:{"pv_id": id},
+                            success: function(data){
+                                $("#titre_pv2").val(data.titre);
+                            }
+                        });
+                    }
+                    else
+                        $("#titre_pv2").val("");
+               });
+
+              $("#modifier_pv_form").submit(function(){
+                form = $(this)[0];
+                formData = new FormData(form);
+                $.ajax({
+                    url: 'modifier_pv',
+                    data: formData,
+                    method: 'post',
+                    processData: false,
+                    contentType: false,
+                    dataType: 'json',
+                    mimeType: 'multipart/form-data',
+                    success: function(data){
+                       if(data.valid){
+                        $(".ModifierPvModal .alert-danger").hide();
+                        $(".ModifierPvModal .alert-success").fadeIn(300);
+                        $(".ModifierPvModal .error").text("");
+                        var date = data.date;
+                        var titre = data.titre;
+                        var pdf = data.pdf;
+                        var id = data.id;
+                        $("#"+id).html(`
+                            <p><span style="text-decoration: underline; color: #3781e2;"><strong>{% language 'fr' %}${date} {% endlanguage %}</strong></span></p>
+                              <ol>
+                                  <li>
+                                      <a id="pv_link" href=${pdf} rel="alternate">${titre}</a>
+                                  </li>
+                              </ol>
+                        `);
+                        $('#pv_id option[value='+data.id+']').text(data.titre);
+                        $('#pv_select2 option[value='+data.id+']').text(data.titre);
+
+
+                      }
+                      else{
+                        $(".ModifierPvModal .alert-success").hide();
+                        $(".ModifierPvModal .alert-danger").fadeIn(300);
+                        if(data.changed){
+                            $(".ModifierPvModal .error").text("Ce nom existe déjà");
+                            $(".ModifierPvModal .alert-danger p").text("Echec. Veuillez réessayer");
+                        }
+                        else{
+                            $(".ModifierPvModal .error").text("Ce nom existe déjà");
+                            $(".ModifierPvModal .alert-danger p").text("Aucun changement effectué");
+                        }
+                      }
+                    }
+                });
+                return false;
+              });
+
+              $(document).on("click", ".PVContent #pv_link", function(){
+                window.open($(this).attr("href"));
+                return false;
+              });
+
+              //The buttons
+                $(".close_alert").click(function(){
+                    $(".ModifierPvModal .alert-success").fadeOut(300);
+                    $(".ModifierPvModal .alert-danger").fadeOut(300);
+                });
+
+            $("#fermer_modifier_pv").click(function(){
+                $("#modifier_pv_form").trigger("reset");
+                $(".ModifierPVModal .alert-success").hide();
+                $(".ModifierPvModal .alert-danger").hide();
+                $(".ModifierPvModal .error").text("");
+            });
+          </script>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Connexion </title>
+    <link rel="stylesheet" href="static/app1/css/login.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css">
+      <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+
+
+   <script src="static/app1/js/font.js"></script>
+  </head>
+  <body>
+    <div class="bg-img">
+      <div class="content">
+        <header>Connexion</header>
+        <form id="login_form" method="post" action="">
+            {% csrf_token %}
+          <div class="fieldd one">
+            <div class="i">
+              <i class="fas fa-user"></i>
+          </div>
+          <div class="div">
+              <h5>Nom d'utilisateur</h5>
+              <input name="username" type="text" required class="input">
+          </div>
+          </div>
+          <div class="fieldd space">
+            <div class="i"> 
+              <i class="fas fa-lock"></i>
+           </div>
+           <div class="div">
+            <h5>Mot de passe</h5>
+            <input type="password" required class=" input" name="password" id="myInput">
+            <span class="eye" onclick="myfunction()">
+            <i id="hide1" class="fa fa-eye"></i>
+            <i id="hide2" class="fa fa-eye-slash"></i>
+            </span>
+          </div>
+          </div>
+            <div class="error" style="display: none; color: red;">
+                <small>Nom d'utilisateur ou mot de passe incorrecte</small>
+            </div>
+            <br>
+
+          <div class="oublier" >
+            <a href="{% url 'reset_password_view' %}">Mot de passe oublié?</a>
+          </div>
+
+          <input type="submit" id="login_btn" class="btn" value="Connexion">
+        </form>
+        
+       
+        <div class="signup">
+          <a href="{% url 'index' %}">Retour à la page principale</a>
+        </div>
+      </div>
+    </div>
+    <script>
+      function myfunction()
+      {
+        x = document.getElementById("myInput");
+        y = document.getElementById("hide1");
+        z = document.getElementById("hide2");
+        if(x.type ==='password')
+        {
+          x.type = "text";
+          y.style.display="block";
+          z.style.display="none";
+
+        }
+        else
+        {
+          x.type= "password";
+          y.style.display="none";
+          z.style.display="block";
+
+        }
+      }
+    </script>
+<!--
+    <script>
+      const pass_field = document.querySelector('.pass-key');
+      const showBtn = document.querySelector('.show');
+      showBtn.addEventListener('click', function(){
+       if(pass_field.type === "password"){
+         pass_field.type = "text";
+         showBtn.textContent = "Masquer";
+         showBtn.style.color = "#38d39f";
+       }else{
+         pass_field.type = "password";
+         showBtn.textContent = "Afficher";
+         showBtn.style.color = "#eee5e5";
+       }
+      });
+    </script>
+    -->
+    <script>
+      const inputs = document.querySelectorAll(".input");
+
+
+function addcl(){
+	let parent = this.parentNode.parentNode;
+	parent.classList.add("focus");
+}
+
+function remcl(){
+	let parent = this.parentNode.parentNode;
+	if(this.value == ""){
+		parent.classList.remove("focus");
+	}
+}
+
+
+inputs.forEach(input => {
+	input.addEventListener("focus", addcl);
+	input.addEventListener("blur", remcl);
+});
+    </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+  <script>
+      $("#login_form").submit(function(){
+        var form = $(this);
+        $.ajax({
+            url: 'login',
+            data: form.serialize(),
+            method: 'post',
+            success: function(data){
+                if(data.valid){
+
+                    if(data.staff)
+                        window.location.replace("http://127.0.0.1:8000/admin_");
+                    else
+                        window.location.replace("http://127.0.0.1:8000/Employe");
+                }
+                else{
+                    $(".error").fadeIn(100);
+                }
+            }
+        });
+        return false;
+      });
+  </script>
+    
+
+
+  </body>
+</html>

@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+    <!-- styles -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link href="https://necolas.github.io/normalize.css/latest/normalize.css" rel="stylesheet"/>
+    <link href="static/app1/dist/zeynep.css" rel="stylesheet"/>
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="stylesheet" href="static/app1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/app1/css/fontAwesome.css">
+    <link rel="stylesheet" href="static/app1/css/hero-slider.css">
+      <link rel="stylesheet" href="static/app1/css/admin.css">
+    <link rel="stylesheet" href="static/app1/css/owl-carousel.css">
+    <link rel="stylesheet" type="text/css" href="static/app1/css/default.css" />
+    <link rel="stylesheet" type="text/css" href="static/app1/css/component.css" />
+    <link rel="stylesheet" type="text/css" href="static/app1/css/popup.css" />
+    <link href="static/app1/dist/zeynep.css" rel="stylesheet"/>
+    <link href="static/app1/css/BilanPartiel.css" rel="stylesheet"/>
+      <link rel="stylesheet" href="static/app1/css/base.css">
+
+    <link href="static/app1/css/left.css" rel="stylesheet"/>
+    <link href="static/app1/css/right.css" rel="stylesheet"/>
+    <link href="static/app1/css/demande.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="static/app1/css/style.css">
+    <link rel="stylesheet" href="static/app1/css/search.css">
+    <link rel="stylesheet" href="static/app1/css/modal.css">
+
+    <script src="static/app1/js/script.js"></script>
+
+
+      <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> -->
+
+    <title>Admin</title>
+
+    <style>
+      .popup .close{
+        font-size: 40px;
+      }
+
+      .popup .close:hover{
+        color: black;
+      }
+
+      * {
+	border: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+
+
+.search-bar {
+	display: flex;
+}
+
+.search-bar input,
+.search-btn,
+.search-btn:before,
+.search-btn:after {
+	transition: all 0.25s ease-out;
+}
+.search-bar input,
+.search-btn {
+	width: 3em;
+	height: 3em;
+}
+.search-bar input:invalid:not(:focus),
+.search-btn {
+	cursor: pointer;
+}
+.search-bar,
+.search-bar input:focus,
+.search-bar input:valid  {
+	width: 100%;
+}
+.search-bar input:focus,
+.search-bar input:not(:focus) + .search-btn:focus {
+	outline: transparent;
+}
+.search-bar {
+	margin: auto;
+	padding: 1.5em;
+	justify-content: center;
+	max-width: 30em;
+}
+.search-bar input {
+	background: transparent;
+	border-radius: 1.5em;
+	box-shadow: 0 0 0 0.4em #171717 inset;
+	padding: 0.75em;
+	transform: translate(0.5em,0.5em) scale(0.5);
+	transform-origin: 100% 0;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+.search-bar input::-webkit-search-decoration {
+	-webkit-appearance: none;
+}
+.search-bar input:focus,
+.search-bar input:valid {
+	background: #fff;
+	border-radius: 0.375em 0 0 0.375em;
+	box-shadow: 0 0 0 0.1em #d9d9d9 inset;
+	transform: scale(1);
+}
+.search-btn {
+	background: #171717;
+	border-radius: 0 0.75em 0.75em 0 / 0 1.5em 1.5em 0;
+	padding: 0.75em;
+	position: relative;
+	transform: translate(0.25em,0.25em) rotate(45deg) scale(0.25,0.125);
+	transform-origin: 0 50%;
+}
+.search-btn:before,
+.search-btn:after {
+	content: "";
+	display: block;
+	opacity: 0;
+	position: absolute;
+}
+.search-btn:before {
+	border-radius: 50%;
+	box-shadow: 0 0 0 0.2em #f1f1f1 inset;
+	top: 0.75em;
+	left: 0.75em;
+	width: 1.2em;
+	height: 1.2em;
+}
+.search-btn:after {
+	background: #f1f1f1;
+	border-radius: 0 0.25em 0.25em 0;
+	top: 51%;
+	left: 51%;
+	width: 0.75em;
+	height: 0.25em;
+	transform: translate(0.2em,0) rotate(45deg);
+	transform-origin: 0 50%;
+}
+.search-btn span {
+	display: inline-block;
+	overflow: hidden;
+	width: 1px;
+	height: 1px;
+}
+
+/* Active state */
+.search-bar input:focus + .search-btn,
+.search-bar input:valid + .search-btn {
+	background: #2762f3;
+	border-radius: 0 0.375em 0.375em 0;
+	transform: scale(1);
+}
+.search-bar input:focus + .search-btn:before,
+.search-bar input:focus + .search-btn:after,
+.search-bar input:valid + .search-btn:before,
+.search-bar input:valid + .search-btn:after {
+	opacity: 1;
+}
+.search-bar input:focus + .search-btn:hover,
+.search-bar input:valid + .search-btn:hover,
+.search-bar input:valid:not(:focus) + .search-btn:focus {
+	background: #0c48db;
+}
+.search-bar input:focus + .search-btn:active,
+.search-bar input:valid + .search-btn:active {
+	transform: translateY(1px);
+}
+
+@media screen and (prefers-color-scheme: dark) {
+	body, input {
+		color: #f1f1f1;
+	}
+	body {
+		background: #171717;
+	}
+	.search-bar input {
+		box-shadow: 0 0 0 0.4em #f1f1f1 inset;
+	}
+	.search-bar input:focus,
+	.search-bar input:valid {
+		background: #3d3d3d;
+		box-shadow: 0 0 0 0.1em #3d3d3d inset;
+	}
+	.search-btn {
+		background: #f1f1f1;
+	}
+}
+
+.search_modal .modal-content{
+  background: #2b5c99;
+  padding: 5px;
+}
+
+.search_modal .modal-content .cls_modal{
+  background: #2b5c99;
+}
+
+.card{
+  background: #2b5c99;
+  color: white;
+  border-color: white;
+}
+
+.ui-widget{
+    font-family: Roboto;
+    font-size: 16px;
+    color: white;
+    background: #3d3d3d;
+
+    border-radius: 5px;
+    max-width: 434px;
+    position: relative;
+}
+
+.projects-content {
+  padding-top: 20vh;
+  background-image: url(static/app1/img/i0.png);
+}
+
+ .baner-content{
+      background-image: url(static/app1/img/pic.jpg);
+
+ }
+
+ /*
+ *  Core Owl Carousel CSS File
+ *  v1.3.3
+ */
+
+/* clearfix */
+.owl-carousel .owl-wrapper:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+/* display none until init */
+.owl-carousel{
+  display: none;
+  position: relative;
+  width: 100%;
+  -ms-touch-action: pan-y;
+}
+.owl-carousel .owl-wrapper{
+  display: none;
+  position: relative;
+  -webkit-transform: translate3d(0px, 0px, 0px);
+}
+.owl-carousel .owl-wrapper-outer{
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+.owl-carousel .owl-wrapper-outer.autoHeight{
+  -webkit-transition: height 500ms ease-in-out;
+  -moz-transition: height 500ms ease-in-out;
+  -ms-transition: height 500ms ease-in-out;
+  -o-transition: height 500ms ease-in-out;
+  transition: height 500ms ease-in-out;
+}
+
+.owl-carousel .owl-item{
+  float: left;
+}
+
+.owl-controls {
+  @media (max-width: @screen-sm-max) {
+    top: -120px;
+  }
+  top: -200px;
+  width: 100%;
+  text-align: center;
+  display: inline-block;
+}
+
+.owl-controls a {
+  color: #336699;
+}
+
+.owl-controls a:hover {
+  color: #336699;
+}
+
+.owl-controls .bg-prev {
+  position: absolute;
+  z-index: 1;
+  width: 50px;
+  height: 50px;
+  z-index:10;
+  background:#fff;
+  border: 1px solid #336699;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.owl-controls .bg-prev:before{
+  content:"";
+  display:block;
+  position:absolute;
+  z-index:-1;
+  top:3px;
+  left:3px;
+  right:3px;
+  bottom:3px;
+  border:2px solid #336699
+}
+
+.owl-controls .prev {
+  left: 15px;
+  z-index: 11;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  line-height: 32px;
+}
+
+.owl-controls .prev.active {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.owl-controls .prev:active {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.owl-controls .bg-next {
+  position: absolute;
+  float: right;
+  z-index: 1;
+  width: 50px;
+  height: 50px;
+  position:relative;
+  z-index:10;
+  background:#fff;
+  border: 1px solid #336699;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.owl-controls .bg-next:before{
+  content:"";
+  display:block;
+  position:absolute;
+  z-index:-1;
+  top:3px;
+  left:3px;
+  right:3px;
+  bottom:3px;
+  border:2px solid #336699
+}
+
+.owl-controls .next {
+  right: 15px;
+  z-index: 11;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  line-height: 32px;
+}
+
+.owl-controls .next.active {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.owl-controls .next:active {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+
+.owl-theme .owl-controls .owl-page{
+  cursor: pointer;
+  display: inline-block;
+  zoom: 1;
+  *display: inline;/*IE7 life-saver */
+}
+.owl-theme .owl-controls .owl-page a{
+  display: block;
+  width: 12px;
+  height: 12px;
+  margin: 0px 5px;
+  filter: Alpha(Opacity=50);/*IE7 fix*/
+  opacity: 0.5;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  background: transparent;
+  border: 2px solid #888;
+}
+
+.owl-theme .owl-controls .owl-page.active span,
+.owl-theme .owl-controls.clickable .owl-page:hover span{
+  filter: Alpha(Opacity=100);/*IE7 fix*/
+  opacity: 1;
+  display: inline-block;
+}
+.owl-controls {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/* fix */
+.owl-carousel  .owl-wrapper,
+.owl-carousel  .owl-item{
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility:    hidden;
+  -ms-backface-visibility:     hidden;
+  -webkit-transform: translate3d(0,0,0);
+  -moz-transform: translate3d(0,0,0);
+  -ms-transform: translate3d(0,0,0);
+}
+
+
+
+    </style>
+  </head>
+  <body>
+
+  
+    <div class="fixed-side-navbar">
+        <ul class="nav flex-column">
+          <li class="nav-item"><a class="nav-link" href="#home"><span> Acceuil</span></a></li>
+          <li class="nav-item"><a class="nav-link" href="#programme"><span> Programme</span></a></li>
+          <li class="nav-item"><a class="nav-link" href="#Bilan"><span> Bilan</span></a></li>
+          <li class="nav-item"><a class="nav-link" href="#Réunion"><span> Réunion</span></a></li>
+          <li class="nav-item"><a class="nav-link" href="#Annonces"><span> Annonce</span></a></li>
+          <li class="nav-item"><a class="nav-link" href="#Statistique"><span> Statistique</span></a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'admin_crud' %}"><span> Employé</span></a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'demandes' %}"><span> Demandes</span></a></li>
+        </ul>
+    </div>
+    <div class="parallax-content baner-content" id="home">
+      <!------------------------------------------------header start----------------------------------------------->
+      <div>
+        <nav class="header">
+          <!-- partie gauche-->
+          <div>
+            <img  src="static/app1/img/logo.png " alt="" class="logo">
+          </div>
+          <!-- partie au milieu-->
+          <div class ="input-box">
+            <input type="text">
+            <div class="search-icon" ><i class="fa fa-search"></i></div>
+          </div>
+     <!-------------------------------------------- partie à droite--------------------------------------->
+          <div>  
+            <div class="message">
+              <i class=" fa fa-comment-o dropdown-toggle1 " data-toggle="message-menu1"></i>
+              <span class="number1">3</span>
+              <div id="message-menu1" class="dropdown-menu1 messag">
+                <div class="dropdown-content1 " >
+                  <li>
+                    <img src="static/app1/img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                  <li>
+                    <img src="img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                  <li>
+                    <img src="img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                  <li>
+                    <img src="img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                  <li>
+                    <img src="img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                  <li>
+                    <img src="img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                  <li>
+                    <img src="img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                </div>
+              </div>
+              
+            </div> 
+
+            <div class="notification">
+              <i class="fa fa-bell-o  dropdown-toggle1" data-toggle="notification-menu1"></i>
+              <span class="number2">3</span>
+              <div id="notification-menu1" class="dropdown-menu1 notif">
+                <div class="dropdown-content1 " >
+                  <li>
+                    <img src="img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                  <li>
+                    <img src="img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                  <li>
+                    <img src="img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                  <li>
+                    <img src="img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                  <li>
+                    <img src="img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                  <li>
+                    <img src="img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                  <li>
+                    <img src="img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                </div>
+              </div>
+              
+            </div>
+            <div class="avatar">
+              <img src="{{request.user.userprofile.profile_picture.url}}" alt=""  class="dropdown-toggle1" data-toggle="user-menu2">
+              
+              <div id="user-menu2" class="dropdown-menu1 setting2">
+                <div class="item2"><span class="fa fa-user"></span>Profile</div>
+                <div class="item2"><span class="fa fa-cog"></span>Configuration</div>
+                <div class="item2"><span class="fa fa-question-circle-o"></span>Aide</div>
+                <div class="item2"><span class="fa fa-power-off"></span>Déconnexion</div>
+              </div>
+              
+             
+              
+            </div>
+          </div>
+          
+        </nav>
+      </div>
+     <!------------------------------------------------header end------------------------------------------------>
+    <div class="container">
+      <div class="first-content">
+        <h1>OEUVRES SOCIALES</h1>
+          <span><em>ESI-SBA</em></span>
+        </div>
+      </div>
+    </div>
+    <div class="parallax-content projects-content" id="Annonces">
+      <div class="container">
+
+        <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">Ajouter une nouvelle annonce</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="recipient-name" class="control-label">Titre de l'annonce:</label>
+              <input type="text" class="form-control" id="recipient-name">
+            </div>
+
+            <div class="form-group">
+              <label for="recipient-name" class="control-label">Inscriptions ouvertes jusqu'à:</label>
+              <input type="text" class="form-control" id="recipient-name2">
+            </div>
+
+
+            <div class="form-group">
+              <label for="file" class="control-label">Ajoutez une image pour illustrer votre annonce:</label>
+              <input type="file" class="image-upload" id="file" accept="image/*" />
+            </div>
+
+            <div class="form-group">
+              <label for="file2" class="control-label">Ajoutez une image contenant les détails de votre annonce:</label>
+              <input type="file" id="file2" class="image-upload" accept="image/*" />
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Ajouter</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
+          <div class="row">
+              <div class="col-md-12">
+                  <div id="owl-testimonials" class="owl-carousel owl-theme" style="display: inline; opacity: 1;">
+                                  <div class="item">
+                                      <div class="testimonials-item">
+                                          <a href="img/hadj.png" data-lightbox="image-1"><img src="static/app1/img/mecque_2015.png" alt=""></a>
+                                          <div class="text-content">
+                                              <h4>Loterie du Hajj</h4><br><span>Jusqu'à 12/03/2021</span>
+                                          </div>
+                                      </div>
+                                  </div>
+
+                                  <div class="item">
+                                      <div class="testimonials-item">
+                                          <a href="img/hadj.png" data-lightbox="image-1"><img src="static/app1/img/Port-Say.png" alt=""></a>
+                                          <div class="text-content">
+                                              <h4>Vacances d'été Port-Say Tlemcen</h4><span>Jusqu'à 12/03/2021</span>
+
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+    <div class="tabs-content" id="programme">
+      <div class="container">
+        <div class="zeynep first" data-menu-name="first">
+            <ul>
+                <label>Programmes</label>
+                {% for partie in parties %}
+                <li class="has-submenu">
+                    <a href="#" data-submenu="partie{{partie.id}}">{{partie}}</a>
+                    <div id="partie{{partie.id}}" class="submenu">
+                        <div class="submenu-header">
+                            <a href="#" data-submenu-close="partie{{partie.id}}">Parties</a>
+                        </div>
+                        <label>{{partie}}</label>
+                        {% for chapitre in partie.chapitre_set.all %}
+                        <ul>
+                            <li class="has-submenu">
+                                <a href="#" data-submenu="chapitre{{chapitre.id}}">{{chapitre}}</a>
+                                <div id="chapitre{{chapitre.id}}" class="submenu">
+                                    <div class="submenu-header">
+                                        <a href="#" data-submenu-close="chapitre{{chapitre.id}}">Chapitres</a>
+                                    </div>
+                                    <label>{{chapitre}}</label>
+                                    <ul>
+                                        {% for article in chapitre.article_set.all %}
+                                        <li>
+                                            <a href="#article{{article.id}}">Article{{forloop.counter}}</a>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                        {% endfor %}
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="zeynep second" data-menu-name="second">
+          <ul>
+            <label>Menu</label>
+            <li class="has-submenu">
+              <a href="#" data-submenu="ajout">Ajouter</a>
+              <div id="ajout" class="submenu">
+                <div class="submenu-header">
+                  <a href="#" data-submenu-close="ajout">Menu</a>
+                </div>
+                <label>Ajout</label>
+                <ul>
+                  <li>
+                      {% if chapitres|length == 0 %}
+                    <a href="#programme">Ajouter un article</a>
+                      {% else %}
+                      <a href="#" data-toggle="modal" data-target="#ajouter_article_modal">Ajouter un article</a>
+                      {% endif %}
+                  </li>
+                  <li>
+                      {% if parties|length == 0 %}
+                    <a href="#programme">Ajouter un chapitre</a>
+                      {% else %}
+                      <a href="#" data-toggle="modal" data-target="#ajouter_chapitre_modal">Ajouter un chapitre</a>
+                      {% endif %}
+                  </li>
+                  <li>
+                    <a href="#ajouter_partie_modal" data-toggle="modal">Ajouter une partie</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="has-submenu">
+              <a href="#" data-submenu="suppression">Supprimer</a>
+              <div id="suppression" class="submenu">
+                <div class="submenu-header">
+                  <a href="#" data-submenu-close="suppression">Menu</a>
+                </div>
+                <label>Suppression</label>
+                <ul>
+                  <li>
+                      {% if articles|length == 0 %}
+                        <a href="#programme">Supprimer un article</a>
+                      {% else %}
+                        <a href="#" data-toggle="modal" data-target="#supprimer_article_modal">Supprimer un article</a>
+                      {% endif %}
+                  </li>
+                  <li>
+                      {% if chapitres|length == 0 %}
+                        <a href="#programme">Supprimer un chapitre</a>
+                      {% else %}
+                        <a href="#" data-toggle="modal" data-target="#supprimer_chapitre_modal">Supprimer un chapitre</a>
+                      {% endif %}
+                  </li>
+                  <li>
+                      {% if parties|length == 0 %}
+                        <a href="#programme">Supprimer une partie</a>
+                      {% else %}
+                        <a href="#" data-toggle="modal" data-target="#supprimer_partie_modal">Supprimer une partie</a>
+                      {% endif %}
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="has-submenu">
+              <a href="#" data-submenu="modif">Modifier</a>
+              <div id="modif" class="submenu">
+                <div class="submenu-header">
+                  <a href="#" data-submenu-close="modif">Menu</a>
+                </div>
+                <label>Modification</label>
+                <ul>
+                  <li>
+                      {% if articles|length == 0 %}
+                        <a href="#programme">Modifier un article</a>
+                      {% else %}
+                        <a href="{% url 'article_update' %}">Modifier un article</a>
+                      {% endif %}
+                  </li>
+                  <li>
+                      {% if chapitres|length == 0 %}
+                        <a href="#programme">Modifier un chapitre</a>
+                      {% else %}
+                        <a href="#" data-toggle="modal" data-target="#modifier_chapitre_modal">Modifier un chapitre</a>
+                      {% endif %}
+                  </li>
+                  <li>
+                      {% if parties|length == 0 %}
+                        <a href="#programme">Modifier une partie</a>
+                      {% else %}
+                        <a href="#" data-toggle="modal" data-target="#modifier_partie_modal">Modifier une partie</a>
+                      {% endif %}
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+      <!-- <button type="button" class="btn-open first">Open!</button> <button type="button" class="btn-openn first">Modifier</button> -->
+      <div class="main">
+        <div class="col-md-7 mx-auto">
+
+          <!-- Search in program -->
+          <form action="" id="search_form" class="search-bar">
+            <input type="search" id="search_input" placeholder="Rechercher dans le programme" name="search" pattern=".*\S.*" required>
+            <button class="search-btn" type="submit">
+              <span>Search</span>
+            </button>
+          </form>
+
+          <div class="wrapper">
+            <section id="first-tab-group" class="tabgroup">
+              <div id="tab1">
+                  <img src="static/app1/img/1st-tab.jpg" alt="">
+                  <p> <b>الضوابط العامة التي تحكم تسيير نفقات اموال الخدمات الاجتماعية</b></p>
+              </div>
+              <div>
+                  <button type="button" class="btn-open first btn">Consulter</button>
+                  <button type="button" class="btn-open second">Mise à jour</button>
+              </div> 
+            </section>
+
+
+           <div class="modal search_modal" id="search_modal"
+                tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+             <div class="modal-dialog" role="document">
+               <div class="modal-content">
+                 <div class="modal-header">
+                   <h3>Résultats de la recherche:</h3>
+                   <button type="button" class="cls_modal" id="cls_modal" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                   </button>
+                 </div>
+                 <div class="modal-body">
+                   <h4></h4>
+                   <p></p>
+                     </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+          </div>
+
+            {% for article in articles %}
+              <div id="article{{article.id}}" class="overlay">
+                <div class="popup">
+                    <h6>Article {{ forloop.counter }}</h6>
+                    <a class="close" href="#">&times;</a>
+                    <div class="content">
+                        <p>{{ article.contenu }}</p>
+                    </div>
+                  <!--
+                    <div>
+                        <button type="button" id="{{article.id}}" data-toggle="modal" data-target="#demande_modal" class="dmd-button">Demander</button>
+                    </div>
+                    -->
+                </div>
+              </div>
+              {% endfor %}
+          </div>
+        </div>  
+      </div>
+    <!-- Modals -->
+    <!-- Modal Ajouter Partie-->
+<div class="modal fade ajouter_partie_modal" id="ajouter_partie_modal" data-url="" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Ajouter une partie</h3>
+        <button type="button" class="cls_modal" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          {% include 'app1/AjouterPartie.html' %}
+      </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Modal Ajouter Chapitre-->
+<div class="modal fade ajouter_chapitre_modal" id="ajouter_chapitre_modal" data-url="" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Ajouter un chapitre</h3>
+        <button type="button" class="cls_modal" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          {% include 'app1/AjouterChapitre.html' %}
+      </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Modal Ajouter Article-->
+    <div class="modal fade ajouter_article_modal" id="ajouter_article_modal" data-url="" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Ajouter un article</h3>
+        <button type="button" class="cls_modal" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         {% include 'app1/AjouterArticle.html' %}
+      </div>
+      </div>
+    </div>
+  </div>
+
+        <!-- Modal Modifier Partie-->
+<div class="modal fade modifier_partie_modal" id="modifier_partie_modal" data-url="" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Modifier une partie</h3>
+        <button type="button" class="cls_modal" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          {% include 'app1/ModifierPartie.html' %}
+      </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Modal Modifier Chapitre-->
+<div class="modal fade modifier_chapitre_modal" id="modifier_chapitre_modal" data-url="" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Modifier un chapitre</h3>
+        <button type="button" class="cls_modal" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          {% include 'app1/ModifierChapitre.html' %}
+      </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Modal Modifier Chapitre-->
+<div class="modal fade modifier_chapitre_modal" id="modifier_article_modal" data-url="" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Modifier un chapitre</h3>
+        <button type="button" class="cls_modal" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          {% include 'app1/ModifierChapitre.html' %}
+      </div>
+      </div>
+    </div>
+  </div>
+
+        <!-- Modal Supprimer Partie-->
+<div class="modal fade supprimer_partie_modal" id="supprimer_partie_modal" data-url="" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Supprimer une partie</h3>
+        <button type="button" class="cls_modal" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {% include 'app1/SupprimerPartie.html' %}
+      </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Modal Supprimer Chapitre-->
+<div class="modal fade supprimer_chapitre_modal" id="supprimer_chapitre_modal" data-url="" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Supprimer un chapitre</h3>
+        <button type="button" class="cls_modal" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {% include 'app1/SupprimerChapitre.html' %}
+      </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Modal Supprimer Article-->
+<div class="modal fade supprimer_article_modal" id="supprimer_article_modal" data-url="" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Supprimer un chapitre</h3>
+        <button type="button" class="cls_modal" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {% include 'app1/SupprimerArticle.html' %}
+      </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Bilan -->
+      <div class="Bilan" id="Bilan">
+        <h5>BILAN PARTIEL</h5>
+        <div class="hero-text-box">
+          <a class="btn btn-second" href="#popup2" >Bilan total</a>
+          <a class="btn btn-full" href="form/ModifierBudgetPartiel.html" target="_blank">Modifier</a>
+          <a class="btn btn-ghoast" href="#" >Imprimer</a>
+        </div>
+        <div class="wrapper">
+          <section>
+            <div class="tbl-header">
+              <table cellpadding="0" cellspacing="0" border="0">
+                <thead>
+                  <tr>
+                    <th>Article</th>
+                    <th>Budget Initial</th>
+                    <th>Recettes</th>
+                    <th>Dépenses</th>
+                    <th>Solde</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+            <div class="tbl-content">
+              <table cellpadding="0" cellspacing="0" border="0">
+                <tbody>
+                {% for article in articles %}
+                  <tr>
+                    <td>Article {{forloop.counter }}</td>
+                    <td>{{article.budget}} da</td>
+                    <td>{{article.credit}} da</td>
+                    <td>{{article.debit}} da</td>
+                    <td>{{article.solde}} da</td>
+                  </tr>
+                {% endfor %}
+
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <div id="popup2" class="overlay">
+            <div class="popup">
+                <h6>BILAN TOTAL</h6>
+                <a class="close" href="#wrapper" >&times;</a>
+                <div class="budget_bilan">
+                  <h7><b> Budget initial : </b> {{budget_object.montant}} da<br></h7>
+                  <h7><b> Dépenses : </b>{{budget_object.debit}} da<br></h7>
+                  <h7><b> Recettes : </b>{{budget_object.credit}} da<br></h7>
+                  <h7 class="solde"><b> Solde : </b>{{budget_object.solde}} da<br></h7>
+                </div>
+                <a class="btn" href="form/ModifierBudgetTotal.html" target="_blank">Modifier</a>
+                <a class="btn" href="#wrapper">Imprimer</a>
+            </div>
+          </div>
+          <!-- partial -->
+          <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="./script.js"></script>
+          
+       </div>
+      </div>
+      <div class="Réunion">
+          
+      </div>
+
+      <div class="zeynep-overlay"></div>
+      
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="static/app1/js/plugins.js"></script>
+        <script src="static/app1/js/main.js"></script>
+
+
+      <script src="static/app1/dist/zeynep.js"></script>
+      <script src="static/app1/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+      <script src="static/app1/js/demande.js"></script>
+      <script src="static/app1/js/vendor/bootstrap.min.js"></script>
+
+      <script>
+        window.onclick = function(event) {
+         openCloseDropdown(event)
+           }
+
+           function closeAllDropdown() {
+          var dropdowns = document.getElementsByClassName('dropdown-expand1')
+          for (var i = 0; i < dropdowns.length; i++) {
+            dropdowns[i].classList.remove('dropdown-expand1')
+          }
+          }
+
+           function openCloseDropdown(event) {
+           if (!event.target.matches('.dropdown-toggle1')) {
+             // 
+             // Close dropdown when click out of dropdown menu
+             // 
+           closeAllDropdown()
+           } else {
+          var toggle = event.target.dataset.toggle
+         var content = document.getElementById(toggle)
+         if (content.classList.contains('dropdown-expand1')) {
+          closeAllDropdown()
+         } else {
+          closeAllDropdown()
+        content.classList.add('dropdown-expand1')
+        }
+        }
+          }
+      </script>
+      <script>
+        function openCity(cityName) {
+            var i;
+            var x = document.getElementsByClassName("city");
+            for (i = 0; i < x.length; i++) {
+               x[i].style.display = "none";  
+            }
+            document.getElementById(cityName).style.display = "block";  
+        }
+      </script>
+
+      <script>
+          $(document).ready(function(){
+            // Add smooth scrolling to all links
+            $(".fixed-side-navbar a, .primary-button a").on('click', function(event) {
+
+              // Make sure this.hash has a value before overriding default behavior
+              if (this.hash !== "") {
+                // Prevent default anchor click behavior
+                event.preventDefault();
+
+                // Store hash
+                var hash = this.hash;
+
+                // Using jQuery's animate() method to add smooth page scroll
+                // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+                $('html, body').animate({
+                  scrollTop: $(hash).offset().top
+                }, 800, function(){
+            
+                  // Add hash (#) to URL when done scrolling (default click behavior)
+                  window.location.hash = hash;
+                });
+              } // End if
+            });
+          });
+      </script>
+        
+      <script>
+        $(function() {
+          // loop all zeynepjs menus for initialization
+          $('.zeynep').each(function () {
+            // init zeynepjs side menu
+            $(this).zeynep({
+              opened: function (el) {
+                // log
+                console.log(el.attr('data-menu-name') + ' side menu opened')
+              },
+              closed: function (el) {
+                // log
+                console.log(el.attr('data-menu-name') + ' side menu closed')
+              }
+            })
+          })
+  
+          // handle zeynepjs overlay click
+          $('.zeynep-overlay').on('click', function () {
+            // close all zeynepjs menus
+            $('.zeynep.opened').each(function () {
+              $(this).data('zeynep').close()
+            })
+          });
+  
+          // open first zeynepjs side menu
+          $('.btn-open.first').on('click', function () {
+            $('.zeynep.first').data('zeynep').open();
+          });
+  
+          // open second zeynepjs side menu
+          $('.btn-open.second').on('click', function () {
+            $('.zeynep.second').data('zeynep').open();
+          });
+        });
+      </script>
+
+    <script>
+            $(function(){
+                $("#search_input").autocomplete({
+                    source: "search",
+                    select: function(event, ui){
+                      $("#search_modal").fadeIn(300);
+                      $(".search_modal .modal-body").html(`<h4>Article</h4><p>${ui.item.value}</p>`);
+                      //$(".search_modal .modal-body p").text(ui.item.value);
+                    }
+                });
+
+                $("#cls_modal").click(function(){
+                    $("#search_modal").fadeOut(300);
+
+                    return false;
+                });
+
+                $("#search_form").submit(function(){
+                  var searched = $("#search_input").val();
+                  $.ajax({
+                    url: 'search',
+                    data: {"searched": searched},
+                    success: function(data){
+                      $(".search_modal .modal-body").html("");
+                      for(article in data.result){
+                        var i = `${article}+1`;
+                        $("#search_modal").fadeIn(300);
+                        $(".search_modal .modal-body").append(`<div class="card">
+                                                                  <div class="card-body">
+                                                                    <h4>Article${i}</h4><p>${data.result[article]}</p>
+                                                                  </div>
+                                                               </div>`);
+                      }
+                    }
+                  });
+                  return false;
+                });
+            });
+        </script>
+  <script>
+
+  </script>
+</body>
+</html>

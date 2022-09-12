@@ -1,0 +1,101 @@
+
+<style>
+    .PretModal .modal-header h3{
+        margin-left: 2px;
+    }
+    #submit_btn_pret{
+        background: #30694b;
+        color: white;
+    }
+    #submit_btn_pret:hover{
+        background: #25523b;
+    }
+</style>
+
+<form id="pret_form" method="post" action="" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="form-group">
+                  <label for="montant_pret">Montant</label>
+                  <input id="montant_pret" placeholder="en da" name="montant" type="number" required class="form-control"
+                  oninvalid="this.setCustomValidity('Veuillez spécifier un montant')"
+                         oninput="this.setCustomValidity('')">
+              </div>
+            <div class="form-group">
+                  <label for="mode_paiment_pret">Mode de payement</label>
+                  <select class="form-control" name="mode_paiement" id="mode_paiment_pret"
+                  oninvalid="this.setCustomValidity('Veuillez choisir un mode')"
+                         oninput="this.setCustomValidity('')" required>
+                      <option selected value="">Veuillez choisir un mode de paiment</option>
+                      <option>Espèces</option>
+                      <option>Virement</option>
+                      <option>Chèque</option>
+                  </select>
+              </div>
+
+              <div class="form-group">
+                  <label for="pret_file">Joindre les fichiers necessaires(pdf/doc/docx/jpg/png)</label>
+                  <input type="file" name="doc" class="form-control-file" id="pret_file"
+                         oninvalid="this.setCustomValidity('Veuillez choisir un ou plusieurs fichiers')"
+                         oninput="this.setCustomValidity('')"
+                         accept="image/jpeg,image/gif,image/png,application/pdf,image/x-eps"
+                         multiple required>
+              </div>
+
+              <div class="form-group">
+                  <label for="commentaire_pret">Commentaire(Optionnel)</label>
+                  <textarea class="form-control" placeholder="Ajouter un commentaire" name="commentaire" id="commentaire_pret" rows="3"></textarea>
+              </div>
+              <div style="display: none;" class="form-group alert alert-success text-center">
+                  <span class="closebtn" >&times;</span>
+                  <p>Votre demande de pret a été envoyeé</p>
+              </div>
+              <div style="display: none;" class="form-group alert alert-danger text-center">
+                  <span class="closebtn" >&times;</span>
+                  <p></p>
+              </div>
+              <div class="modal-footer">
+                  <button id="fermer_pret" type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                  <button id="submit_btn_pret" type="submit" class="btn">Confirmer</button>
+              </div>
+          </form>
+<script>
+    $("#fermer_pret").click(function(){
+        $("#pret_form").trigger("reset");
+        $(".alert").hide();
+    });
+
+    $("#cls_pret").click(function(){
+        $("#demande_form").trigger("reset");
+        $(".alert").hide();
+    });
+
+    $(".closebtn").click(function(){
+        $(".alert").fadeOut(300);
+    });
+
+    $("#pret_form").submit(function(){
+        var form = $("#pret_form")[0];
+        var formData = new FormData(form);
+
+        $.ajax({
+            url:"creer_pret",
+            data: formData,
+            contentType: false,
+            processData: false,
+            enctype: "multipart/form-data",
+            method: "post",
+            dataType: "json",
+            success: function(data){
+                if(data.form_valid){
+                    $(".alert-success").fadeIn(300);
+                }
+                else{
+                    $(".alert-success").hide();
+                    $(".alert-success").fadeOut(300);
+                    $(".alert-success p").text("Echec. Veuillez réessayer");
+                }
+            }
+        });
+        return false;
+    });
+    </script>

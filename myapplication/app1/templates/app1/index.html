@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>COS</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/font-awesome.css">
+  <link rel="stylesheet" href="static/app1/css/aos.css">
+  <link rel="stylesheet" href="static/app1/css/index_style.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+
+</head>
+<body>
+
+<!--------------------------------------------------------header start-------------------------------------------------------------->
+ <header class="header">
+   <div class="container">
+
+    <div class="row justify-content-between align-items-center">
+       <div class="logo">
+         <a href="#" ><img src="static/app1/img/logo.png" alt="logo"></a>
+         
+       </div>
+       <button type="button" class="nav-toggler">
+        <span></span>
+      </button>
+      <nav class="nav">
+        <ul>
+          <li class="nav-item"><a href="#acceuil">Acceuil</a></li>
+          <li class="nav-item"><a href="#propos">À propos</a></li>
+          <li class="nav-item"><a href="#service">Nos services</a></li>
+          <li class="nav-item"><a href="#equipe">Notre equipe</a></li>
+          <li class="nav-item"><a href="#aide">Aide</a></li>
+          <li class="nav-item"><a href="#contact">Nos contacts</a></li>
+        </ul>
+
+      </nav>
+     </div>
+    
+   </div>
+ </header>
+<!--------------------------------------------------------header end  -------------------------------------------------------------->
+
+<!-------------------------------------------home start---------------------------------------------------->
+<section class="home-section" id="acceuil">
+  <div class="home-bg"></div>
+  <div class="container">
+    <div class="row min-vh-100 align-items-center">
+      <div class="home-text" data-aos="fade-up" data-aos-duration="1000">
+        <h1>Oeuvre social de ESI-SBA</h1>
+        <h6>Tous ensemble pour une vie meilleure !</h6>
+        <a href="{% url 'login' %}" class="btn btn-default">Se connecter</a>
+      </div>
+    </div>
+  </div>
+</section>
+<!------------------------------------------home end------------------------------------------------------->
+<!-----------------------------------------------a propos start-------------------------------------------->
+<section class="about-section sec-padding" id="propos">
+  <div class="container">
+    <div class="row">
+      <div class="section-title">
+        <h2 data-aos="fade-up" data-aos-duration="1000"> À propos</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="about-text" data-aos="fade-right" data-aos-duration="1000">
+          <p> "COS" est une application web,développée par des ingénieurs qualifiés ,dans
+             le but de faciliter la gestion des fonds des oeuvres sociales pour la commission des oeuvres sociales de 
+             l'école supérieur d'informatique de Sidi Bel-Abbès , tout en assurant les différents services sociaux au profit 
+             des employés(assistance et aide sociale, prestation en matière de santé , activité de culture et de loisirs,...).
+    
+          </p>
+      </div>
+      <div class="about-img" data-aos="fade-left" data-aos-duration="1000">
+          <div class="img-box">
+            <img src="static/app1/img/image.jpg" alt="about img">
+          </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+<!-----------------------------------------------a propos  end -------------------------------------------->
+<!------------------------------------------------service start-------------------------------------------->
+<section class="service-section  sec-padding" id="service">
+  
+      <div class="container">
+        <div class="row">
+          <div class="section-title">
+            <h2 data-aos="fade-up" data-aos-duration="1000"> Nos services</h2>
+          </div>
+        </div>
+        <div class="row tab-content active">
+             <div class="service-item " data-aos="fade-right" data-aos-duration="1000">
+                <div class="item-title" >
+                 <img src="static/app1/img/img7.jpg" alt="">
+                  <h3>Une bonne gestion des fonds des oeuvres sociales pour la commission des oeuvres sociales</h3>
+                </div>
+             </div>
+             <div class="service-item" data-aos="fade-left" data-aos-duration="1000">
+                <div class="item-title ">
+                   <img src="static/app1/img/img6.jpg" alt="">
+                   <h3>Création d'une forte connexion entre la commission des oeuvres sociales et les employés</h3>
+                </div>
+              </div>
+              <div class="service-item" data-aos="fade-right" data-aos-duration="1000">
+                <div class="item-title">
+                  <img  class="image" src="static/app1/img/img5.jpg" alt="">
+                  <h3>Faciliter la gestion des demandes des employés pour les administrateurs</h3>
+                 </div>
+              </div>
+             <div class="service-item" data-aos="fade-left" data-aos-duration="1000">
+               <div class="item-title">
+                  <img class="image" src="static/app1/img/img1.jpg" alt="">
+                  <h3>Faciliter l'accès aux différents services sociaux pour les employés</h3>
+               </div>
+             </div>
+             <div class="service-item" data-aos="fade-right" data-aos-duration="1000">
+              <div class="item-title">
+                <img src="static/app1/img/image.jpg" alt="">
+                <h3>La rapidité en terme de réponse sur les demandes des employés</h3>
+              </div>
+             </div>
+             <div class="service-item" data-aos="fade-left" data-aos-duration="1000">
+               <div class="item-title">
+                 <img src="static/app1/img/img3.jpg" alt="">
+                 <h3>Amélioration du bienêtre physique et morale des travailleurs et de leurs familles </h3>
+               </div>
+              </div>
+            
+        </div>
+      </div> 
+</section>
+<!------------------------------------------------service   end-------------------------------------------->
+<!-------------------------------------------------------Notre equipe ------------------------------------->
+<section class="team-section sec-padding" id="equipe">
+         <div class="container">
+           <div class="row">
+             <div class="section-title">
+               <h2 data-aos="fade-up" data-aos-duration="1000">Notre equipe</h2>
+             </div>
+           </div>
+           <div class="row">
+             <div class="team-item" data-aos="flip-left" data-aos-duration="1000">
+               <img src="static/app1/img/1.jpg" alt="team item">
+               <div class="team-item-info">
+                 <h2>Mouzaoui Zakaria</h2>
+                 <p>Développeur back-end</p>
+               </div>
+             </div>
+             <div class="team-item " data-aos="flip-left" data-aos-duration="1000">
+              <img src="static/app1/img/3.jpg" alt="team item">
+              <div class="team-item-info">
+                <h2  class="size">khalfi Sirine</h2>
+                <p>Développeuse back-end</p>
+              </div>
+            </div>
+            <div class="team-item" data-aos="flip-left" data-aos-duration="1000">
+              <img src="static/app1/img/6.jpeg" alt="team item">
+              <div class="team-item-info">
+                <h2>Brahimi Dounia</h2>
+                <p>Développeuse back-end</p>
+              </div>
+            </div>
+            <div class="team-item" data-aos="flip-left" data-aos-duration="1000">
+              <img src="static/app1/img/2.jpg" alt="team item">
+              <div class="team-item-info">
+                <h2>Saidani Celia</h2>
+                <p>Développeuse front-end</p>
+              </div>
+            </div>
+            <div class="team-item" data-aos="flip-left" data-aos-duration="1000">
+              <img src="static/app1/img/5.jpeg" alt="team item">
+              <div class="team-item-info">
+                <h2>Abbaci Rania</h2>
+                <p>Développeuse front-end</p>
+              </div>
+            </div>
+            <div class="team-item" data-aos="flip-left" data-aos-duration="1000">
+              <img src="static/app1/img/4.jpg" alt="team item">
+              <div class="team-item-info">
+                <h2>Laouedj Sarah</h2>
+                <p>Développeuse front-end</p>
+              </div>
+            </div>
+           </div>
+         </div>
+</section>
+<!-------------------------------------------------------------contact-------------------------------------->
+<footer class="footer" id="contact">
+  <div class="container">
+    <div class="row">
+      <div class="footer-item" data-aos="fade-up" data-aos-duration="1000">
+        <h3>Notre adresse</h3>
+        <p>école supérieure en informatique -08 mai 1945- <br>BP N°73 EL WIAM,22016,Sidi Bel Abbes,Algerie</p>
+      </div>
+      <div class="footer-item" data-aos="fade-up" data-aos-duration="1000">
+        <h3>Heures d'ouvertures</h3>
+        <p>Dimanche à jeudi <br>08:00 - 17:00</p>
+      </div>
+      <div class="footer-item" data-aos="fade-up" data-aos-duration="1000">
+      <h3> Nos contacts</h3>
+      <p>(213) 48 74 94 50 <br> (213) 48 74 94 52 </p>
+      <p>contact@esi-sba.dz</p>
+      <div class="social-links">
+        <a href="https://www.facebook.com/esisba.edu" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab  fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter" ></i></a>
+        <a href="https://www.youtube.com/channel/UCJl5EHFqDq7W2bZA5Cw_uWA/videos" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    
+      
+        
+      
+    
+    </div>
+    <div class="row">
+      <div class="copyright">
+        &copy; Copyright-Equipe Horizon-2021
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="static/app1/js/aos.js"></script>
+<script src="static/app1/js/index_script.js"></script>
+</body>
+</html>

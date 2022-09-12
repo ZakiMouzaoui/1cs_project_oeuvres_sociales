@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+    <!-- styles -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,700&display=swap" rel="stylesheet"/>
+    <link href="https://necolas.github.io/normalize.css/latest/normalize.css" rel="stylesheet"/>
+    <link href="static/app1/dist/zeynep.css" rel="stylesheet"/>
+    <link href="static/app1/css/base.css" rel="stylesheet"/>
+    <link href="static/app1/css/left.css" rel="stylesheet"/>
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="stylesheet" href="static/app1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/app1/css/fontAwesome.css">
+    <link rel="stylesheet" href="static/app1/css/hero-slider.css">
+    <link rel="stylesheet" href="static/app1/css/admin.css">
+    <link rel="stylesheet" href="static/app1/css/try.css">
+    <link rel="stylesheet" href="static/app1/css/owl-carousel.css">
+    <link rel="stylesheet" type="text/css" href="static/app1/css/default.css" />
+    <link rel="stylesheet" type="text/css" href="static/app1/css/component.css" />
+    <link rel="stylesheet" type="text/css" href="static/app1/css/popup.css" />
+
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+              integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
+              crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="static/app1/css/search.css">
+
+    <script src="static/app1/js/bar.js"></script>
+    <title>Emplpoyé</title>
+
+      <style>
+          .popup p{
+            color: black;
+            text-align: center;
+          }
+          .item h4{
+            color: black;
+          }
+
+          button:hover{
+            color: black;
+          }
+
+          label{
+            color: white;
+          }
+          .modal-header h4{
+            color: white;
+          }
+
+          .modal-content{
+            background: #2a3638;
+          }
+
+          .modal span{
+            color: white;
+          }
+
+          .modal-footer{
+            border-top: none;
+          }
+
+          .modal-header{
+            border-bottom: none;
+          }
+
+          #submit_btn{
+            background: #30694b;
+            color: white;
+          }
+
+          #submit_btn:hover{
+            background: #25523b;
+          }
+
+          textarea:focus{
+            border-color: red;
+          }
+
+          .modal-header h3{
+            margin-left: 60px;
+          }
+
+          .alert{
+            color: white;
+            border: none;
+          }
+
+          .alert-danger{
+            background: #840c24;
+          }
+
+          .alert-danger:hover{
+            background: #6e0a1e;
+          }
+          .alert-success{
+            background: #30694b;
+          }
+
+          .alert-success:hover{
+            background: #25523b;
+          }
+
+          .closebtn {
+              margin-left: 15px;
+              font-weight: bold;
+              float: right;
+              font-size: 22px;
+              line-height: 20px;
+              cursor: pointer;
+              transition: 0.3s;
+          }
+
+          .projects-content {
+            padding-top: 20vh;
+            background-image: url("static/app1/img/i0.png");
+
+          }
+
+          .primary-button a{
+            background-color: white;
+            color: #ffa701;
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+          }
+
+          .primary-button a:hover{
+            color: black;
+          }
+
+          .dmd-button:focus{
+            outline: none;
+          }
+
+          .btn-open.first{
+            background-color: #42d3d5;
+          }
+          .btn-open.first:hover{
+            background-color: #4295d5;
+          }
+
+          .btn-open.second {
+              background-color: #ffffff;
+              color: #42d3d5;
+          }
+
+          .btn-open {
+              border: 0;
+              border-radius:5px;
+              box-shadow: 0 2px 14px 0 rgba(0, 0, 0, .05);
+              display: inline-block;
+              font-size: 16px;
+              font-weight: bold;
+              min-width: 150px;
+              outline: 0;
+              padding-bottom: 15px;
+              padding-top: 15px;
+              cursor: pointer;
+              margin: 0 6px;
+          }
+
+        .btn-open:active {
+            box-shadow: inset 0 3px 5px 0px rgba(0, 0, 0, .1);
+        }
+
+
+        .modal-content img{
+            width: 100%;
+        }
+
+        .form-control:focus{
+           box-shadow: none;
+        }
+
+        .form-control select option[selected]{
+            background-color: red;
+        }
+
+        #cls_demande:focus{
+            outline: none;
+        }
+
+        .inscription_modal .modal-body{
+            margin: auto;
+            margin-top: 1px;
+        }
+
+        .close:focus{
+            outline: none;
+        }
+
+        .inscription_modal h4{
+            margin: auto;
+            margin-top: 15px;
+            margin-left: 55px;
+        }
+        .input-box input
+{
+  width: 100%;
+  outline: none;
+  border:none;
+  color: rgb(245, 236, 236);
+  background-color: rgba(255, 255, 255, 0.212);
+  padding: 5px 10px 10px 30px;
+  border-radius: 30px;
+}
+
+.fa-search{
+    padding-right: 20px;
+}
+
+
+.header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color:rgba(0, 0, 0, 0.8);
+  position: fixed;
+  box-shadow: rgba(87, 62, 62, 0.12);
+  padding: 5px 15px;
+  font-size: 22px;
+  width: 100%;
+  z-index: 1;
+  height: 50px;
+  margin-top: 0px;
+}
+
+        .search{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;;
+        height: 42.5px;
+        line-height: 30px;
+        outline: 0;
+        border: 0;
+        display: none;
+        font-size: 1em;
+        border-radius: 20px;
+        padding: 0 20px;
+    }
+    #search{
+        box-sizing: border-box;
+        padding: 10px;
+        width: 42.5px;
+        height: 42.5px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        border-radius: 50%;
+        color: #07051a;
+        text-align: center;
+        font-size: 1.2em;
+        transition: all 1s;
+    }
+
+    .input-box{
+        width: 500px;
+    }
+
+    input[type=search]::-webkit-search-cancel-button {
+        -webkit-appearance: searchfield-cancel-button;
+}
+      </style>
+  </head>
+  <body>
+
+    <div class="fixed-side-navbar">
+        <ul class="nav flex-column">
+          <li class="nav-item"><a class="nav-link" href="#portfolio"><span>Annonces</span></a></li>
+          <li class="nav-item"><a class="nav-link" href="#our-story"><span> Programme</span></a></li>
+        </ul>
+    </div>
+    
+    <div class="parallax-content projects-content" id="portfolio">
+      <!--<nav class="nav1">
+        <div class="container">
+            
+            <div id="mainListDiv" class="main_list">
+                <ul class="navlinks">
+                    <li><a href="#"></span>Profile</a></li>
+                    <li><a href="#">Messages</a></li>
+                    <li><a href="#">Notifications</a></li>
+                    <li><a href="#">Déconnexion</a></li>
+                </ul>
+            </div>
+            
+        </div>
+    </nav>-->
+        <!------------------------------------------------header start------------------------------------------------>
+      <div>
+        <nav class="header">
+            <!--
+            <form class="content" method="get" action="">
+                {% csrf_token %}
+              <input autocomplete="no" type="text" name="search" class="inputt" id="search-input" placeholder="Rechercher dans programme">
+              <a href="#popup_search"><button type="reset" class="searchh" id="search-btn"></button></a>
+            </form>
+            -->
+          <!-- partie gauche-->
+          <div>
+            <img  src="static/app1/img/logo.png " alt="" class="logo">
+          </div>
+          <!-- partie au milieu-->
+            <form>
+                <div class ="input-box">
+                    <input id="search_input" type="search">
+                    <div class="search-icon" ><i class="fa fa-search"></i></div>
+                </div>
+            </form>
+
+     <!-------------------------------------------- partie à droite--------------------------------------->
+          <div>
+            <div class="message">
+              <i class="fa fa-comment-o dropdown-toggle1" data-toggle="message-menu1"></i>
+              <span class="number1">3</span>
+              <div id="message-menu1" class="dropdown-menu1 messag">
+                <div class="dropdown-content1" >
+                  <li>
+                    <img src="static/app1/img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                  <li>
+                    <img src="static/app1/img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                  <li>
+                    <img src="static/app1/img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                  <li>
+                    <img src="static/app1/img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                  <li>
+                    <img src="static/app1/img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                  <li>
+                    <img src="static/app1/img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                  <li>
+                    <img src="static/app1/img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="notification">
+              <i class="fa fa-bell-o  dropdown-toggle1" data-toggle="notification-menu1"></i>
+              <span class="number2">3</span>
+              <div id="notification-menu1" class="dropdown-menu1 notif">
+                <div class="dropdown-content1 " >
+                  <li>
+                    <img src="static/app1/img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                  <li>
+                    <img src="static/app1/img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                  <li>
+                    <img src="img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                  <li>
+                    <img src="img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                  <li>
+                    <img src="img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                  <li>
+                    <img src="img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                  <li>
+                    <img src="img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                </div>
+              </div>
+
+            </div>
+            <div class="avatar">
+              <img src="static/app1/img/avatar.jpg" alt=""  class="dropdown-toggle1" data-toggle="user-menu2">
+
+              <div id="user-menu2" class="dropdown-menu1 setting2">
+                <div class="item2"><span class="fa fa-user"></span>Profile</div>
+                <div class="item2"><span class="fa fa-cog"></span>Configuration</div>
+                <div class="item2"><span class="fa fa-question-circle-o"></span>Aide</div>
+                <div class="item2"><span class="fa fa-power-off"></span>Déconnexion</div>
+              </div>
+            </div>
+          </div>
+        </nav>
+      
+      <div class="container">
+        
+          <div class="row">
+              <div class="col-md-12">
+                  <div id="owl-testimonials" class="owl-carousel owl-theme">
+                      {% for annonce in annonces %}
+                      <div class="item">
+                          <div class="testimonials-item">
+                              <img  src="{{annonce.photo.url}}" alt="">
+                              <div class="text-content">
+                                  <h4>{{ annonce.objet }}</h4>
+                                  <br>
+                                  <div class="primary-button">
+                                    <a href="#" data-url="{{annonce.id}}" data-toggle="modal" id="annonce_btn" data-target="#inscription_modal">S'inscire</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      {% endfor %}
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+    <div class="tabs-content" id="our-story">
+      <div class="container">
+        <div>
+          <form action="">
+
+          </form>
+
+        </div>    
+        <div class="row">
+          <div class="col-md-4">
+              <div class="left-text">
+                  <h4>A propos du programme des oeuvres sociales</h4>
+                  <div class="line-dec"></div>
+                  <p>Le service des oeuvres sociales de l'ESI SBA est institué en vue de promouvoir la vie sociale du travailleur à travers l’organisation d’activités citées dans le <a rel="nofollow" href="./pdf.pdf" style="color:silver">programme des oeuvres sociales</a> allant dans le sens du bien être de celui-ci et de sa famille.</p>
+                  <ul>
+                      <li>- Sont bénéficiaires des œuvres sociales de l’organisme, les travailleurs et retraités ainsi que les familles qui sont à leur charge.</li>
+                  </ul><br>
+                  
+                  <div>
+                    <button type="button" class="btn-open first">Consulter</button>
+                </div> 
+              </div>
+          </div>
+          <div class="col-md-8">
+              <div class="row">
+                  <div class="col-md-6">
+                      <div class="service-item">
+                          <h4>L'octroi des prêts</h4>
+                          <div class="line-dec"></div>
+                          <p>Tout salarié en difficulté peut demander un prêt qui lui sera accordé sans intérêt.</p>
+                          <div class="pret-button">
+                            <a href="./pret.html" style="color:#42d3d5">Demander un Prêt</a>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="service-item">
+                          <h4>L'octroi des dons</h4>
+                          <div class="line-dec"></div>
+                          <p>Les membres du COS peuvent, lors d'une réunion, voter l'attribution d'une certaine somme à des salariés à titre de secours.</p>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="service-item">
+                          <h4>Primes allocations diverses</h4>
+                          <div class="line-dec"></div>
+                          <p>Le service des oeuvres sociales attribue aux salariés un certain nombre de primes versées en diverses occasions.</p>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="service-item">
+                          <h4>Activités sociales et culturelles</h4>
+                          <div class="line-dec"></div>
+                          <p>Tout salarié peut bénéficier des différentes activités et offres en formulant une demande après avoir consulter l'article correspondant.</p>
+                      </div>
+                  </div>
+              </div>
+          </div>                
+      </div>
+
+        <div class="zeynep">
+            <ul>
+                <label>Programmes</label>
+                {% for partie in parties %}
+                <li class="has-submenu">
+                    <a href="#" data-submenu="partie{{partie.id}}">{{partie}}</a>
+                    <div id="partie{{partie.id}}" class="submenu">
+                        <div class="submenu-header">
+                            <a href="#" data-submenu-close="partie{{partie.id}}">Parties</a>
+                        </div>
+                        <label>{{partie}}</label>
+                        {% for chapitre in partie.chapitre_set.all %}
+                        <ul>
+                            <li class="has-submenu">
+                                <a href="#" data-submenu="chapitre{{chapitre.id}}">{{chapitre}}</a>
+                                <div id="chapitre{{chapitre.id}}" class="submenu">
+                                    <div class="submenu-header">
+                                        <a href="#" data-submenu-close="chapitre{{chapitre.id}}">Chapitres</a>
+                                    </div>
+                                    <label>{{chapitre}}</label>
+                                    <ul>
+                                        {% for article in chapitre.article_set.all %}
+                                        <li>
+                                            <a href="#article{{article.id}}">Article{{forloop.counter}}</a>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                        {% endfor %}
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>   
+      </div>
+
+      <!-- <button type="button" class="btn-open first">Open!</button> <button type="button" class="btn-openn first">Modifier</button> -->
+      <div class="main">
+        <div class="col-md-7 mx-auto">
+          <div class="wrapper">
+            {% for article in articles %}
+              <div id="article{{article.id}}" class="overlay">
+                <div class="popup">
+                    <h6>Article {{ forloop.counter }}</h6>
+                    <a class="close" href="#">&times;</a>
+                    <div class="content">
+                        <p>{{ article.contenu }}</p>
+                    </div>
+                    <div>
+                        <button type="button" id="{{article.id}}" data-toggle="modal" data-target="#demande_modal" class="dmd-button">Demander</button>
+                    </div>
+                </div>
+              </div>
+              {% endfor %}
+          </div>
+        </div>  
+      </div>
+      </div>
+      <div class="zeynep-overlay"></div>
+
+<!-- Modal -->
+<div class="modal fade" id="demande_modal" data-url="" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Formuler votre demande</h3>
+        <button id="cls_demande" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form id="demande_form" method="post" action="" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="form-group">
+                  <label for="exampleFormControlFile1">Joindre les fichiers necessaires(pdf/doc/docx/jpg/png)</label>
+                  <input type="file" name="doc" class="form-control-file" id="exampleFormControlFile1"
+                         oninvalid="this.setCustomValidity('Veuillez choisir un ou plusieurs fichiers')"
+                         oninput="this.setCustomValidity('')"
+                         accept="image/jpeg,image/gif,image/png,application/pdf,image/x-eps"
+                         multiple required>
+              </div>
+              <div class="form-group">
+                  <label for="mode_paiment">Mode de payement</label>
+                  <select class="form-control" name="mode_paiment" id="mode_paiment"
+                  oninvalid="this.setCustomValidity('Veuillez choisir un mode')"
+                         oninput="this.setCustomValidity('')" required>
+                      <option class="first_selected" selected value="">Veuillez choisir un mode de paiment</option>
+                      <option>Espèces</option>
+                      <option>Virement</option>
+                      <option>Chèque</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                  <label for="exampleFormControlTextarea1">Commentaire(optionnel)</label>
+                  <textarea class="form-control" placeholder="Ecrire quelques choses" name="comment" id="exampleFormControlTextarea1" rows="3"></textarea>
+              </div>
+              <div style="display: none;" class="form-group alert alert-success text-center">
+                  <span class="closebtn" >&times;</span>
+                  <p></p>
+              </div>
+              <div style="display: none;" class="form-group alert alert-danger text-center">
+                  <span class="closebtn" >&times;</span>
+                  <p></p>
+              </div>
+              <div class="modal-footer">
+                  <button id="fermer_demande" type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                  <button id="submit_btn" type="submit" class="btn">Confirmer</button>
+              </div>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="modal fade annonce_modal" id="annonce_modal" data-url="" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4></h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="static/app1/img/hadj.png">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade inscription_modal" id="inscription_modal" data-url="" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4></h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+      <script src="static/app1/js/vendor/bootstrap.min.js"></script>
+      <script src="static/app1/js/plugins.js"></script>
+      <script src="static/app1/js/main.js"></script>
+      <script>
+        function openCity(cityName) {
+            var i;
+            var x = document.getElementsByClassName("city");
+            for (i = 0; i < x.length; i++) {
+               x[i].style.display = "none";  
+            }
+            document.getElementById(cityName).style.display = "block";  
+        }
+    </script>
+
+    <script>
+        $(document).ready(function(){
+          // Add smooth scrolling to all links
+          $(".fixed-side-navbar a, .primary-button a").on('click', function(event) {
+
+            // Make sure this.hash has a value before overriding default behavior
+            if (this.hash !== "") {
+              // Prevent default anchor click behavior
+              event.preventDefault();
+
+              // Store hash
+              var hash = this.hash;
+
+              // Using jQuery's animate() method to add smooth page scroll
+              // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+              $('html, body').animate({
+                scrollTop: $(hash).offset().top
+              }, 800, function(){
+           
+                // Add hash (#) to URL when done scrolling (default click behavior)
+                window.location.hash = hash;
+              });
+            } // End if
+          });
+        });
+    </script>
+    <!--
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      -->
+      <script src="static/app1/dist/zeynep.js"></script>
+      <script src="static/app1/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+      <script>
+          $(function() {
+          // init zeynepjs side menu
+          var zeynep = $('.zeynep').zeynep({
+          opened: function () {
+              // log
+              console.log('the side menu opened')
+          },
+          closed: function () {
+              // log
+              console.log('the side menu closed')
+          }
+          })
+          // dynamically bind 'closing' event
+          zeynep.on('closing', function () {
+              // log
+                  console.log('this event is dynamically binded')
+              })
+          
+          // handle zeynepjs overlay click
+          $('.zeynep-overlay').on('click', function () {
+              zeynep.close()
+          })
+          // open zeynepjs side menu
+          $('.btn-open').on('click', function () {
+              zeynep.open()
+          })
+          })
+      </script>
+  <script>
+  $(function(){
+
+
+    $(".dmd-button").click(function(){
+        $("#demande_modal").attr("data-url", $(this).attr("id"));
+    });
+
+    $("#fermer_demande").click(function(){
+        $("#demande_form").trigger("reset");
+        $(".alert").hide();
+    });
+
+    $("#cls_demande").click(function(){
+        $("#demande_form").trigger("reset");
+        $(".alert").hide();
+    });
+
+    $(".closebtn").click(function(){
+        $(".alert").fadeOut(300);
+    });
+
+    $("#demande_form").submit(function(){
+        var id=$("#demande_modal").attr("data-url");
+        var form = $("#demande_form")[0];
+        var formData = new FormData(form);
+
+        $.ajax({
+            url:"demande/"+id,
+            data: formData,
+            contentType: false,
+            processData: false,
+            enctype: "multipart/form-data",
+            method: "post",
+            dataType: "json",
+            success: function(data){
+                if(data.exists){
+                    $(".alert-success p").text("");
+                    $(".alert-success").hide();
+                    $(".alert-danger").fadeIn(300);
+                    $(".alert-danger p").text("Vous avez deja formulé une demande pour cet article");
+                }
+                else{
+                    $(".alert-danger p").text("");
+                    $(".alert-danger").hide();
+                    $(".alert-success").fadeIn(300);
+                    $(".alert-success p").text("Votre demande a été envoyée");
+                }
+            }
+        });
+        return false;
+    });
+
+    $("#annonce_btn").click(function(){
+        var id = $(this).attr("data-url");
+        $.ajax({
+            url: "inscription/"+id,
+            success: function(data){
+                if(data.exists){
+                    $(".inscription_modal h4").text("Vous etes déja inscris dans cette annonce");
+                    $(".inscription_modal .modal-content").css("background", "#840c24");
+                    $(".inscription_modal .modal-content").hover(function(){
+                        $(this).css("background", "#6e0a1e");
+                    }, function(){
+                        $(this).css("background", "#840c24");
+                    });
+                }
+                else{
+                    $(".inscription_modal h4").text("Merci pour votre inscription");
+                    $(".inscription_modal .modal-content").css("background", "#840c24");
+                    $(".inscription_modal .modal-content").hover(function(){
+                        $(this).css("background", "#6e0a1e");
+                    }, function(){
+                        $(this).css("background", "#840c24");
+                    });
+                }
+            }
+        });
+    });
+  });
+  </script>
+</body>
+</html>

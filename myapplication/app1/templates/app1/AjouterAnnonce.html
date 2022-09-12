@@ -1,0 +1,126 @@
+<form action="" method="post" id="annonce_form" enctype="multipart/form-data">
+              {% csrf_token %}
+            <div class="form-group">
+              <label for="annonce_titre" class="control-label">Titre de l'annonce:</label>
+              <input type="text" class="form-control" placeholder="Ajouter un titre" name="titre" required id="annonce_titre">
+                <p class="error" id="titre_error" style="color:#f24646;"></p>
+            </div>
+            <div class="form-group">
+                      <label for="annonce_budget" class="control-label">Titre de l'annonce:</label>
+                      <input type="number" class="form-control" placeholder="Entrer le budget(en da)" name="budget" required id="annonce_budget">
+                        <p class="error" id="budget_error" style="color:#f24646;"></p>
+                    </div>
+
+              <div class="form-group">
+              <label for="date_debut" class="control-label">Inscriptions commence le :</label>
+              <input id="date_debut" type="date" class="form-control" required name="date_debut">
+                <p class="error" id="date_debut_error" style="color:#f24646;"></p>
+            </div>
+
+            <div class="form-group">
+              <label for="date_fin" class="control-label">Inscriptions ouvertes jusqu'à:</label>
+              <input id="date_fin" type="date" class="form-control" required name="date_fin">
+                <p class="error" id="date_fin_error" style="color:#f24646;"></p>
+            </div>
+
+
+            <div class="form-group">
+              <label for="annonce_image" class="control-label">Ajoutez une image pour illustrer votre annonce:</label>
+              <input id="annonce_image" type="file" name="photo" required class="image-upload" accept="image/*" />
+            </div>
+
+            <div class="form-group">
+              <label for="annonce_detail" class="control-label">Ajoutez une image contenant les détails de votre annonce:</label>
+              <input type="file" id="annonce_detail" name="detail" required class="image-upload" accept="image/*" />
+            </div>
+              <div class="alert alert-success text-center" role="alert" style="display:none;">
+                  <span class="close_alert" >&times;</span>
+                  <p>Annonce ajoutée</p>
+              </div>
+              <div class="alert alert-danger text-center" role="alert" style="display:none;">
+                  <span class="close_alert" >&times;</span>
+                  <p></p>
+              </div>
+          <div class="modal-footer">
+          <button id="fermer_annonce_modal" type="button" class="btn btn-secondary fermer_modal" data-dismiss="modal">Fermer</button>
+          <button type="submit" class="btn btn-primary" >Ajouter</button>
+        </div>
+          </form>
+<script>
+            $("#annonce_form").submit(function(){
+                var form = $(this);
+                var formData = new FormData();
+                formData.append("titre", $("#annonce_titre").val());
+                formData.append("budget", $("#annonce_budget").val());
+                formData.append("photo", $("#annonce_image")[0].files[0]);
+                formData.append("date_debut", $("#date_debut").val());
+                formData.append("date_fin", $("#date_fin").val());
+                formData.append("detail", $("#annonce_detail")[0].files[0]);
+                formData.append("csrfmiddlewaretoken", "{{ csrf_token }}");
+
+
+                $.ajax({
+                    url: "annonce",
+                    data: formData,
+                    dataType: "json",
+                    processData: false,
+                    contentType: false,
+                    mimeType: "multipart/form-data",
+                    method: "post",
+                    success: function(data){
+                        if(data.form_valid){
+                            $(".annonce_modal .alert-success").fadeIn(300);
+                            $(".annonce_modal .alert-danger").hide();
+                            $(".annonce_modal .error").text("");
+                            // Ajout de la nouvelle annonce
+                            /*
+                            $(".annonces_slides").html(`
+                            <div class="row">
+                              <div class="col-md-12">
+                                  <div id="owl-testimonials" class="owl-carousel owl-theme">
+                                      <div class="item">
+                                          <div class="testimonials-item">
+                                              <a href="static/app1/img/kebch.png" data-lightbox="image-1"><img src="static/app1/img/kebch.png" alt=""></a>
+                                              <div class="text-content">
+                                                  <h4>Hadj</h4><br><span>Jusqu'à 19-10-2021</span>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                            </div>
+                            `);
+                            */
+                        }
+                        else{
+                            if(data.non_fields){
+                                $(".annonce_modal .alert-success").hide();
+                                $(".annonce_modal .alert-danger").fadeIn(300);
+                            }
+                            else
+                                $(".annonce_modal .alert-danger").hide();
+                            $(".annonce_modal .alert-danger p").text("La date fin ne peut pas etre inférieure à la date début");
+                            for(field in data.field_errors)
+                                $("#"+field+"_error").text(data.field_errors[field]);
+                            for(field in data.field_valid)
+                                $("#"+data.field_valid[field]+"_error").text("");
+                        }
+                    }
+                });
+                return false;
+            });
+
+            //The buttons
+                $(".close_alert").click(function(){
+                    $(".annonce_modal .alert-success").fadeOut(300);
+                    $(".annonce_modal .alert-danger").fadeOut(300);
+                });
+
+                $("#fermer_annonce_modal").click(function(){
+                    $("#annonce_form").trigger("reset");
+                    $(".annonce_modal .alert-success").hide();
+                    $(".annonce_modal .error").text("");
+                    $(".annonce_modal .alert-danger").hide();
+
+                });
+        </script>

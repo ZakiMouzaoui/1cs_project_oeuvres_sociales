@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Mot de passe oublié </title>
+    <link rel="stylesheet" href="static/app1/css/message.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css">
+    
+   <script src="static/app1/js/font.js"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700|Poppins:400,500&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+.bg-img{
+  background:url('static/app1/img/bg.jpg');
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+}
+.bg-img:after{
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0,0,0,0.7);
+}
+.content{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 999;
+  text-align: center;
+  padding: 60px 32px;
+  width: 370px;
+  transform: translate(-50%,-50%);
+  background: rgba(255,255,255,0.04);
+  box-shadow: -1px 4px 28px 0px rgba(0,0,0,0.75);
+}
+.content header{
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 35px 0;
+  font-family: 'Montserrat',sans-serif;
+
+}
+.content .fieldd{
+  position: relative;
+    display: grid;
+    grid-template-columns: 7% 93%;
+    margin: 25px 0;
+    padding: 5px 0;
+    border-bottom: 2px solid #d9d9d9;
+}
+.field{
+  position: relative;
+  height: 45px;
+  width: 100%;
+  display: flex;
+  background: rgba(255,255,255,0.94);
+}
+.content .fieldd.one{
+	margin-top: 0;
+}
+
+.i{
+	color: #e6e0e0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.i i{
+	transition: .3s;
+}
+
+.fieldd > div{
+    position: relative;
+	height: 45px;
+}
+.fieldd > div > h5{
+	position: absolute;
+	left: 10px;
+	top: 50%;
+	transform: translateY(-50%);
+	color: #999;
+	font-size: 18px;
+	transition: .3s;
+
+}
+
+.fieldd:before, .fieldd:after{
+	content: '';
+	position: absolute;
+	bottom: -2px;
+	width: 0%;
+	height: 2px;
+	background-color: #38d39f;
+	transition: .7s;
+}
+
+.fieldd:before{
+	right: 50%;
+}
+
+.fieldd:after{
+	left: 50%;
+}
+
+.fieldd.focus:before, .fieldd.focus:after{
+	width: 50%;
+}
+
+.fieldd.focus > div > h5{
+	top: -5px;
+	font-size: 15px;
+}
+
+.fieldd.focus > .i > i{
+	color: #38d39f;
+}
+
+.fieldd > div > input{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	border: none;
+	outline: none;
+	background: none;
+	padding: 0.5rem 0.7rem;
+	font-size: 1.2rem;
+	color: white;
+	font-family: 'poppins', sans-serif;
+}
+.fieldd.space{
+	margin-bottom: 7px;
+}
+.field input{
+  height: 100%;
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #222;
+  font-size: 16px;
+  font-family: 'Poppins',sans-serif;
+}
+.space{
+  margin-top: 16px;
+}
+.show{
+  position: absolute;
+  top: 18px;
+  right: 13px;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 15px;
+  color: #eee5e5;
+  display: none;
+  cursor: pointer;
+  font-family: 'Poppins',sans-serif;
+}
+.pass-key:valid ~ .show{
+  display: block;
+}
+.pass{
+  text-align: left;
+  margin: 10px 0;
+}
+.pass a{
+  color: white;
+  text-decoration: none;
+  font-family: 'Poppins',sans-serif;
+}
+.pass:hover a{
+  text-decoration: underline;
+}
+.field input[type="submit"]{
+  background: #3498db;
+  border: 1px solid #2691d9;
+  color: white;
+  font-size: 18px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Montserrat',sans-serif;
+}
+.field input[type="submit"]:hover{
+  background: #2691d9;
+}
+.login{
+  color: white;
+  margin: 20px 0;
+  font-family: 'Poppins',sans-serif;
+}
+
+a{
+	display: block;
+	text-align: center;
+	text-decoration: none;
+	color: #999;
+	font-size: 0.9rem;
+	transition: .3s;
+}
+
+.submit a{
+  padding-top: 10px;
+}
+
+.btn{
+	display: block;
+	width: 100%;
+	height: 50px;
+	border-radius: 25px;
+	outline: none;
+	border: none;
+	background-image: linear-gradient(to right, #32be8f, #096466, #1ba376);
+	background-size: 200%;
+	font-size: 1.2rem;
+	color: #fff;
+	font-family: 'Poppins', sans-serif;
+
+	margin: 1rem 0;
+	cursor: pointer;
+	transition: .5s;
+}
+.btn:hover{
+	background-position: right;
+}
+.signup{
+  font-size: 18px;
+  color: white;
+  font-family: 'Poppins',sans-serif;
+  padding-top: 40px;
+  padding-right: 20px;
+}
+.signup a{
+  color: rgb(202, 197, 197);
+  text-decoration: none;
+}
+.signup a:hover{
+  text-decoration: underline;
+  color:#0d9294 ;
+}
+.oublier a:hover{
+  text-decoration: underline;
+  color:#0d9294 ;
+}
+.oublier{
+  margin-bottom: 70px;
+}
+.eye{
+  position:absolute;
+  margin-top:15px;
+  margin-left:115px;
+  color:#caccd4;
+}
+#hide1{
+  display:none;
+}
+
+
+
+    </style>
+  </head>
+  <body>
+    <div class="bg-img">
+      <div class="content">
+        <header>Un e-mail vous a été envoyé pour réinitialiser le mot de passe , vérifié votre boite gmail!</header>
+        <form action="#">
+       
+          
+          <div class="submit">
+            <a href="{% url 'login' %}" class="btn">Continuer</a>
+          </div>
+        
+        </form>
+        
+       
+        <div class="signup">
+          <a href="{% url 'login' %}">Retour à la page précédente</a>
+        </div>
+      </div>
+    </div>
+    <script>
+      function myfunction()
+      {
+        x = document.getElementById("myInput");
+        y = document.getElementById("hide1");
+        z = document.getElementById("hide2");
+        if(x.type ==='password')
+        {
+          x.type = "text";
+          y.style.display="block";
+          z.style.display="none";
+
+        }
+        else
+        {
+          x.type= "password";
+          y.style.display="none";
+          z.style.display="block";
+
+        }
+      }
+    </script>
+<!--
+    <script>
+      const pass_field = document.querySelector('.pass-key');
+      const showBtn = document.querySelector('.show');
+      showBtn.addEventListener('click', function(){
+       if(pass_field.type === "password"){
+         pass_field.type = "text";
+         showBtn.textContent = "Masquer";
+         showBtn.style.color = "#38d39f";
+       }else{
+         pass_field.type = "password";
+         showBtn.textContent = "Afficher";
+         showBtn.style.color = "#eee5e5";
+       }
+      });
+    </script>
+    -->
+    <script>
+      const inputs = document.querySelectorAll(".input");
+
+
+function addcl(){
+	let parent = this.parentNode.parentNode;
+	parent.classList.add("focus");
+}
+
+function remcl(){
+	let parent = this.parentNode.parentNode;
+	if(this.value == ""){
+		parent.classList.remove("focus");
+	}
+}
+
+
+inputs.forEach(input => {
+	input.addEventListener("focus", addcl);
+	input.addEventListener("blur", remcl);
+});
+    </script>
+    
+  </body>
+</html>

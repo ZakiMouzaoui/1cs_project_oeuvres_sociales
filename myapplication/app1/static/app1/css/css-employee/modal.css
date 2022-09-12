@@ -1,0 +1,9 @@
+.btn-open:hover {
+            background-color: #0062cc;
+            /*border-radius:5px;*/
+          }
+
+          .btn-open:focus {
+            background-color: #0062cc;
+            outline: none;
+          }

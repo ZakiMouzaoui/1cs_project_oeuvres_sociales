@@ -1,0 +1,91 @@
+<form id="demande_form" method="post" action="" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="form-group">
+                  <label for="exampleFormControlFile1">Joindre les fichiers necessaires(pdf/doc/docx/jpg/png)</label>
+                  <input type="file" name="doc" class="form-control-file" id="exampleFormControlFile1"
+                         oninvalid="this.setCustomValidity('Veuillez choisir un ou plusieurs fichiers')"
+                         oninput="this.setCustomValidity('')"
+                         accept="image/jpeg,image/gif,image/png,application/pdf,image/x-eps"
+                         multiple required>
+              </div>
+              <div class="form-group">
+                  <label for="mode_paiment">Mode de payement</label>
+                  <select class="form-control" name="mode_paiment" id="mode_paiment"
+                  oninvalid="this.setCustomValidity('Veuillez choisir un mode')"
+                         oninput="this.setCustomValidity('')" required>
+                      <option class="first_selected" selected value="">Veuillez choisir un mode de paiment</option>
+                      <option>Espèces</option>
+                      <option>Virement</option>
+                      <option>Chèque</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                  <label for="exampleFormControlTextarea1">Commentaire(optionnel)</label>
+                  <textarea class="form-control" placeholder="Ecrire quelques choses" name="comment" id="exampleFormControlTextarea1" rows="3"></textarea>
+              </div>
+              <div style="display: none;" class="form-group alert alert-success text-center">
+                  <span class="closebtn" >&times;</span>
+                  <p></p>
+              </div>
+              <div style="display: none;" class="form-group alert alert-danger text-center">
+                  <span class="closebtn" >&times;</span>
+                  <p></p>
+              </div>
+              <div class="modal-footer">
+                  <button id="fermer_demande" type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                  <button id="submit_btn" type="submit" class="btn">Confirmer</button>
+              </div>
+          </form>
+
+<script>
+  $(function(){
+    $(document).on("click", ".dmd-button", function(){
+        $("#demande_modal").attr("data-url", $(this).attr("data-url"));
+    });
+
+    $("#fermer_demande").click(function(){
+        $("#demande_form").trigger("reset");
+        $(".alert").hide();
+    });
+
+    $("#cls_demande").click(function(){
+        $("#demande_form").trigger("reset");
+        $(".alert").hide();
+    });
+
+    $(".closebtn").click(function(){
+        $(".alert").fadeOut(300);
+    });
+
+    $("#demande_form").submit(function(){
+        var id=$("#demande_modal").attr("data-url");
+        var form = $("#demande_form")[0];
+        var formData = new FormData(form);
+
+        $.ajax({
+            url:"demande/"+id,
+            data: formData,
+            contentType: false,
+            processData: false,
+            enctype: "multipart/form-data",
+            method: "post",
+            dataType: "json",
+            success: function(data){
+                if(data.exists){
+                    $(".alert-success p").text("");
+                    $(".alert-success").hide();
+                    $(".alert-danger").fadeIn(300);
+                    $(".alert-danger p").text("Vous avez deja formulé une demande pour cet article");
+                }
+                else{
+                    $(".alert-danger p").text("");
+                    $(".alert-danger").hide();
+                    $(".alert-success").fadeIn(300);
+                    $(".alert-success p").text("Votre demande a été envoyée");
+                }
+            }
+        });
+        return false;
+    });
+    });
+    </script>

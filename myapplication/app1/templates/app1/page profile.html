@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--  This file has been downloaded from bootdey.com @bootdey on twitter -->
+    <!--  All snippets are MIT license http://bootdey.com/license -->
+    <title>Mon profile </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/CEB8EEDF-7172-A847-B496-D6509F90F010/main.js" charset="UTF-8"></script>-->
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <style type="text/css">
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700|Poppins:400,500&display=swap');
+:root{
+  --succes-color: #2ecc71;
+  --error-color: #e74c3c;
+}
+body{
+    background: #f5f5f5;
+    margin-top:20px;
+}
+
+.ui-w-80 {
+    width: 80px;
+    height: 80px;
+    border-radius: 100px;
+}
+
+.btn-default {
+    border-color: rgba(24,28,33,0.1);
+    background: rgba(0,0,0,0);
+    color: #4E5155;
+}
+
+label.btn {
+    margin-bottom: 0;
+}
+
+.btn-outline-primary {
+    border-color: #26B4FF;
+    background: transparent;
+    color: #26B4FF;
+}
+
+.btn {
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.text-light {
+    color: #babbbc !important;
+}
+
+.btn-facebook {
+    border-color: rgba(0,0,0,0);
+    background: #3B5998;
+    color: #fff;
+}
+
+.btn-instagram {
+    border-color: rgba(0,0,0,0);
+    background: #000;
+    color: #fff;
+}
+
+.card {
+    background-clip: padding-box;
+    box-shadow: 0 1px 4px rgba(24,28,33,0.012);
+}
+
+.row-bordered {
+    overflow: hidden;
+}
+
+.account-settings-fileinput {
+    position: absolute;
+    visibility: hidden;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+.account-settings-links .list-group-item.active {
+    font-weight: bold !important;
+}
+html:not(.dark-style) .account-settings-links .list-group-item.active {
+    background: transparent !important;
+}
+.account-settings-multiselect ~ .select2-container {
+    width: 100% !important;
+}
+.light-style .account-settings-links .list-group-item {
+    padding: 0.85rem 1.5rem;
+    border-color: rgba(24, 28, 33, 0.03) !important;
+}
+.light-style .account-settings-links .list-group-item.active {
+    color: #4e5155 !important;
+}
+.material-style .account-settings-links .list-group-item {
+    padding: 0.85rem 1.5rem;
+    border-color: rgba(24, 28, 33, 0.03) !important;
+}
+.material-style .account-settings-links .list-group-item.active {
+    color: #4e5155 !important;
+}
+.dark-style .account-settings-links .list-group-item {
+    padding: 0.85rem 1.5rem;
+    border-color: rgba(255, 255, 255, 0.03) !important;
+}
+.dark-style .account-settings-links .list-group-item.active {
+    color: #fff !important;
+}
+.light-style .account-settings-links .list-group-item.active {
+    color: #4E5155 !important;
+}
+.light-style .account-settings-links .list-group-item {
+    padding: 0.85rem 1.5rem;
+    border-color: rgba(24,28,33,0.03) !important;
+}
+
+.form-controle.error input {
+  border-color: var(--error-color);
+}
+
+.form-controle small{
+  color: var(--error-color);
+  position: absolute;
+  top:55px;
+  left: 0;
+  visibility: hidden;
+}
+
+.form-controle.error small{
+  visibility: visible;
+}
+
+</style>
+</head>
+<body>
+<div class="container light-style flex-grow-1 container-p-y">
+    <div class="card overflow-hidden">
+      <div class="row no-gutters row-bordered row-border-light">
+        <div class="col-md-3 pt-0">
+          <div class="list-group list-group-flush account-settings-links">
+            <a class="list-group-item list-group-item-action active" data-toggle="list" href="#account-general">Générale</a>
+            <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-info">Information</a>
+            <a class="list-group-item list-group-item-action"  href="{% url 'change_password' %}">Changer le mot de passe</a>
+            {% if request.user.is_staff %}
+              <a class="list-group-item list-group-item-action" href="admin_">Retour au profile</a>
+            {% else %}
+              <a class="list-group-item list-group-item-action" href="Employe">Retour au profile</a>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="col-md-9">
+          <div class="tab-content">
+            <div class="tab-pane fade active show" id="account-general">
+              <div class="card-body media align-items-center">
+                <img src="{{request.user.userprofile.profile_picture.url}}" alt="" class="d-block ui-w-80">
+                <div class="media-body ml-4">
+                  <form id="image_form" method="post" action="">
+                    {% csrf_token %}
+                    <label class="btn btn-outline-primary">
+                      choisir une photo
+                      <input id="image_file" name="image_file" type="file" accept="image/png, image/jpeg, image/jpg" class="account-settings-fileinput">
+                    </label> &nbsp;
+                    <button type="submit" id="update_image" class="btn btn-default md-btn-flat">enregistrer</button>
+                  </form>
+                  <div class="text-light small mt-1">Allowed JPG or PNG. Max size of 800K</div>
+                </div>
+              </div>
+              <hr class="border-light m-0">
+
+              <div class="card-body">
+                <div class="form-group">
+                  <label class="form-label">Nom d'utilisateur</label>
+                  <input value="{{request.user.username}}" disabled type="text" class="form-control mb-1">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Nom </label>
+                  <input value="{{request.user.userprofile.employe.nom}}" disabled type="text" class="form-control mb-">
+                </div>
+                <label class="form-label">Prénom </label>
+                  <input value="{{request.user.userprofile.employe.prenom}}" disabled type="text" class="form-control" >
+                <div class="form-group">
+                  <label class="form-label">Adresse e-mail</label>
+                  <input value="{{request.user.userprofile.employe.email}}" disabled type="text" class="form-control mb-1" >
+                </div>
+              </div>
+
+            </div>
+            <div class="tab-pane fade" id="account-change-password">
+              <div class="card-body pb-2 form" >
+               <form  class="form" id="form">
+                <div class="form-group form-controle">
+                  <label class="form-label">Mot de passe actuel</label>
+                  <input type="password"  id="MotDePasse" class="form-control" >
+                  <small>Error Message</small>
+                </div>
+
+                <div class="form-group form-controle">
+                  <label class="form-label">Nouveau mot de passe</label>
+                  <input type="password"  id="MotDePasse1"  class="form-control" >
+                  <small>Error Message</small>
+                </div>
+
+                <div class="form-group form-controle">
+                  <label class="form-label">Confirmer mot de passe</label>
+                  <input type="password"  id="MotDePasse2" class="form-control">
+                  <small>Error Message</small>
+                </div>
+              </form>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="account-info">
+              <div class="card-body pb-2">
+                <div class="form-group">
+                  <label class="form-label">Poste</label>
+                  <input disabled value="{{ request.user.userprofile.employe.poste }}" type="text" class="form-control" >
+                </div>
+                <div class="form-group">
+                  <label class="form-label"> Sex</label>
+                  <input class="form-control" value="{{ request.user.userprofile.employe.sex }}" disabled>
+                </div>
+                
+                <div class="form-group">
+                  <label class="form-label">Date de naissance</label>
+                  <input type="date" class="form-control" disabled value="{{request.user.userprofile.employe.date_naissance|date:'Y-m-d'}}">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Adresse</label>
+                  <input disabled value="{{ request.user.userprofile.employe.adresse }}" type="text" class="form-control" >
+                </div>
+                <div class="form-group">
+                  <label class="form-label">CCP</label>
+                  <input disabled value="{{ request.user.userprofile.employe.ccp }}" type="text" class="form-control" >
+                </div>
+                <div class="form-group">
+                  <label class="form-label">NSS</label>
+                  <input disabled value="{{ request.user.userprofile.employe.nss }}" type="text" class="form-control" >
+                </div>
+              </div>
+              <div class="card-body pb-2">
+                <div class="form-group">
+                  <label class="form-label">Numéro de téléphone</label>
+                  <input type="text" disabled class="form-control" value="0{{request.user.userprofile.employe.num_tel}}" >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--
+    <div class="text-right mt-3">
+      <button type= "submit" class="btn btn-primary">enregistrer</button>&nbsp;
+      <button type="button" class="btn btn-default">annuler</button>
+    </div>
+    -->
+
+  </div>
+  <script>
+    const form = document.getElementById('form');
+
+    const password = document.getElementById('MotDePasse');
+    const password = document.getElementById('MotDePasse1');
+    const password2 = document.getElementById('MotDePasse2');
+    
+    //Show input error messages
+    function showError(input, message) {
+        const formControl = input.parentElement;
+        formControl.className = 'form-controle error';
+        const small = formControl.querySelector('small');
+        small.innerText = message;
+    }
+    
+    //show success colour
+    function showSucces(input) {
+        const formControl = input.parentElement;
+        formControl.className = 'form-controle success';
+    }
+    
+    //check email is valid
+    function checkEmail(input) {
+        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if(re.test(input.value.trim())) {
+            showSucces(input)
+        }else {
+            showError(input,'Email is not invalid');
+        }
+    }
+    
+    
+    //checkRequired fields
+    function checkRequired(inputArr) {
+        inputArr.forEach(function(input){
+            if(input.value.trim() === ''){
+                showError(input,`${getFieldName(input)} est un champ obligatoire`)
+            }else {
+                showSucces(input);
+            }
+        });
+    }
+    
+    
+    //check input Length
+    function checkLength(input, min ,max) {
+        if(input.value.length < min) {
+            showError(input, `${getFieldName(input)} doit contenir au minimum ${min} caractères`);
+        }else if(input.value.length > max) {
+            showError(input, `${getFieldName(input)}  doit contenir au maximum ${max} caractères`);
+        }else {
+            showSucces(input);
+        }
+    }
+    
+    //get FieldName
+    function getFieldName(input) {
+        return input.id.charAt(0).toUpperCase() + input.id.slice(1);
+    }
+    
+    // check passwords match
+    function checkPasswordMatch(input1, input2) {
+        if(input1.value !== input2.value) {
+            showError(input2, 'Les deux mots de passes ne sont pas identiques');
+        }
+    }
+    
+    
+    //Event Listeners
+    form.addEventListener('submit',function(e) {
+        e.preventDefault();
+    
+        checkRequired([MotDePasse, MotDePasse1, MotDePasse2]);
+       
+        checkLength(MotDePasse,6,25);
+        checkLength(MotDePasse1,6,25);
+      
+        checkPasswordMatch(MotDePasse1, MotDePasse2);
+    });
+    </script>
+
+<script type="text/javascript">
+  $("#image_form").submit(function(){
+      var formData = new FormData($("#image_form")[0]);
+      $.ajax({
+        url: "ajax_update_image",
+        data: formData,
+        dataType: 'json',
+        processData: false,
+        contentType: false,
+        mimeType: 'multipart/form-data',
+        method: 'post',
+        success: function(data){
+          $("img").attr("src", data.profile_picture);
+        }
+      });
+      return false;
+  });
+</script>
+</body>
+</html>

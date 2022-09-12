@@ -1,0 +1,49 @@
+<form id="supprimer_pv_form" action="" method="post">
+                                    {% csrf_token %}
+                                    <label for="pv_select2">PV à supprimer </label>
+                                    <select id="pv_select2" name="pv" class="form-select form-control" aria-label="Default " required>
+                                        <option selected id="first_select" value="">Choisir un PV</option>
+                                        {% for pv in pvs %}
+                                            <option id="{{pv.id}}2" value="{{pv.id}}">{{pv}}</option>
+                                        {% endfor %}
+                                    </select>
+                                      <div style="display: none;" class="form-group alert alert-success text-center">
+                                          <span class="close_alert" >&times;</span>
+                                          <p>PV supprimé</p>
+                                      </div>
+                                      <div class="modal-footer">
+                                          <button id="fermer_supprimer_pv" type="button" class="btn btn-secondary fermer_modal" data-dismiss="modal">Fermer</button>
+                                          <button class="submit_btn_pv btn" type="submit">Confirmer</button>
+                                      </div>
+                                  </form>
+
+
+
+
+<script>
+      $("#supprimer_pv_form").submit(function(){
+        var form = $(this);
+        $.ajax({
+            url: 'supprimer_pv',
+            data: form.serialize(),
+            method: 'post',
+            success: function(data){
+                $("#"+data.id).remove();
+                $(".SupprimerPvModal .alert").fadeIn(300);
+                $('#pv_id option[value='+data.id+']').remove();
+                $('#pv_select2 option[value='+data.id+']').remove();
+            }
+        });
+        return false;
+      });
+
+      //The buttons
+                $(".close_alert").click(function(){
+                    $(".SupprimerPvModal .alert-success").fadeOut(300);
+                });
+
+            $("#fermer_supprimer_pv").click(function(){
+                $("#supprimer_pv_form").trigger("reset");
+                $(".SupprimerPVModal .alert-success").hide();
+            });
+  </script>

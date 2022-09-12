@@ -1,0 +1,1232 @@
+{% load i18n %}
+{% load l10n %}
+
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+    <!-- styles -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,700&display=swap" rel="stylesheet"/>
+    <link href="" rel="stylesheet"/>
+    <link href="https://necolas.github.io/normalize.css/latest/normalize.css" rel="stylesheet"/>
+    <link href="static/app1/dist/zeynep.css" rel="stylesheet"/>
+    <link href="static/app1/css/css-employee/base.css" rel="stylesheet"/>
+    <link href="static/app1/css/css-employee/left.css" rel="stylesheet"/>
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="stylesheet" href="static/app1/css/css-employee/bootstrap.min.css">
+    <link rel="stylesheet" href="static/app1/css/css-employee/fontAwesome.css">
+    <link rel="stylesheet" href="static/app1/css/css-employee/hero-slider.css">
+    <link rel="stylesheet" href="static/app1/css/css-employee/employee.css">
+    <link rel="stylesheet" href="static/app1/css/css-employee/try.css">
+    <link rel="stylesheet" href="static/app1/css/css-employee/for.css">
+    <link rel="stylesheet" href="static/app1/css/css-employee/owl-carousel.css">
+    <link rel="stylesheet" type="text/css" href="static/app1/css/css-employee/default.css" />
+    <link rel="stylesheet" type="text/css" href="static/app1/css/css-employee/component.css" />
+    <link rel="stylesheet" type="text/css" href="static/app1/css/css-employee/popup.css" />
+    <link rel="stylesheet" type="text/css" href="static/app1/css/css-employee/bar.css" />
+    <link href="static/app1/dist/zeynep.css" rel="stylesheet"/>
+    <link href="static/app1/css/css-employee/base.css" rel="stylesheet"/>
+    <link href="static/app1/css/css-employee/left.css" rel="stylesheet"/>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="static/app1/css/css-employee/modal.css" rel="stylesheet"/>
+
+    
+    <link rel="stylesheet" href="static/app1/css/css-employee/navbar.css">
+    <script src="static/app1/js/js-employee/bar.js"></script>
+
+      <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <title>Employé</title>
+
+      <style>
+          .projects-content {
+    background-image: url(static/app1/img/i0.png);
+}
+.tabs-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15vh;
+    background-image: url(static/app1/img/i4.png);
+    background-attachment: fixed;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center center;
+}
+button:hover{
+            color: black;
+          }
+
+          label{
+            color: white;
+          }
+          .modal-header h4{
+            color: white;
+          }
+
+          .modal-content{
+            background: #2a3638;
+          }
+
+          .modal span{
+            color: white;
+          }
+
+          .modal-footer{
+            border-top: none;
+          }
+
+          .modal-header{
+            border-bottom: none;
+          }
+
+          #submit_btn{
+            background: #30694b;
+            color: white;
+          }
+
+          #submit_btn:hover{
+            background: #25523b;
+          }
+
+          textarea:focus{
+            border-color: red;
+          }
+
+          .modal-header h3{
+            margin-left: 60px;
+          }
+
+          .alert{
+            color: white;
+            border: none;
+          }
+
+          .alert-danger{
+            background: #840c24;
+          }
+
+          .alert-danger:hover{
+            background: #6e0a1e;
+          }
+          .alert-success{
+            background: #30694b;
+          }
+
+          .alert-success:hover{
+            background: #25523b;
+          }
+
+          .closebtn {
+              margin-left: 15px;
+              font-weight: bold;
+              float: right;
+              font-size: 22px;
+              line-height: 20px;
+              cursor: pointer;
+              transition: 0.3s;
+          }
+
+
+
+          .primary-button a{
+            background-color: white;
+            color: #ffa701;
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+          }
+
+          .primary-button a:hover{
+            color: black;
+          }
+
+          .dmd-button:focus{
+            outline: none;
+          }
+
+          .btn-open.first{
+            background-color: #42d3d5;
+          }
+          .btn-open.first:hover{
+            background-color: #4295d5;
+          }
+
+          .btn-open.second {
+              background-color: #ffffff;
+              color: #42d3d5;
+          }
+
+          .btn-open {
+              border: 0;
+              border-radius:5px;
+              box-shadow: 0 2px 14px 0 rgba(0, 0, 0, .05);
+              display: inline-block;
+              font-size: 16px;
+              font-weight: bold;
+              min-width: 150px;
+              outline: 0;
+              padding-bottom: 15px;
+              padding-top: 15px;
+              cursor: pointer;
+              margin: 0 6px;
+          }
+
+        .btn-open:active {
+            box-shadow: inset 0 3px 5px 0px rgba(0, 0, 0, .1);
+        }
+
+
+        .modal-content img{
+            width: 100%;
+        }
+
+        .form-control:focus{
+           box-shadow: none;
+        }
+
+        .form-control select option[selected]{
+            background-color: red;
+        }
+
+        #cls_demande:focus{
+            outline: none;
+        }
+
+        .inscription_modal .modal-body{
+            margin: auto;
+            margin-top: 1px;
+        }
+
+        .close:focus{
+            outline: none;
+        }
+
+        .inscription_modal h4{
+            margin: auto;
+            margin-top: 15px;
+            margin-left: 55px;
+        }
+
+         .deconnexion:hover{
+            color: white;
+            text-decoration: none;
+         }
+         .search_modal .modal-content{
+            background: white;
+            color: black;
+         }
+         .zeynep ul > li.has-submenu > a {
+  background-image: url("static/app1/images/submenu-arrow.svg");
+
+}
+
+.zeynep ul > li.has-submenu > a:hover {
+  background-image: url("static/app1/images/submenu-arrow-active.svg");
+}
+
+
+.zeynep .submenu-header {
+  background-image: url("static/app1/images/menu-back.svg");
+}
+
+.zeynep .submenu-header > a:before {
+  background-image: url("static/app1/images/submenu-arrow.svg");
+}
+
+       * {
+	border: 0;
+	box-sizing: border-box;
+	/*margin: 50px;*/
+	padding: 0;
+}
+
+
+
+.search-bar {
+	display: flex;
+}
+
+.search-bar input,
+.search-btn,
+.search-btn:before,
+.search-btn:after {
+	transition: all 0.25s ease-out;
+}
+.search-bar input,
+.search-btn {
+	width: 3em;
+	height: 3em;
+}
+.search-bar input:invalid:not(:focus),
+.search-btn {
+	cursor: pointer;
+}
+.search-bar,
+.search-bar input:focus,
+.search-bar input:valid  {
+	width: 100%;
+}
+.search-bar input:focus,
+.search-bar input:not(:focus) + .search-btn:focus {
+	outline: transparent;
+}
+.search-bar {
+	margin: auto;
+	padding: 1.5em;
+	justify-content: center;
+	max-width: 30em;
+}
+.search-bar input {
+	background: transparent;
+	border-radius: 1.5em;
+	box-shadow: 0 0 0 0.4em #171717 inset;
+	padding: 0.75em;
+	transform: translate(0.5em,0.5em) scale(0.5);
+	transform-origin: 100% 0;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+.search-bar input::-webkit-search-decoration {
+	-webkit-appearance: none;
+}
+.search-bar input:focus,
+.search-bar input:valid {
+	background: #fff;
+	border-radius: 0.375em 0 0 0.375em;
+	box-shadow: 0 0 0 0.1em #d9d9d9 inset;
+	transform: scale(1);
+}
+.search-btn {
+	background: #171717;
+	border-radius: 0 0.75em 0.75em 0 / 0 1.5em 1.5em 0;
+	padding: 0.75em;
+	position: relative;
+	transform: translate(0.25em,0.25em) rotate(45deg) scale(0.25,0.125);
+	transform-origin: 0 50%;
+}
+.search-btn:before,
+.search-btn:after {
+	content: "";
+	display: block;
+	opacity: 0;
+	position: absolute;
+}
+.search-btn:before {
+	border-radius: 50%;
+	box-shadow: 0 0 0 0.2em #f1f1f1 inset;
+	top: 0.75em;
+	left: 0.75em;
+	width: 1.2em;
+	height: 1.2em;
+}
+.search-btn:after {
+	background: #f1f1f1;
+	border-radius: 0 0.25em 0.25em 0;
+	top: 51%;
+	left: 51%;
+	width: 0.75em;
+	height: 0.25em;
+	transform: translate(0.2em,0) rotate(45deg);
+	transform-origin: 0 50%;
+}
+.search-btn span {
+	display: inline-block;
+	overflow: hidden;
+	width: 1px;
+	height: 1px;
+}
+
+/* Active state */
+.search-bar input:focus + .search-btn,
+.search-bar input:valid + .search-btn {
+	background: #2762f3;
+	border-radius: 0 0.375em 0.375em 0;
+	transform: scale(1);
+}
+.search-bar input:focus + .search-btn:before,
+.search-bar input:focus + .search-btn:after,
+.search-bar input:valid + .search-btn:before,
+.search-bar input:valid + .search-btn:after {
+	opacity: 1;
+}
+.search-bar input:focus + .search-btn:hover,
+.search-bar input:valid + .search-btn:hover,
+.search-bar input:valid:not(:focus) + .search-btn:focus {
+	background: #0c48db;
+}
+.search-bar input:focus + .search-btn:active,
+.search-bar input:valid + .search-btn:active {
+	transform: translateY(1px);
+}
+
+@media screen and (prefers-color-scheme: dark) {
+	body, input {
+		color: #f1f1f1;
+	}
+	body {
+		background: #171717;
+	}
+	.search-bar input {
+		box-shadow: 0 0 0 0.4em #f1f1f1 inset;
+	}
+	.search-bar input:focus,
+	.search-bar input:valid {
+		background: #3d3d3d;
+		box-shadow: 0 0 0 0.1em #3d3d3d inset;
+	}
+	.search-btn {
+		background: #f1f1f1;
+	}
+}
+
+.ui-widget{
+    font-family: Roboto;
+    font-size: 16px;
+    color: white;
+    background: #3d3d3d;
+
+    border-radius: 5px;
+    max-width: 434px;
+    position: relative;
+}
+
+.ui-autocomplete{
+    overflow-y: auto;
+    height: 300px;
+    overflow-x: hidden;
+}
+
+#creer_annonce:focus{
+    outline: none;
+}
+
+.overlay_ {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+}
+.overlay2 {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+}
+.popup p{
+    text-align: center;
+}
+
+.card-body .dmd-button{
+    margin-left: 35%;
+}
+
+#user-menu2 a:hover{
+            color: white;
+            text-decoration: none;
+         }
+         #user-menu2 a{
+            font-weight: normal;
+         }
+         .logo{
+            border-radius: 100px;
+            width: 40px;
+            height: 40px;
+         }
+
+         .inscrire_modal .modal-header{
+            margin: auto;
+         }
+      </style>
+    
+  </head>
+  <body>
+
+    <div class="fixed-side-navbar">
+        <ul class="nav flex-column">
+          <li class="nav-item"><a class="nav-link" href="#portfolio"><span>Annonces</span></a></li>
+          <li class="nav-item"><a class="nav-link" href="#our-story"><span> Programme</span></a></li>
+        </ul>
+    </div>
+    
+    <div class="parallax-content projects-content  " id="portfolio">
+     <!------------------------------------------------header start------------------------------------------------> 
+     <div>
+      <nav class="header">
+        <!-- partie gauche-->
+        <div>
+          <img  src="static/app1/img/logo.png" alt="" class="logo">
+        </div>
+        <!-- partie au milieu-->
+          <!--
+        <div class ="input-box">
+          <input type="text">
+          <div class="search-icon" ><i class="fa fa-search"></i></div>
+          -->
+        <!-- partie à droite-->
+        <div>
+            <!--
+          <div class="message">
+            <i class=" fa fa-comment-o dropdown-toggle1 " data-toggle="message-menu1"></i>
+              <span class="number1">3</span>
+              <div id="message-menu1" class="dropdown-menu1 messag">
+                <div class="dropdown-content1 " >
+                  <li>
+                    <img src="img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                  <li>
+                    <img src="img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                  <li>
+                    <img src="img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                  <li>
+                    <img src="img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                  <li>
+                    <img src="img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                  <li>
+                    <img src="img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                  <li>
+                    <img src="img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                </div>
+                  </div>
+              </div>
+              -->
+
+
+
+          <div class="notification">
+            <i class="fa fa-bell-o  dropdown-toggle1" data-toggle="notification-menu1"></i>
+              {% if non_read != 0 %}
+                <span class="number2">{{ non_read }}</span>
+              {% endif %}
+              <div id="notification-menu1" class="dropdown-menu1 notif">
+                <div class="dropdown-content1" >
+                  {% for message in messages %}
+                  <li class="message_list" data-url="{{message.id}}">
+                    <img src="{{message.sender.userprofile.profile_picture.url}}" alt="" >
+                      {% if not message.is_read %}
+                        <div class="text" style="font-weight: bold;" id="{{message.id}}" data-url="{{message.id}}">
+                            {{message}}
+                        </div>
+                      {% else %}
+                            <div class="text" data-url="{{message.id}}">
+                            {{message}}
+                        </div>
+                        {% endif %}
+                  </li>
+                    {% endfor %}
+                </div>
+              </div>
+          </div>
+
+          <div class="avatar">
+            <img src="{{ request.user.userprofile.profile_picture.url}}" alt=""  class="dropdown-toggle1" data-toggle="user-menu2">
+              
+              <div id="user-menu2" class="dropdown-menu1 setting2">
+                <a href="{% url 'profile' %}"><div class="item2"><span class="fa fa-user-o"></span>Profile</div></a>
+                <!--<div class="item2"><span class="fa fa-cog"></span>Configuration</div>-->
+                <div class="item2"><span class="fa fa-question-circle-o"></span>Aide</div>
+                <a href="{% url 'logout' %}"><div class="item2"><span class="fa fa-power-off"></span>Déconnexion</div></a>
+              </div>
+          </div>
+        </div>
+      </nav>
+      </div>
+     <!------------------------------------------------header end------------------------------------------------>
+      
+      
+      <div class="container">
+
+        <!--Content of announce results popup-->
+        <div class="custom-model-main" id="result">
+          <div class="custom-model-inner">        
+            <div class="close-btn">×</div>
+            <div class="custom-model-wrap">
+              <div class="pop-up-content-wrap">
+                  {% if tirages %}
+                  {% for tirage in tirages %}
+                <h4 style="color:#29406d;font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Résultats de tirage au sort du {{ tirage.titre }}</h4>
+                <h4 style="color:#404143;font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Voilà la liste des employés qui ont été tirés au sort! Félicitations aux gagnants et nous souhaitons beaucoup de chance aux autres pour le prochain tirage Inshallah!</h4>
+                  {% for user in tirage.admis.all %}
+                    {{user}}<br>
+                  {% endfor %}
+                  <br>
+                  <!--
+                BENSABER AMAR Djamel<br>BENSLIMANE Sidi Mohammed<br>KECHAR Mohammed<br>KIES Nadia<br>KLOUCHE Badia<br>MEDDAH Ishak<br>KAZI TANI Mohammed<br>BADSI Mohammed<br>MALKI Mimoun<br>SOUYAH Amina-->
+                  {% endfor %}
+                  {% else %}
+                    <h4 style="color:#29406d;font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Aucun résultat pour le moment</h4>
+                  {% endif %}
+              </div>
+            </div>  
+          </div>  
+          <div class="bg-overlay"></div>
+        </div> 
+        <!--End-->
+        
+          <div class="row">
+            <!--button announce results-->
+            <div class="Click-here">Résultats de tirage au sort</div>  
+            <!--End-->
+              <div class="col-md-12">
+                  <div id="owl-testimonials" class="owl-carousel owl-theme">
+                      {% for annonce in annonces %}
+                      <div class="item">
+                          <div class="testimonials-item">
+                              <a href="{{ annonce.detail.url }}" data-lightbox="image-1"><img src="{{ annonce.photo.url }}" alt=""></a>
+                              <div class="text-content">
+                                  <h4>{{ annonce }}</h4><br><span>Jusqu'à {% language 'fr' %} {{ annonce.date_fin }} {% endlanguage %}</span>
+                                  <div class="primary-button">
+                                    <a href="#" data-url="{{annonce.id}}" id="inscrire">S'inscire</a>
+                                </div>
+                              </div>
+                          </div>
+                      </div>
+                      {% endfor %}
+                      <!--
+                      <div class="item">
+                          <div class="testimonials-item">
+                              <a href="static/app1/img/hadj.png" data-lightbox="image-1"><img src="static/app1/img/mecque_2015.png" alt=""></a>
+                              <div class="text-content">
+                                  <h4>Loterie du Hajj</h4><br><span>Jusqu'à 12/03/2021</span>
+                                  <div class="primary-button">
+                                    <a href="./for.html">S'inscire</a>
+                                </div>  
+                              </div>
+                          </div>
+                      </div>
+                      
+                      <div class="item">
+                          <div class="testimonials-item">
+                              <a href="" data-lightbox="image-1"><img src="img/Port-Say.png" alt=""></a>
+                              <div class="text-content">
+                                  <h4>Vacances d'été Port-Say Tlemcen</h4><span>Jusqu'à 12/03/2021</span>
+                                  <div class="primary-button">
+                                    <a href="./for.html">S'inscire</a>
+                                </div>    
+                              </div>
+                          </div>
+                      </div>
+                      
+                      <div class="item">
+                          <div class="testimonials-item">
+                              <a href="" data-lightbox="image-1"><img src="img/bains.png" alt=""></a>
+                              <div class="text-content">
+                                  <h4>Excursion Hammam Rabbi Saida</h4><span>Jusqu'à 12/03/2021</span>
+                                  <div class="primary-button">
+                                    <a href="./for.html">S'inscire</a>
+                                </div>   
+                              </div>
+                          </div>
+                      </div>
+                      <div class="item">
+                          <div class="testimonials-item">
+                              <a href="" data-lightbox="image-1"><img src="img/grotte.png" alt=""></a>
+                              <div class="text-content">
+                                  <h4>Excursion grotte Ain Fezza Tlemcen</h4><span>Jusqu'à 12/03/2021</span>
+                                  <div class="primary-button">
+                                    <a href="./for.html">S'inscire</a>
+                                </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="item">
+                          <div class="testimonials-item">
+                              <a href="" data-lightbox="image-1"><img src="img/effel.png" alt=""></a>
+                              <div class="text-content">
+                                  <h4>Voyage en France</h4><br><span>Jusqu'à 12/03/2021</span>
+                                  <div class="primary-button">
+                                    <a href="./for.html">S'inscire</a>
+                                </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="item">
+                          <div class="testimonials-item">
+                              <a href="" data-lightbox="image-1"><img src="img/electromenager.png" alt=""></a>
+                              <div class="text-content">
+                                  <h4>Achat d'électroménager par facilité</h4><span>Jusqu'à 12/03/2021</span>
+                                  <div class="primary-button">
+                                    <a href="./for.html">S'inscire</a>
+                                </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="item">
+                          <div class="testimonials-item">
+                              <a href="./img/annonce aid.png" data-lightbox="image-1"><img src="img/kebch.png" alt=""></a>
+                              <div class="text-content">
+                                  <h4>Offrande sacrificielle du Aïd par facilité</h4><span>Jusqu'à 12/03/2021</span>
+                                  <div class="primary-button">
+                                    <a href="./for.html">S'inscire</a>
+                                </div>    
+                              </div>
+                          </div>
+                      </div>
+                      <div class="item">
+                          <div class="testimonials-item">
+                              <a href="" data-lightbox="image-1"><img src="img/turquie.png" alt=""></a>
+                              <div class="text-content">
+                                  <h4>Voyage en Turquie</h4><br><span>Jusqu'à 12/03/2021</span>
+                                  <div class="primary-button">
+                                    <a href="./for.html">S'inscire</a>
+                                </div>   
+                              </div>
+                          </div>
+                      </div>
+                      -->
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  
+    <div class="tabs-content" id="our-story">
+      <div class="container">
+          <!-- Search in program -->
+          <form action="" id="search_form" class="search-bar">
+            <input type="search" id="search_input" placeholder="Rechercher dans le programme" name="search" pattern=".*\S.*" required>
+            <button class="search-btn" type="submit">
+              <span>Search</span>
+            </button>
+          </form>
+          
+        <div class="row">
+          <div class="col-md-4">
+              <div class="left-text">
+                  <h4>A propos du programme des oeuvres sociales</h4>
+                  <div class="line-dec"></div>
+                  <p>Le service des oeuvres sociales de l'ESI SBA est institué en vue de promouvoir la vie sociale du travailleur à travers l’organisation d’activités citées dans le <a rel="nofollow" href="./pdf.pdf" style="color:silver">programme des oeuvres sociales</a> allant dans le sens du bien être de celui-ci et de sa famille.</p>
+                  <ul>
+                      <li>- Sont bénéficiaires des œuvres sociales de l’organisme, les travailleurs et retraités ainsi que les familles qui sont à leur charge.</li>
+                  </ul><br>
+                  
+                  <div>
+                    <button type="button" class="btn-open first">Consulter</button>
+                </div> 
+              </div>
+          </div>
+          <div class="col-md-8">
+              <div class="row">
+                  <div class="col-md-6">
+                      <div class="service-item">
+                          <h4>L'octroi des prêts</h4>
+                          <div class="line-dec"></div>
+                          <p>Tout salarié en difficulté peut demander un prêt qui lui sera accordé sans intérêt.</p>
+                          <div class="pret-button">
+                            <a href="#" data-toggle="modal" data-target="#pret_modal" id="pret_button" style="color:#42d3d5">Demander un Prêt</a>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="service-item">
+                          <h4>L'octroi des dons</h4>
+                          <div class="line-dec"></div>
+                          <p>Les membres du COS peuvent, lors d'une réunion, voter l'attribution d'une certaine somme à des salariés à titre de secours.</p>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="service-item">
+                          <h4>Primes allocations diverses</h4>
+                          <div class="line-dec"></div>
+                          <p>Le service des oeuvres sociales attribue aux salariés un certain nombre de primes versées en diverses occasions.</p>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="service-item">
+                          <h4>Activités sociales et culturelles</h4>
+                          <div class="line-dec"></div>
+                          <p>Tout salarié peut bénéficier des différentes activités et offres en formulant une demande après avoir consulter l'article correspondant.</p>
+                      </div>
+                  </div>
+              </div>
+          </div>                
+      </div>
+
+        <div class="zeynep">
+            <ul>
+                <label>Programmes</label>
+                {% for partie in parties %}
+                <li class="has-submenu">
+                    <a href="#" data-submenu="partie{{partie.id}}">{{partie}}</a>
+                    <div id="partie{{partie.id}}" class="submenu">
+                        <div class="submenu-header">
+                            <a href="#" data-submenu-close="partie{{partie.id}}">Parties</a>
+                        </div>
+                        <label>{{partie}}</label>
+                        {% for chapitre in partie.chapitre_set.all %}
+                        <ul>
+                            <li class="has-submenu">
+                                <a href="#" data-submenu="chapitre{{chapitre.id}}">{{chapitre}}</a>
+                                <div id="chapitre{{chapitre.id}}" class="submenu">
+                                    <div class="submenu-header">
+                                        <a href="#" data-submenu-close="chapitre{{chapitre.id}}">Chapitres</a>
+                                    </div>
+                                    <label>{{chapitre}}</label>
+                                    <ul>
+                                        {% for article in chapitre.article_set.all %}
+                                        <li>
+                                            <a href="#article{{article.id}}">{{article}}</a>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                        {% endfor %}
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+                </div>
+        </div>   
+      </div>
+
+      <!-- <button type="button" class="btn-open first">Open!</button> <button type="button" class="btn-openn first">Modifier</button> -->
+      <div class="main">
+        <div class="col-md-7 mx-auto">
+          <div class="wrapper">
+            {% for article in articles %}
+              <div id="article{{article.id}}" class="overlay">
+                <div class="popup">
+                    <h6>{{article}}</h6>
+                    <a class="close" href="#">&times;</a>
+                    <div class="content">
+                        <p>{{ article.contenu }}</p>
+                    </div>
+                    <div>
+                  <a href="#" data-toggle="modal"  data-target="#demande_modal"><button type="button" id={{article.id}} data-url="{{article.id}}" class="dmd-button" >Demander</button></a>
+              </div>
+
+                </div>
+              </div>
+              {% endfor %}
+          </div>
+            <div class="wrapper">
+              <div class="overlay_" style="display: none;">
+                <div class="popup">
+                    <h6>Article</h6>
+                    <a class="close" id="cls_search" href="#">&times;</a>
+                    <div class="content" style="justify-content: center;">
+                        <p></p>
+                    </div>
+                    <div>
+                  <a href="#" data-toggle="modal"  data-target="#demande_modal"><button type="button" data-url="" class="dmd-button" >Demander</button></a>
+                    </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+
+    <!-- Annonce Inscrit modal -->
+    <div class="modal fade inscrire_modal" id="annonce_inscrire_modal"
+                tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+             <div class="modal-dialog" role="document">
+               <div class="modal-content">
+                 <div class="modal-header">
+                   <h3 style="margin-left: 50px;"></h3>
+                   <button type="button" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                   </button>
+                 </div>
+                 </div>
+               </div>
+             </div>
+    <!-- Recherche modal -->
+    <div class="modal fade search_modal" id="search_modal"
+                tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+             <div class="modal-dialog" role="document">
+               <div class="modal-content">
+                 <div class="modal-header">
+                   <h3 style="margin-left: 50px;">Résultats de la recherche:</h3>
+                   <button type="button" class="close" id="cls_modal" data-dismiss="modal" aria-label="Close">
+                     <span style="color: black;" aria-hidden="true">&times;</span>
+                   </button>
+                 </div>
+                 <div class="modal-body">
+                   <h4></h4>
+                   <p></p>
+                     </div>
+                 </div>
+               </div>
+             </div>
+      <div class="zeynep-overlay"></div>
+
+    <!-- Demande Article Modal -->
+<div class="modal fade" id="demande_modal" data-url="" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Formuler votre demande d'article</h3>
+        <button id="cls_demande" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          {% include 'app1/FormulerDemande.html' %}
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Demande Pret Modal -->
+<div class="modal fade PretModal" id="pret_modal" data-url="" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Formuler votre demande de pret</h3>
+        <button id="cls_pret" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          {% include 'app1/FormulerPret.html' %}
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Message Modal -->
+<div class="modal fade MessageModal" id="message_modal" data-url="" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Nouveau message</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="wrapper">
+              <div class="overlay2" style="display: none;">
+                <div class="popup">
+                    <h6>Nouveau message</h6>
+                    <a class="close" id="cls_message" href="#">&times;</a>
+                    <div class="content" style="justify-content: center;">
+                        <p></p>
+                    </div>
+                    <!--
+                    <div>
+                  <a href="#" data-toggle="modal"  data-target="#demande_modal"><button type="button" data-url="" class="dmd-button" >Demander</button></a>
+                    </div>
+                    -->
+                </div>
+              </div>
+
+      <script>
+        window.onclick = function(event) {
+ openCloseDropdown(event)
+}
+
+function closeAllDropdown() {
+ var dropdowns = document.getElementsByClassName('dropdown-expand1')
+ for (var i = 0; i < dropdowns.length; i++) {
+   dropdowns[i].classList.remove('dropdown-expand1')
+ }
+}
+
+function openCloseDropdown(event) {
+ if (!event.target.matches('.dropdown-toggle1')) {
+   // 
+   // Close dropdown when click out of dropdown menu
+   // 
+   closeAllDropdown()
+ } else {
+   var toggle = event.target.dataset.toggle
+   var content = document.getElementById(toggle)
+   if (content.classList.contains('dropdown-expand1')) {
+     closeAllDropdown()
+   } else {
+     closeAllDropdown()
+     content.classList.add('dropdown-expand1')
+   }
+ }
+}
+      </script>
+      
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
+
+    <script src="static/app1/js/js-employee/vendor/bootstrap.min.js"></script>
+      <script src="static/app1/js/js-employee/plugins.js"></script>
+      <script src="static/app1/js/js-employee/main.js"></script>
+    <script src="static/app1/dist/zeynep.js"></script>
+          <script src="static/app1/js/js-employee/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+
+      <script>
+        function openCity(cityName) {
+            var i;
+            var x = document.getElementsByClassName("city");
+            for (i = 0; i < x.length; i++) {
+               x[i].style.display = "none";  
+            }
+            document.getElementById(cityName).style.display = "block";  
+        }
+    </script>
+
+    <script>
+        $(document).ready(function(){
+          // Add smooth scrolling to all links
+          $(".fixed-side-navbar a, .primary-button a").on('click', function(event) {
+
+            // Make sure this.hash has a value before overriding default behavior
+            if (this.hash !== "") {
+              // Prevent default anchor click behavior
+              event.preventDefault();
+
+              // Store hash
+              var hash = this.hash;
+
+              // Using jQuery's animate() method to add smooth page scroll
+              // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+              $('html, body').animate({
+                scrollTop: $(hash).offset().top
+              }, 800, function(){
+           
+                // Add hash (#) to URL when done scrolling (default click behavior)
+                window.location.hash = hash;
+              });
+            } // End if
+          });
+        });
+    </script>
+
+      <script>
+          $(function() {
+          // init zeynepjs side menu
+          var zeynep = $('.zeynep').zeynep({
+          opened: function () {
+              // log
+              console.log('the side menu opened')
+          },
+          closed: function () {
+              // log
+              console.log('the side menu closed')
+          }
+          })
+          // dynamically bind 'closing' event
+          zeynep.on('closing', function () {
+              // log
+                  console.log('this event is dynamically binded')
+              })
+          
+          // handle zeynepjs overlay click
+          $('.zeynep-overlay').on('click', function () {
+              zeynep.close()
+          })
+          // open zeynepjs side menu
+          $('.btn-open').on('click', function () {
+              zeynep.open()
+          })
+          })
+      </script>
+
+    <script>
+    $(function(){
+        $("#annonce_btn").click(function(){
+        var id = $(this).attr("data-url");
+        $.ajax({
+            url: "inscription/"+id,
+            success: function(data){
+                if(data.exists){
+                    $(".inscription_modal h4").text("Vous etes déja inscris dans cette annonce");
+                    $(".inscription_modal .modal-content").css("background", "#840c24");
+                    $(".inscription_modal .modal-content").hover(function(){
+                        $(this).css("background", "#6e0a1e");
+                    }, function(){
+                        $(this).css("background", "#840c24");
+                    });
+                }
+                else{
+                    $(".inscription_modal h4").text("Merci pour votre inscription");
+                    $(".inscription_modal .modal-content").css("background", "#840c24");
+                    $(".inscription_modal .modal-content").hover(function(){
+                        $(this).css("background", "#6e0a1e");
+                    }, function(){
+                        $(this).css("background", "#840c24");
+                    });
+                }
+            }
+        });
+    });
+    </script>
+        <script>
+            $(function(){
+                $("#search_input").autocomplete({
+                    source: "search",
+                    select: function(event, ui){
+                        $.ajax({
+                            url:"search",
+                            data:{"value": ui.item.value},
+                            dataType: 'json',
+                            success: function(data){
+                                $(".overlay_").fadeIn(300);
+                                $(".overlay_ h6").text("المادة "+data.article.numero_article);
+                                $(".overlay_ p").text(data.article.contenu);
+
+                                $(".dmd-button").attr("data-url", data.article.id);
+                            }
+                        });
+                    }
+                });
+
+                $("#search_form").submit(function(){
+                  var searched = $("#search_input").val();
+
+                  $.ajax({
+                    url: 'search',
+                    data: {"searched": searched},
+                    success: function(data){
+                    $(".search_modal .modal-body").html("");
+                    $(".search_modal").modal("show");
+                    if (data.result.length == 0)
+                        $(".search_modal .modal-header h3").text("Aucun résultat");
+                    else{
+                        $(".search_modal .modal-header h3").text("Résultats de la recherche");
+                        for(article in data.result){
+                            var numero = data.result[article].numero_article;
+                            var contenu = data.result[article].contenu;
+                            var id = data.result[article].id;
+
+                            $(".search_modal .modal-body").append(`
+                                <div class="card">
+                                  <div class="card-body">
+                                        <h6>المادة ${numero}</h6>
+                                        <div class="content">
+                                            <p>${contenu}</p>
+                                       </div>
+                                       <div>
+                                            <a href="#" data-toggle="modal"  data-target="#demande_modal"><button type="button" data-url=${id} class="dmd-button" >Demander</button></a>
+                                       </div>
+                                  </div>
+                                </div>
+                            `);
+                        }
+                    }
+                  }
+                  });
+                  return false;
+                });
+
+      $("#cls_search").click(function(){
+        $(".overlay_").fadeOut(300);
+        return false;
+      });
+      $("#cls_popup").click(function(){
+        $(".overlay").fadeOut(300);
+        //My love
+        return false;
+      });
+
+
+      });
+  </script>
+  <script>
+      $(document).on("click", "#inscrire", function(){
+        $.ajax({
+         url:'annonce_inscription',
+         data: {"annonce_id": $(this).attr("data-url")},
+         success: function(data){
+            $("#annonce_inscrire_modal").modal("show");
+            if(data.exists){
+               $("#annonce_inscrire_modal .modal-content").css("background", "#840c24");
+               $("#annonce_inscrire_modal .modal-header").text("Vous etes déjà inscrit dans cet annonce");
+            }
+            else{
+                $("#annonce_inscrire_modal .modal-content").css("background", "#30694b");
+                $("#annonce_inscrire_modal .modal-header").text("Votre inscription a été envoyée");
+            }
+         }
+        });
+        return false;
+      });
+  </script>
+
+  <script>
+      var count_read = 0;
+      $(".notification").click(function(){
+        $(".number2").text("");
+        /*
+        $.ajax({
+            url:'ajax_notification',
+            success: function(data){
+            }
+        });
+        */
+      });
+
+      $(".message_list").click(function(){
+        $(".text").css("font-weight", "normal");
+        $(".overlay2").fadeIn(300);
+        var id=$(this).attr("data-url");
+        $("#"+id).css("font-weight", "normal");
+        $.ajax({
+            url:"ajax_notification",
+            data:{"message_id": id},
+            success: function(data){
+                if(data.read)
+                    $(".overlay2 h6").text("Message lu");
+                else
+                    $(".overlay2 h6").text("Nouveau message");
+                $(".overlay2 p").text(data.message.message);
+            }
+        });
+        return false;
+      });
+
+      $("#cls_message").click(function(){
+        $(".overlay2").fadeOut(300);
+      });
+  </script>
+
+</body>
+</html>

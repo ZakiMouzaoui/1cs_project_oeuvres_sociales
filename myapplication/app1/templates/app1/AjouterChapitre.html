@@ -1,0 +1,127 @@
+<form id="ajouter_chapitre_form" action="" method="post">
+        {% csrf_token %}
+
+        <label for="partie_select">Partie</label>
+        <select id="partie_select" name="partie" class="form-select form-control form-group" aria-label="Default " required>
+            <option id="first_select" value="">Choisir une partie</option>
+            {% for partie in parties %}
+                <option value="{{partie.id}}">{{partie}}</option>
+            {% endfor %}
+        </select>
+
+		<div class="form-group">
+			<label for="titre2">Titre</label>
+			<input style="color: #2a3638;" type="text" placeholder="Entrez un titre" class="form-control" name="titre" id="titre2" required>
+            <p style="color:#d9534f;" class="error" id="titre_error_2"></p>
+		</div>
+		<div class="form-group">
+			<label for="budget">Budget</label>
+			<input type="number" placeholder="Entrez un budget(en da)" class="form-control" name="budget" id="budget" required>
+            <p style="color:#d9534f;" class="error" id="budget_error_2"></p>
+		</div>
+
+        <div style="display:none;" class="form-group alert alert-info text-center">
+			<p></p>
+		</div>
+
+        <div style="display: none;" class="form-group alert alert-success text-center">
+            <span class="close_alert" >&times;</span>
+			<p></p>
+		</div>
+
+        <div style="display: none;" class="form-group alert alert-danger text-center">
+            <span class="close_alert" >&times;</span>
+			<p></p>
+		</div>
+              <div class="modal-footer">
+            <button id="fermer_ajouter_chapitre_modal" type="button" class="btn btn-secondary fermer_modal" data-dismiss="modal">Fermer</button>
+            <button id="submit_btn" type="submit" class="btn">Confirmer</button>
+        </div>
+          </form>
+
+<script>
+    $(function(){
+        //$(".alert-info").hide();
+
+        $("#ajouter_chapitre_form").on("submit", function(event){
+            var form = $(this);
+            $.ajax({
+                data: form.serialize(),
+                dataType: 'json',
+                url: 'chapitre_create',
+                method: 'post',
+                success: function(data){
+                    if(data.form_valid){
+                        $(".ajouter_chapitre_modal .alert-danger").hide();
+                        $(".ajouter_chapitre_modal .alert-success").fadeIn(300);
+                        $(".ajouter_chapitre_modal .alert-success p").text(data.message);
+                        $("#titre_error2").text("");
+                        $("#budget_error2").text("");
+                        $(".ajouter_chapitre_modal .alert-info p").text("Budget restant de cette partie: "+ data.solde+ " da");
+                        $("#chapitre_select").append(`
+                        <option value=${data.chapitre.id}>${data.chapitre.titre}</option>
+                        `);
+                        $("#chapitre_select2").append(`
+                        <option value=${data.chapitre.id}>${data.chapitre.titre}</option>
+                        `);
+                        $("#chapitre_select3").append(`
+                        <option value=${data.chapitre.id}>${data.chapitre.titre}</option>
+                        `);
+                        $("#chapitre_select4").append(`
+                        <option value=${data.chapitre.id}>${data.chapitre.titre}</option>
+                        `);
+                        $("#modifier_chapitre").attr("data-toggle", "modal");
+                        $("#modifier_chapitre").attr("data-target", "#modifier_chapitre_modal");
+                        $("#supprimer_chapitre").attr("data-toggle", "modal");
+                        $("#supprimer_chapitre").attr("data-target", "#supprimer_chapitre_modal");
+                        $("#ajouter_article").attr("data-toggle", "modal");
+                        $("#ajouter_article").attr("data-target", "#ajouter_article_modal");
+                    }
+                    else{
+                        for(field in data.field_errors){
+                            $("#"+field+"_error_2").text(data.field_errors[field]);
+                        }
+
+                        for(field in data.valid_fields)
+                            $("#"+data.valid_fields[field]+"_error2").text("");
+
+                        $(".ajouter_chapitre_modal .alert-success").hide();
+                        $(".ajouter_chapitre_modal .alert-danger").fadeIn(300);
+                        $(".ajouter_chapitre_modal .alert-danger p").text("Echec. Veuillez réessayer");
+                    }
+                }
+            });
+            return false;
+        });
+
+        $("#partie_select").change(function(){
+            var partie = $(this).val();
+            if (partie != ""){
+                $.ajax({
+                    url:"ajax_chapitre_create",
+                    data: {"partie": partie},
+                    success: function(data){
+                        $(".ajouter_chapitre_modal .alert-info").fadeIn(300);
+                        $(".ajouter_chapitre_modal .alert-info p").text("Budget restant de cette partie :"+data.solde+" da");
+                    }
+                });
+            }
+            else
+                $(".ajouter_chapitre_modal .alert-info").hide();
+        });
+
+        //The buttons
+        $(".close_alert").click(function(){
+            $(".ajouter_chapitre_modal .alert-success").fadeOut(500);
+            $(".ajouter_chapitre_modal .alert-danger").fadeOut(500);
+        });
+
+        $("#fermer_ajouter_chapitre_modal").click(function(){
+            $("#ajouter_chapitre_form").trigger("reset");
+            $(".ajouter_chapitre_modal .alert-danger").hide();
+            $(".ajouter_chapitre_modal .alert-success").hide();
+            $(".ajouter_chapitre_modal .alert-info").hide();
+            $(".ajouter_chapitre_modal .error").text("");
+        });
+    });
+</script>

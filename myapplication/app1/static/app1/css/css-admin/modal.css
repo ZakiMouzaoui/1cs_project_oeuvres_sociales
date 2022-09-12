@@ -1,0 +1,128 @@
+.btn-open:hover {
+            background-color: #0062cc;
+            /*border-radius:5px;*/
+          }
+
+          .btn-open:focus {
+            background-color: #0062cc;
+            outline: none;
+          }
+/*
+.btn-open.first{
+            background-color: #42d3d5;
+            border-radius:5px;
+          }
+
+
+
+          .btn-open.second{
+            background-color: #42d3d5;
+            border-radius:5px;
+          }
+
+
+          */
+
+          .modal-content{
+            font-family: "Varela Round", sans-serif;
+            color: white;
+            background: #2a3638;
+          }
+
+          .modal-header{
+            border-bottom: none;
+            text-align: center;
+          }
+
+          .modal-header h3{
+            margin: auto;
+          }
+
+          .modal-header .cls_modal{
+            border: none;
+            background: #2a3638;
+            cursor: pointer;
+          }
+
+            .cls_modal:focus{
+                border: none;
+                outline: none;
+            }
+
+            #submit_btn{
+            background: #30694b;
+            color: white;
+          }
+
+          #submit_btn:hover{
+            background: #25523b;
+          }
+          .alert-info{
+            background: #0d454f;
+          }
+
+          .modal-footer{
+            border-top: none;
+          }
+
+          .modal input:focus, .modal select:focus, .modal textarea:focus{
+            border-color: #2a3638;
+            box-shadow: none;
+          }
+
+          .close_alert {
+              margin-left: 15px;
+              margin-top: 0px;
+              font-weight: bold;
+              float: right;
+              font-size: 22px;
+              line-height: 20px;
+              cursor: pointer;
+              transition: 0.3s;
+          }
+
+
+           /*
+          .baner-content  span{
+            margin-top: 0px;
+            font-size: 26px;
+          }
+          */
+
+          .alert{
+            color: white;
+            border: none;
+          }
+
+          .alert-danger{
+            background: #840c24;
+          }
+
+          .alert-danger:hover{
+            background: #6e0a1e;
+          }
+          .alert-success{
+            background: #30694b;
+          }
+
+          .alert-success:hover{
+            background: #25523b;
+          }
+
+
+            .alert-info:hover{
+                background: #0b333b;
+            }
+
+            .cls_modal{
+                color: white;
+                font-size: 26px;
+            }
+
+            span:hover{
+                color: #dae6e8;
+            }
+
+            .fermer_modal:hover{
+                background: #555555;
+            }

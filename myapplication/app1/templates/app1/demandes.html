@@ -1,0 +1,827 @@
+{% load custom_tags %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Bootstrap CRUD Data Table for Database with Modal Form</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- Bootstrap 4 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+    <!-- Font Awesome -->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <!-- Moment.js -->
+
+    <!-- Tempus Dominus Bootstrap 4 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/css/tempusdominus-bootstrap-4.min.css" integrity="sha256-XPTBwC3SBoWHSmKasAk01c08M6sIA5gF5+sRxqak2Qs=" crossorigin="anonymous" />
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
+<style>
+body {
+	color: #566787;
+	background: #f5f5f5;
+	font-family: 'Varela Round', sans-serif;
+	font-size: 13px;
+	background-image: url("static/app1/img/webb.jpg");
+}
+
+.table{
+    color: white;
+}
+.table-responsive {
+    margin: 30px 0;
+}
+.table-wrapper {
+	background: transparent;
+	padding: 20px 25px;
+	border-radius: 3px;
+	min-width: 1500px;
+	box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+.table-title {
+	padding-bottom: 15px;
+	background: transparent;#435d7d;
+	color: #fff;
+	padding: 16px 30px;
+	min-width: 100%;
+	margin: -20px -25px 10px;
+	border-radius: 3px 3px 0 0;
+}
+.table-title h2 {
+	margin: 5px 0 0;
+	font-size: 24px;
+}
+.table-title .btn-group {
+	float: right;
+}
+.table-title .btn {
+	color: #fff;
+	float: right;
+	font-size: 13px;
+	border: none;
+	min-width: 50px;
+	border-radius: 2px;
+	border-color: white;none;
+	outline: none !important;
+	margin-left: 10px;
+}
+.table-title .btn i {
+	float: left;
+	font-size: 21px;
+	margin-right: 5px;
+}
+.table-title .btn span {
+	float: left;
+	margin-top: 2px;
+}
+table.table tr th, table.table tr td {
+	border-color: #e9e9e9;
+	padding: 12px 15px;
+	vertical-align: middle;
+}
+table.table tr th:first-child {
+	width: 60px;
+}
+table.table tr th:last-child {
+	width: 600px;
+}
+table.table-striped tbody tr:nth-of-type(odd) {
+	background-color: transparent;#fcfcfc;
+}
+table.table-striped.table-hover tbody tr:hover {
+	background: #666;
+	color: white;
+	cursor: pointer;
+	font-weight: bold;
+}
+table.table th i {
+	font-size: 13px;
+	margin: 0 5px;
+	cursor: pointer;
+}
+table.table td:last-child i {
+	opacity: 0.9;
+	font-size: 22px;
+	margin: 0 5px;
+}
+table.table td a {
+	font-weight: bold;
+	color: #566787;
+	display: inline-block;
+	text-decoration: none;
+	outline: none !important;
+}
+table.table td a:hover {
+	color: white;#2196F3;
+}
+table.table td a.edit {
+	color: #FFC107;
+}
+table.table td a.delete {
+	color: #F44336;
+}
+table.table td i {
+	font-size: 19px;
+}
+table.table .avatar {
+	border-radius: 50%;
+	vertical-align: middle;
+	margin-right: 10px;
+}
+.pagination {
+	float: left;
+	margin: 0 0 5px;
+}
+.pagination li a {
+	border: none;
+	font-size: 17px;
+	min-width: 30px;
+	min-height: 30px;
+	color: white;
+	line-height: 30px;
+	border-radius: 2px !important;
+	text-align: center;
+	padding: 0 6px;
+}
+.pagination li a:hover {
+	color: #666;
+}
+.pagination li.active a, .pagination li.active a.page-link {
+	background: #03A9F4;
+}
+.pagination li.active a:hover {
+	background: #0397d6;
+}
+.pagination li.disabled i {
+	color: #ccc;
+}
+.pagination li i {
+	font-size: 16px;
+	padding-top: 6px
+}
+.hint-text {
+	float: left;
+	margin-top: 10px;
+	font-size: 13px;
+}
+/* Custom checkbox */
+.custom-checkbox {
+	position: relative;
+}
+.custom-checkbox input[type="checkbox"] {
+	opacity: 0;
+	position: absolute;
+	margin: 5px 0 0 3px;
+	z-index: 9;
+}
+.custom-checkbox label:before{
+	width: 18px;
+	height: 18px;
+}
+.custom-checkbox label:before {
+	content: '';
+	margin-right: 10px;
+	display: inline-block;
+	vertical-align: text-top;
+	background: white;
+	border: 1px solid #bbb;
+	border-radius: 2px;
+	box-sizing: border-box;
+	z-index: 2;
+}
+.custom-checkbox input[type="checkbox"]:checked + label:after {
+	content: '';
+	position: absolute;
+	left: 6px;
+	top: 3px;
+	width: 6px;
+	height: 11px;
+	border: solid #000;
+	border-width: 0 3px 3px 0;
+	transform: inherit;
+	z-index: 3;
+	transform: rotateZ(45deg);
+}
+.custom-checkbox input[type="checkbox"]:checked + label:before {
+	border-color: #03A9F4;
+	background: #03A9F4;
+}
+.custom-checkbox input[type="checkbox"]:checked + label:after {
+	border-color: #fff;
+}
+.custom-checkbox input[type="checkbox"]:disabled + label:before {
+	color: #b8b8b8;
+	cursor: auto;
+	box-shadow: none;
+	background: #ddd;
+}
+/* Modal styles */
+/*
+.modal .modal-dialog {
+	max-width: 400px;
+	background-color: transparent;
+}
+.modal .modal-header, .modal .modal-body, .modal .modal-footer {
+	padding: 20px 30px;
+}
+.modal .modal-content {
+	border-radius: 3px;
+	font-size: 14px;
+}
+.modal .modal-footer {
+	background: #ecf0f1;
+	border-radius: 0 0 3px 3px;
+}
+.modal .modal-title {
+	display: inline-block;
+}
+.modal .form-control {
+	border-radius: 10px;
+	box-shadow: none;
+	border-color: #dddddd;
+}
+.modal textarea.form-control {
+	resize: vertical;
+}
+.modal .btn {
+	border-radius: 2px;
+	min-width: 100px;
+}
+
+.close:focus {
+	outline: none;
+	border: none;
+
+}
+.modal form label {
+	font-weight: normal;
+}
+
+.alert{
+	margin: auto;
+	border-radius: 5px;
+	width: 50%;
+}
+
+.error-class{
+  border-color: red;
+}
+
+.modal .modal-dialog {
+	max-width: 400px;
+	background: transparent;
+}
+*/
+
+.table tr{
+    background: #1c1b1b
+}
+
+
+.close:focus {
+	outline: none;
+	border: none;
+
+}
+
+.modal-header h4{
+    margin: auto;
+}
+
+.modal-header{
+    border-bottom: none;
+}
+
+.modal-body{
+    border-top: none;
+    margin-left: 10px;
+    padding: 10px;
+}
+
+.modal-body span{
+    font-weight: bold;
+}
+
+.FilesModal .modal-content{
+    background: #474747
+}
+
+.FilesModal .modal-content .modal-header{
+    color: white;
+}
+
+.modal .close{
+color: white;
+}
+
+.FilesModal .modal-header{
+    border-bottom: none;
+    margin: auto
+}
+
+.FilesModal .modal-body, .FilesModal a{
+    border-top: none;
+    margin-left: 10px;
+    padding: 10px;
+    color: white;
+}
+
+.FilesModal a:hover{
+    color: #bfb8b8
+}
+
+.ImagesModal .modal-body img{
+    width: 100%;
+    height: 100%;
+}
+
+#submit_btn, .refuser{
+            background: #30694b;
+            color: white;
+          }
+
+          #submit_btn:hover{
+            background: #25523b;
+          }
+
+          .danger{
+            background: #840c24;
+            color: white;
+          }
+
+          .danger:hover{
+            background: #6e0a1e;
+            color: white;
+          }
+
+          .RefuserModal .modal-content{
+            background: #840c24;
+            color: white;
+          }
+          .RefuserModal .modal-content:hover{
+            background: #6e0a1e;
+            color: white;
+          }
+
+          .RefuserModal .modal-content .close{
+            color: white;
+          }
+
+
+          label{
+            font-weight: bold;
+          }
+          .form-control{
+            border-weight: bold;
+            border-color: #262323
+          }
+
+          .form-control:focus{
+            box-shadow: none;
+            border-color:#403b3b
+          }
+
+          .refuser{
+            margin-top: 10px;
+            margin-left: 80%;
+            color: white;
+            background: #840c24;
+          }
+
+          .refuser:hover{
+            background: #6e0a1e;
+            color: white;
+          }
+
+          .accepter{
+            margin-top: 10px;
+            margin-left: 80%;
+            color: white;
+            background: #30694b;
+          }
+
+          .accepter:hover{
+            background: #25523b;
+            color: white;
+          }
+
+          .fa-check{
+            color: green;
+          }
+
+          .fa-times{
+            color: #e32929
+          }
+
+          .DemandeDetailsModal .modal-content{
+            background: #0e2f36;
+            color: white;
+          }
+
+          .FilesModal .modal-content{
+                background: #474747
+          }
+
+          .modal .modal-footer{
+            border-top: none
+          }
+
+          .modal button:focus{
+            box-shadow: none
+          }
+
+          .close_alert {
+              margin-left: 15px;
+              margin-top: 0px;
+              font-weight: bold;
+              float: right;
+              font-size: 22px;
+              line-height: 20px;
+              cursor: pointer;
+              transition: 0.3s;
+          }
+
+          .alert-danger{
+            background: #840c24;
+            color: white;
+            border: none;
+          }
+
+          .alert-danger:hover{
+            background: #6e0a1e;
+          }
+
+          .alert-success{
+            background: #30694b;
+            color: white;
+            border: none;
+          }
+
+          .alert-success:hover{
+            background: #25523b;
+          }
+</style>
+<script>
+$(document).ready(function(){
+	// Activate tooltip
+	$('[data-toggle="tooltip"]').tooltip();
+
+	// Select/Deselect checkboxes
+	var checkbox = $('table tbody input[type="checkbox"]');
+	$("#selectAll").click(function(){
+		if(this.checked){
+			checkbox.each(function(){
+				this.checked = true;
+			});
+		} else{
+			checkbox.each(function(){
+				this.checked = false;
+			});
+		}
+	});
+	checkbox.click(function(){
+		if(!this.checked){
+			$("#selectAll").prop("checked", false);
+		}
+	});
+});
+</script>
+</head>
+<body>
+<div class="container-xl">
+	<div class="table-responsive">
+		<div class="table-wrapper">
+			<div class="table-title">
+				<div class="row">
+					<div class="col-sm-6">
+						<h2>Gestion des <b>Demandes</b></h2>
+					</div>
+
+				</div>
+			</div>
+			<table class="table table-striped table-hover" id="demande_table">
+				<thead>
+                <tr>
+
+                        <th>Numéro</th>
+						<th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Sujet</th>
+						<th>Etat</th>
+                        <th>Date</th>
+
+					</tr>
+				</thead>
+				<tbody>
+                {% for demande in demandes %}
+<tr id="{{ demande.id }}" data-id="{{forloop.counter}}" class='clickable-row'>
+
+    <td>Demande n°{{ forloop.counter }}</td>
+    <td>{{ demande.user.userprofile.employe.nom }}</td>
+    <td>{{ demande.user.userprofile.employe.prenom }}</td>
+    <td>{{ demande.article.chapitre }}</td>
+    <td id="etat">{{ demande.etat }}</td>
+    {% language 'fr' %}
+        <td>{{ demande.date|date:'D, d N Y' }} </td>
+    {% endlanguage %}
+
+    <!--
+  <td>
+      <a href="#"  data-url="{{ demande.id }}" class="accepter"><i class="fa fa-check" title="Accepter"></i></a>
+      <a href="#" data-url="{{ demande.id }}" class=""><i class="fa fa-times" title="Refuser"></i></a>
+      <a href="#" id="delete_btn{{ employee.id }}" data-url="{{ employee.id }}" class="js-delete-employee delete"><i class="material-icons" title="Delete">&#xE872;</i></a>
+  </td>
+  -->
+</tr>
+{% endfor %}
+                </tbody>
+			</table>
+			<div class="clearfix">
+				<!--<div class="hint-text">Showing <b>{{ employees|length }}</b> out of <b>{{ employees|length }}</b> entries</div>-->
+				<ul class="pagination">
+					<!--
+					<li class="page-item disabled"><a href="#">Previous</a></li>
+					<li class="page-item"><a href="#" class="page-link">1</a></li>
+					<li class="page-item"><a href="#" class="page-link">2</a></li>
+					<li class="page-item active"><a href="#" class="page-link">3</a></li>
+					<li class="page-item"><a href="#" class="page-link">4</a></li>
+					<li class="page-item"><a href="#" class="page-link">5</a></li>
+					<li class="page-item"><a href="#" class="page-link">Next</a></li>
+					-->
+					<li><a href="{% url 'admin_' %}" class="text-center">retour</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade DemandeDetailsModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+        <h4 class="modal-title"></h4>
+        <button type="button" id="close_demande" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          </div>
+          <div class="modal-body">
+              <p id="nom"></p>
+              <p id="prenom"></p>
+              <p id="article"></p>
+              <p id="montant"></p>
+              <p id="mode_paiment_demande"></p>
+              <p id="pieces"><span>Pièces Jointes: </span><a href="#" data-toggle="modal" class="files" data-file="" data-target=".FilesModal">Voir</a></p>
+              <p id="commentaire"><span>Commentaire</span></p>
+              
+
+
+              <div id="justif" style="display: none" >
+                  <form action="" method="post" data-url="" id="refuser_demande_form">
+                      {% csrf_token %}
+                      <div class="form-group">
+                          <label for="justificatif">Justificatif</label>
+              <textarea id="justificatif" name="justificatif" placeholder="Ecrire votre justificatif" rows=4 class="form-control"
+              oninvalid="this.setCustomValidity('Veuillez remplir ce champ')"
+                         oninput="this.setCustomValidity('')" required></textarea>
+                      </div>
+                      <div style="display: none;" class="form-group alert alert-success text-center">
+                          <span class="close_alert" >&times;</span>
+                          <p>Votre réponse a été envoyée</p>
+                      </div>
+                      <input type="hidden" value="" name="demande_id">
+                  <button type="submit" data-url="" class="btn refuser">Envoyer</button>
+                  </form>
+
+              </div>
+              <div id="accept" style="display: none">
+                  <form action="" method="post" data-url="" id="accepter_demande_form">
+                      {% csrf_token %}
+                      <div class="form-group">
+                  <label for="mode_paiment">Mode de payement</label>
+                  <select class="form-control" name="mode_paiement" id="mode_paiment"
+                  oninvalid="this.setCustomValidity('Veuillez choisir un mode')"
+                         oninput="this.setCustomValidity('')" required>
+                      <option class="first_selected" selected value="">Veuillez choisir un mode de paiment</option>
+                      <option>Espèces</option>
+                      <option>Virement</option>
+                      <option>Chèque</option>
+                  </select>
+                      </div>
+                      <div class="form-group">
+                          <label for="date_paiement">Date de paiement</label>
+                          <input class="form-control" type="date" name="date_paiement" id="date_paiement"
+                          oninvalid="this.setCustomValidity('Veuillez choisir une date de paiment')"
+                         oninput="this.setCustomValidity('')" required>
+                          <p style="color:#d9534f;" id="date_error"></p>
+                      </div>
+                      <input type="hidden" value="" name="demande_id">
+                      <div style="display: none;" class="form-group alert alert-success text-center">
+                          <span class="close_alert" >&times;</span>
+                          <p>Votre réponse a été envoyée</p>
+                      </div>
+
+                      <div style="display: none;" class="form-group alert alert-danger text-center">
+                          <span class="close_alert" >&times;</span>
+                          <p></p>
+                      </div>
+                      <button type="submit" data-url="" class="btn accepter">Envoyer</button>
+                  </form>
+              </div>
+              </div>
+
+
+  <div class="modal-footer">
+
+        <div class="modal-footer">
+             <button type="button" class="btn danger">Refuser</button>
+              <button type="button" class="btn success" id="submit_btn">Accepter</button>
+
+  </div>
+      </div>
+    </div>
+</div>
+<div class="modal fade FilesModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <div class="modal-title"><h5>Pièces jointes </h5></div>
+          </div>
+          <div class="modal-body">
+              </div>
+      </div>
+    </div>
+</div>
+<div class="modal fade RefuserModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h3>Refus de la demande</h3>
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          </div>
+          <div class="modal-body">
+              </div>
+
+      </div>
+    </div>
+</div>
+
+<script>
+    $(".clickable-row").click(function(event){
+        if (event.target.nodeName != "I"){
+            var id=$(this).attr("id");
+            $("#refuser_demande_form").attr("data-url", id);
+            $("#accepter_demande_form").attr("data-url", id);
+            $(".DemandeDetailsModal").modal("show");
+            if($("#justif").length)
+                $("#justif").hide();
+
+            if($("#accept").length)
+                $("#accept").hide();
+
+            $(".DemandeDetailsModal .modal-header h4").text("Demande n°"+$(this).attr("data-id"));
+            $.ajax({
+                url: 'ajax_demande',
+                data: {"demande_id": id},
+                success: function(data){
+                    $(".DemandeDetailsModal #nom").html(`<span>Nom: </span>${data.employee.nom}`);
+                    $(".DemandeDetailsModal #prenom").html(`<span>Prénom: </span>${data.employee.prenom}`);
+                    $(".DemandeDetailsModal #article").html(`<span>Article: </span>${data.article.contenu}`);
+                    $(".DemandeDetailsModal #montant").html(`<span>Montant: </span>${data.article.montant} da`);
+                    $(".DemandeDetailsModal #mode_paiment_demande").html(`<span>Mode de paiement: </span>${data.mode_paiement}`);
+
+
+                    //$(".DemandeDetailsModal #pieces").html(`<span>Pièces jointes: </span><a href=${data.fichiers}>${data.fichiers}</a>`);
+                    $(".DemandeDetailsModal #commentaire").html(`<span>Commentaire: </span>${data.demande.commentaire}`);
+                    //$(".DemandeDetailsModal #commentaire .files").attr("data-file", data.fichiers);
+
+                    //$(".DemandeDetailsModal #date").html(`<span>Date: </span>${data.date}`);
+                    $(".DemandeDetailsModal #demande_form").attr("data-url", data.demande.id);
+
+                        $(".FilesModal .modal-body").html("");
+                        for(fichier in data.fichiers){
+                            $(".FilesModal .modal-body").append(`<p><a class="file_link" href=${data.fichiers[fichier]}>${data.fichiers[fichier]}</a></p>`);
+                        }
+
+                            //$(".ImagesModal .modal-body").html(`<img src=${data.fichiers[fichier]} />`);
+
+
+                }
+            });
+        }
+
+        return false;
+
+    });
+
+    $(document).on("click", ".FilesModal .file_link", function(){
+        window.open($(this).attr("href"));
+        return false;
+    });
+
+    $(".danger").click(function(){
+        $("#justif").fadeIn(200);;
+        $("#accept").hide();
+    });
+
+    $(".success").click(function(){
+        $("#justif").hide();
+        $("#accept").fadeIn(200);;
+    });
+
+
+    $("#close_demande").click(function(){
+        $("#justif").hide();
+        $("#refuser_demande_form").trigger("reset");
+        $("#accepter_demande_form").trigger("reset");
+        $("accept").hide();
+    });
+
+    $("#refuser_demande_form").submit(function(){
+        $("input[name='demande_id']").val($(this).attr("data-url"));
+        var form = $(this);
+        var id=$(this).attr("data-url");
+        $.ajax({
+            url: 'traiter_demande',
+            method: 'post',
+            data: form.serialize(),
+            success: function(data){
+                $("#justif .alert-success").fadeIn(300);
+                $("#"+id).remove();
+            }
+        });
+        return false;
+    });
+
+
+    $("#accepter_demande_form").submit(function(){
+        $("input[name='demande_id']").val($(this).attr("data-url"));
+        var form = $(this);
+        $.ajax({
+            url: 'traiter_demande',
+            method: 'post',
+            data: form.serialize(),
+            success: function(data){
+                if(data.valid){
+                    $("#date_error").text("");
+                    if(data.suffisant){
+                        $("#accept .alert-success").fadeIn(300);
+                        $("#accept .alert-danger").hide();
+                        $("#"+id).find("td[id='etat']").html("acceptée");
+                    }
+                    else{
+                        $("#accept .alert-danger").fadeIn(300);
+                        $("#accept .alert-success").hide();
+                        $("#accept .alert-danger p").text("Budget insuffisant. Cette demande ne peut pas etre acceptée pour le moment.");
+                    }
+                }
+                else{
+                    if(data.changed)
+                        $("#date_error").text("Date de paiement invalide");
+                    else{
+                        $("#date_error").text("");
+                        $("#accept .alert-danger").fadeIn(300);
+                        $("#accept .alert-success").hide();
+                        $("#accept .alert-danger p").text("Vous n'avez pas effetuer un changement dans votre réponse");
+                    }
+                }
+            }
+        });
+        return false;
+    });
+
+    /*
+    $(".clickable-row .accepter").click(function(){
+        var id=$(this).attr('data-url');
+
+        $.ajax({
+            url:'traiter_demande',
+            method: 'post',
+            data:{}
+        });
+        $(this).closest("tr").find("td[id='etat']").html("acceptée");
+        return false;
+
+    });
+    */
+
+    //The buttons
+        $(".close_alert").click(function(){
+            $(".alert-success").fadeOut(300);
+            $(".alert-danger").fadeOut(300);
+        });
+</script>
+</body>
+</html>
+

@@ -1,0 +1,52 @@
+<form action="" method="post" id="supprimer_annonce_form" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="form-group">
+              <label for="select_annonce2" class="control-label">Annonce:</label>
+              <select id="select_annonce2" class="form-control" name="annonce" required>
+                  <option value="">Choisir une annonce</option>
+                  {% for annonce in annonces_ %}
+                    <option value="{{ annonce.id}}">{{annonce.titre}}</option>
+                  {% endfor %}
+              </select>
+              </div>
+            <div class="alert alert-success text-center" role="alert" style="display:none;">
+                  <span class="close_alert" >&times;</span>
+                  <p>Annonce supprimée</p>
+              </div>
+
+          <div class="modal-footer">
+          <button id="fermer_supprimer_annonce_modal" type="button" class="btn btn-secondary fermer_modal" data-dismiss="modal">Fermer</button>
+          <button type="submit" class="btn btn-primary" >Supprimer</button>
+        </div>
+          </form>
+
+<script>
+$("#supprimer_annonce_form").submit(function(){
+    var form = $(this).serialize();
+    $.ajax({
+        url:"delete_annonce",
+        data: form,
+        method: 'post',
+        dataType: 'json',
+        success: function(data){
+            //alert(data.id);
+            $("#item"+data.id).remove();
+            $("#supprimer_annonce_modal .alert-success").fadeIn(300);
+            $('#select_annonce2 option[value='+data.id+']').remove();
+        }
+    });
+    return false;
+  });
+
+  //The buttons
+                $(".close_alert").click(function(){
+                    $("#supprimer_annonce_modal .alert-success").fadeOut(300);
+                    $("#supprimer_annonce_modal .alert-danger").fadeOut(300);
+                });
+
+                $("#fermer_supprimer_annonce_modal").click(function(){
+                    $("#supprimer_annonce_form").trigger("reset");
+                    $("#supprimer_annonce_modal .alert-success").hide();
+
+                });
+</script>

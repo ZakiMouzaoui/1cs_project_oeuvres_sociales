@@ -1,0 +1,67 @@
+<form id="supprimer_partie_form" action="" method="post">
+        {% csrf_token %}
+
+        <label for="partie_select4">Partie</label>
+        <select id="partie_select4" name="partie" class="form-select form-control form-group" aria-label="Default " required>
+            <option selected id="first_select" value="">Choisir une partie</option>
+            {% for partie in parties %}
+                <option id="partie3{{partie.id}}" value="{{partie.id}}">{{partie}}</option>
+            {% endfor %}
+        </select>
+
+        <div class="form-group alert alert-info text-center">
+			<p>Budget restant : {{solde}} da</p>
+		</div>
+
+        <div style="display: none;" class="form-group alert alert-success text-center">
+            <span class="close_alert" >&times;</span>
+			<p></p>
+		</div>
+
+              <div class="modal-footer">
+            <button id="fermer_supprimer_partie_modal" type="button" class="btn btn-secondary fermer_modal" data-dismiss="modal">Fermer</button>
+            <button id="submit_btn" type="submit" class="btn">Confirmer</button>
+        </div>
+	</form>
+
+<script>
+      $(function(){
+        $("#supprimer_partie_form").submit(function(){
+          var form = $(this);
+          $.ajax({
+            url: 'partie_delete',
+            method: 'post',
+            data: form.serialize(),
+            success: function(data){
+              $(".supprimer_partie_modal .alert-success").fadeIn(300);
+              $(".supprimer_partie_modal .alert-success p").text(data.message);
+              $(".supprimer_partie_modal .alert-info p").text("Budget restant : "+data.solde+" da");
+              $(".ajouter_partie_modal .alert-info p").text("Budget restant : "+data.solde+" da");
+              $(".modifier_partie_modal .alert-info p").text("Budget restant : "+data.solde+" da");
+              $('#partie_select option[value='+data.partie.id+']').remove();
+              $('#partie_select2 option[value='+data.partie.id+']').remove();
+              $('#partie_select3 option[value='+data.partie.id+']').remove();
+              $('#partie_select4 option[value='+data.partie.id+']').remove();
+
+              if(data.count == 0){
+               $("#ajouter_chapitre").attr("data-toggle", "modal");
+               $("#ajouter_chapitre").attr("data-target", "#aucune_partie_modal");
+
+              $("#modifier_partie").attr("data-target", "#aucune_partie_modal");
+              $("#supprimer_partie").attr("data-target", "#aucune_partie_modal");}
+            }
+          });
+          return false;
+        });
+
+        //The buttons
+        $(".close_alert").click(function(){
+            $(".supprimer_partie_modal .alert-success").fadeOut(500);
+        });
+
+        $("#fermer_supprimer_partie_modal").click(function(){
+            $("#supprimer_partie_form").trigger("reset");
+            $(".supprimer_partie_modal .alert-success").hide();
+        });
+      });
+    </script>

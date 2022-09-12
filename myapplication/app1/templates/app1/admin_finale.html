@@ -1,0 +1,1778 @@
+{% load i18n %}
+{% load l10n %}
+
+
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+    <!-- styles -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link href="https://necolas.github.io/normalize.css/latest/normalize.css" rel="stylesheet"/>
+    <link href="static/app1/dist/zeynep.css" rel="stylesheet"/>
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="stylesheet" href="static/app1/css/css-admin/bootstrap.min.css">
+    <link rel="stylesheet" href="static/app1/css/css-admin/fontAwesome.css">
+    <link rel="stylesheet" href="static/app1/css/css-admin/hero-slider.css">
+    <link rel="stylesheet" href="static/app1/css/css-admin/admin.css">
+    <link rel="stylesheet" href="static/app1/css/css-employee/try.css">
+    <link rel="stylesheet" href="static/app1/css/css-admin/owl-carousel.css">
+    <link rel="stylesheet" type="text/css" href="static/app1/css/css-admin/default.css" />
+    <link rel="stylesheet" type="text/css" href="static/app1/css/css-admin/component.css" />
+    <link rel="stylesheet" type="text/css" href="static/app1/css/css-admin/popup.css" />
+    <!--<link href="../dist/zeynep.css" rel="stylesheet"/>-->
+    <link href="static/app1/css/css-admin/BilanPartiel.css" rel="stylesheet"/>
+    <link href="static/app1/css/css-admin/base.css" rel="stylesheet"/>
+    <link href="static/app1/css/css-admin/left.css" rel="stylesheet"/>
+    <link href="static/app1/css/css-admin/right.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="static/app1/css/css-admin/style.css">
+    <link rel="stylesheet" href="static/app1/css/css-admin/search.css">
+      <link rel="stylesheet" href="static/app1/css/css-admin/modal.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <!--
+    <script data-require="jquery@*" data-semver="2.2.0" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script data-require="bootstrap@*" data-semver="3.3.6" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    -->
+
+
+      <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+      <script src="static/app1/js/js-admin/Exemple.js"></script>
+    <title>Admin</title>
+      <style>
+        /* Background images */
+          .baner-content {
+            padding-left: 0px;
+            background-image: url(static/app1/img/wlcm.png);
+          }
+
+          .projects-content{
+            background-image: url(static/app1/img/i0.png);
+          }
+
+          .tabs-content{
+            background-image: url(static/app1/img/i4.png);
+          }
+          .Bilan {
+              margin-top: -50px;
+              padding-top: -20px;
+              padding-left: 0px;
+              background-image:  linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.705)),url(static/app1/img/Bilan.png);
+              background-size: cover;
+              background-position: center center;
+              background-attachment: fixed;
+              min-height: 100vh;
+          }
+
+          .annonce_modal .modal-content{
+                background: #055259
+            }
+
+            .annonce_modal .modal-content .cls_modal{
+                background: #055259
+            }
+
+            * {
+	border: 0;
+	box-sizing: border-box;
+	/*margin: 50px;*/
+	padding: 0;
+}
+
+
+
+.search-bar {
+	display: flex;
+}
+
+.search-bar input,
+.search-btn,
+.search-btn:before,
+.search-btn:after {
+	transition: all 0.25s ease-out;
+}
+.search-bar input,
+.search-btn {
+	width: 3em;
+	height: 3em;
+}
+.search-bar input:invalid:not(:focus),
+.search-btn {
+	cursor: pointer;
+}
+.search-bar,
+.search-bar input:focus,
+.search-bar input:valid  {
+	width: 100%;
+}
+.search-bar input:focus,
+.search-bar input:not(:focus) + .search-btn:focus {
+	outline: transparent;
+}
+.search-bar {
+	margin: auto;
+	padding: 1.5em;
+	justify-content: center;
+	max-width: 30em;
+}
+.search-bar input {
+	background: transparent;
+	border-radius: 1.5em;
+	box-shadow: 0 0 0 0.4em #171717 inset;
+	padding: 0.75em;
+	transform: translate(0.5em,0.5em) scale(0.5);
+	transform-origin: 100% 0;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+.search-bar input::-webkit-search-decoration {
+	-webkit-appearance: none;
+}
+.search-bar input:focus,
+.search-bar input:valid {
+	background: #fff;
+	border-radius: 0.375em 0 0 0.375em;
+	box-shadow: 0 0 0 0.1em #d9d9d9 inset;
+	transform: scale(1);
+}
+.search-btn {
+	background: #171717;
+	border-radius: 0 0.75em 0.75em 0 / 0 1.5em 1.5em 0;
+	padding: 0.75em;
+	position: relative;
+	transform: translate(0.25em,0.25em) rotate(45deg) scale(0.25,0.125);
+	transform-origin: 0 50%;
+}
+.search-btn:before,
+.search-btn:after {
+	content: "";
+	display: block;
+	opacity: 0;
+	position: absolute;
+}
+.search-btn:before {
+	border-radius: 50%;
+	box-shadow: 0 0 0 0.2em #f1f1f1 inset;
+	top: 0.75em;
+	left: 0.75em;
+	width: 1.2em;
+	height: 1.2em;
+}
+.search-btn:after {
+	background: #f1f1f1;
+	border-radius: 0 0.25em 0.25em 0;
+	top: 51%;
+	left: 51%;
+	width: 0.75em;
+	height: 0.25em;
+	transform: translate(0.2em,0) rotate(45deg);
+	transform-origin: 0 50%;
+}
+.search-btn span {
+	display: inline-block;
+	overflow: hidden;
+	width: 1px;
+	height: 1px;
+}
+
+/* Active state */
+.search-bar input:focus + .search-btn,
+.search-bar input:valid + .search-btn {
+	background: #2762f3;
+	border-radius: 0 0.375em 0.375em 0;
+	transform: scale(1);
+}
+.search-bar input:focus + .search-btn:before,
+.search-bar input:focus + .search-btn:after,
+.search-bar input:valid + .search-btn:before,
+.search-bar input:valid + .search-btn:after {
+	opacity: 1;
+}
+.search-bar input:focus + .search-btn:hover,
+.search-bar input:valid + .search-btn:hover,
+.search-bar input:valid:not(:focus) + .search-btn:focus {
+	background: #0c48db;
+}
+.search-bar input:focus + .search-btn:active,
+.search-bar input:valid + .search-btn:active {
+	transform: translateY(1px);
+}
+
+@media screen and (prefers-color-scheme: dark) {
+	body, input {
+		color: #f1f1f1;
+	}
+	body {
+		background: #171717;
+	}
+	.search-bar input {
+		box-shadow: 0 0 0 0.4em #f1f1f1 inset;
+	}
+	.search-bar input:focus,
+	.search-bar input:valid {
+		background: #3d3d3d;
+		box-shadow: 0 0 0 0.1em #3d3d3d inset;
+	}
+	.search-btn {
+		background: #f1f1f1;
+	}
+}
+
+.ui-widget{
+    font-family: Roboto;
+    font-size: 16px;
+    color: white;
+    background: #3d3d3d;
+
+    border-radius: 5px;
+    max-width: 434px;
+    position: relative;
+}
+
+.ui-autocomplete{
+    overflow-y: auto;
+    height: 300px;
+    overflow-x: hidden;
+}
+
+#creer_annonce:focus{
+    outline: none;
+}
+
+.close{
+    font-size: 30px;
+}
+
+/* ----------------- PARTIE PVs ----------------------- */
+  .PVs {
+    margin-top: -50px;
+    padding-top: -20px;
+    padding-left: 0px;
+    background-image:  linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.3)),url(static/app1/img/reunion.png);
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+  .PVContent {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 30px 50px;
+    margin-top: 80px;
+    margin-bottom: 30px;
+    margin-left: 180px;
+  }
+  .PVs a {
+    padding-left: 30px;
+  }
+  .btnn:link,
+  .btnn:visited {
+      display: inline-block;
+      padding: 10px 30px;
+      font-weight: 300;
+      text-decoration: none;
+      background-color: #3781e2;
+        color: #fff;
+        margin-right: 15px;
+      border-radius: 25px;
+  }
+  .control-labell{
+    color:#3781e2;
+  }
+  .PVs a:hover{
+    color:#3CC;}
+
+    .zeynep ul > li.has-submenu > a {
+  background-image: url("static/app1/images/submenu-arrow.svg");
+
+}
+
+.zeynep ul > li.has-submenu > a:hover {
+  background-image: url("static/app1/images/submenu-arrow-active.svg");
+}
+
+
+.zeynep .submenu-header {
+  background-image: url("static/app1/images/menu-back.svg");
+}
+
+.zeynep .submenu-header > a:before {
+  background-image: url("static/app1/images/submenu-arrow.svg");
+}
+
+.overlay_ {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.search_modal .modal-content{
+            background: white;
+            color: black;
+         }
+
+         .submit_btn_pv{
+            color: white;
+            background: #3781e2;
+         }
+         .submit_btn_pv:hover{
+            color: white;
+            background: #4150f2
+         }
+         .PV_modal .form-control:focus, .ModifierPvModal .form-control:focus, .SupprimerPvModal .form-control:focus{
+            border-color: #3781e2;
+         }
+
+         .supprimer_article_modal .form-select{
+            overflow-y: auto;
+         }
+
+         #user-menu2 a:hover{
+            color: white;
+            text-decoration: none;
+         }
+         #user-menu2 a{
+            font-weight: normal;
+         }
+         .logo{
+            border-radius: 100px;
+         }
+         .overlay2 {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+}
+.popup p{
+    text-align: center;
+}
+      </style>
+  </head>
+  <body>
+
+  
+    <div class="fixed-side-navbar">
+        <ul class="nav flex-column">
+            <li class="nav-item"><a class="nav-link" href="#home"><span> Acceuil</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="#Annonces"><span> Annonces</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="#programme"><span> Programme</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="#Bilan"><span> Bilan</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="#Statistique"><span> Statistique</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="#Reunion"><span> Réunion</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="admin_crud"><span> Employés</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="demandes"><span> Demandes</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="prets"><span> Prets</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="inscriptions"><span> Inscriptions</span></a></li>
+        </ul>
+    </div>
+    <div class="parallax-content baner-content" id="home">
+      <!------------------------------------------------header start------------------------------------------------> 
+      <div>
+        <nav class="header">
+          <!-- partie gauche-->
+          <div>
+            <img src="static/app1/img/logo.png" alt="" class="logo">
+          </div>
+          <!-- partie au milieu-->
+            <!--
+          <div class ="input-box">
+            <input type="text">
+            <div class="search-icon" ><i class="fa fa-search"></i></div>
+          </div>
+          -->
+     <!-------------------------------------------- partie à droite--------------------------------------->
+          <div>
+              <!--
+            <div class="message">
+              <i class=" fa fa-comment dropdown-toggle1 " data-toggle="message-menu1"></i>
+              <span class="number1">3</span>
+              <div id="message-menu1" class="dropdown-menu1 messag">
+                <div class="dropdown-content1 " >
+                  <li>
+                    <img src="img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                  <li>
+                    <img src="img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                  <li>
+                    <img src="img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                  <li>
+                    <img src="img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                  <li>
+                    <img src="img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                  <li>
+                    <img src="img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                  <li>
+                    <img src="img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                </div>
+              </div>
+
+            </div>
+              -->
+
+            <div class="notification">
+              <i class="fa fa-bell-o dropdown-toggle1" data-toggle="notification-menu1"></i>
+                {% if non_read != 0 %}
+                <span class="number2">{{ non_read }}</span>
+              {% endif %}
+              <div id="notification-menu1" class="dropdown-menu1 notif">
+                <div class="dropdown-content1">
+                        {% for message in messages %}
+                      <li class="message_list" data-url="{{message.id}}">
+                        <img src="{{message.sender.userprofile.profile_picture.url}}" alt="" >
+                          {% if not message.is_read %}
+                            <div id={{message.id}} style="font-weight: bold;" class="text">
+                                    {{message}}
+                                </div>
+                          {% else %}
+                            <div class="text">
+                                    {{message}}
+                                </div>
+                          {% endif %}
+
+                      </li>
+                        {% endfor %}
+
+                    <!--
+                  <li>
+                    <img src="img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                  <li>
+                    <img src="img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                  <li>
+                    <img src="img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                  <li>
+                    <img src="img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                  <li>
+                    <img src="img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                  <li>
+                    <img src="img/avatar.jpg" alt="" >
+                    <div class="text">
+                      Bonjour monsieur, j'espére que vous allez bien ,
+                      je vous ai contacté à propos de la demande de pret faites la semaine passée.
+                    </div>
+                  </li>
+                  -->
+                </div>
+              </div>
+
+            </div>
+            <div class="avatar">
+              <img src="{{request.user.userprofile.profile_picture.url}}" alt=""  class="dropdown-toggle1" data-toggle="user-menu2">
+              <div id="user-menu2" class="dropdown-menu1 setting2">
+                <a href="profile"><div class="item2"><span class="fa fa-user-o"></span>Profile</div></a>
+                <!--<div class="item2"><span class="fa fa-cog"></span>Configuration</div>-->
+                <div class="item2"><span class="fa fa-question-circle-o"></span>Aide</div>
+                <a href="{% url 'logout' %}"><div class="item2"><span class="fa fa-power-off"></span>Déconnexion</div></a>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+     <!------------------------------------------------header end------------------------------------------------>
+    <div class="container">
+      <div class="first-content">
+        <h1>OEUVRES SOCIALES</h1>
+          <span><em>ESI-SBA</em></span>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="parallax-content projects-content" id="Annonces">
+      <div class="container">
+          <!-- Annonce detail modal -->
+          <div class="modal fade detail_modal" id="detail_modal" role="dialog" tabindex="-1">
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <button type="button" class="cls_modal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      </div>
+                      <div class="modal-body"><img id="detail_image" src=""></div>
+                  </div>
+              </div>
+          </div>
+        <!-- Ajouter Annonce modal -->
+  <div class="modal fade annonce_modal" id="annonce_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">Ajouter une nouvelle annonce</h4>
+          <button type="button" class="cls_modal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          
+        </div>
+        <div class="modal-body">
+            {% include 'app1/AjouterAnnonce.html' %}
+        </div>
+      </div>
+    </div>
+  </div>
+          <!-- ModifierAnnonceModal -->
+          <div class="modal fade annonce_modal" id="modifier_annonce_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Modifier une annonce</h4>
+          <button type="button" class="cls_modal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+        </div>
+        <div class="modal-body">
+          {% include 'app1/ModifierAnnonce.html' %}
+        </div>
+      </div>
+    </div>
+  </div>
+          <!-- SupprimerAnnonceModal -->
+          <div class="modal fade annonce_modal" id="supprimer_annonce_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Modifier une annonce</h4>
+          <button type="button" class="cls_modal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+        </div>
+        <div class="modal-body">
+          {% include 'app1/SupprimerAnnonce.html' %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
+          <div class="row">
+              <div class="col-md-12">
+                  <div id="owl-testimonials" class="owl-carousel owl-theme">
+                      {% for annonce in annonces %}
+                      <div class="item" id="item{{annonce.id}}">
+                          <div class="testimonials-item">
+                              <a id="detail{{annonce.id}}" href="{{annonce.detail.url }}" data-lightbox="image-1"><img id="img{{annonce.id}}" src="{{ annonce.photo.url }}" alt=""></a>
+                              <div  class="text-content">
+                                  <h4 id="titre{{annonce.id}}">{{ annonce }}</h4><br><span id="date{{annonce.id}}">Jusqu'à {% language 'fr' %} {{ annonce.date_fin|date:"Y-m-d" }} {% endlanguage %}</span>
+                              </div>
+                          </div>
+                      </div>
+                      {% endfor %}
+                      <!--
+
+
+                      <div class="item">
+                          <div class="testimonials-item">
+                              <a href="static/app1/img/hadj.png" data-lightbox="image-1"><img src="static/app1/img/Port-Say.png" alt=""></a>
+                              <div class="text-content">
+                                  <h4>Vacances d'été Port-Say Tlemcen</h4><span>Jusqu'à 12/03/2021</span>
+                                  
+                              </div>
+                          </div>
+                      </div>
+                      <div class="item">
+                          <div class="testimonials-item">
+                              <a href="static/app1/img/kebch.png" data-lightbox="image-1"><img src="static/app1/img/bains.png" alt=""></a>
+                              <div class="text-content">
+                                  <h4>Excursion Hammam Rabbi Saida</h4><span>Jusqu'à 12/03/2021</span>
+                                  
+                              </div>
+                          </div>
+                      </div>
+                      <div class="item">
+                          <div class="testimonials-item">
+                              <a href="" data-lightbox="image-1"><img src="img/grotte.png" alt=""></a>
+                              <div class="text-content">
+                                  <h4>Excursion grotte Ain Fezza Tlemcen</h4><span>Jusqu'à 12/03/2021</span>
+                                  
+                              </div>
+                          </div>
+                      </div>
+                      <div class="item">
+                          <div class="testimonials-item">
+                              <a href="" data-lightbox="image-1"><img src="img/effel.png" alt=""></a>
+                              <div class="text-content">
+                                  <h4>Voyage en France</h4><br><span>Jusqu'à 12/03/2021</span>
+                                  
+                              </div>
+                          </div>
+                      </div>
+                      <div class="item">
+                          <div class="testimonials-item">
+                              <a href="" data-lightbox="image-1"><img src="img/electromenager.png" alt=""></a>
+                              <div class="text-content">
+                                  <h4>Achat d'électroménager par facilité</h4><span>Jusqu'à 12/03/2021</span>
+                                  
+                              </div>
+                          </div>
+                      </div>
+                      <div class="item">
+                          <div class="testimonials-item">
+                              <a href="./img/annonce aid.png" data-lightbox="image-1"><img src="img/kebch.png" alt=""></a>
+                              <div class="text-content">
+                                  <h4>Offrande sacrificielle du Aïd par facilité</h4><span>Jusqu'à 12/03/2021</span>
+                                  
+                              </div>
+                          </div>
+                      </div>
+                      <div class="item">
+                          <div class="testimonials-item">
+                              <a href="" data-lightbox="image-1"><img src="img/turquie.png" alt=""></a>
+                              <div class="text-content">
+                                  <h4>Voyage en Turquie</h4><br><span>Jusqu'à 12/03/2021</span> 
+                                  
+                                  
+                              </div>
+                          </div>
+                      </div>
+                      -->
+
+
+                       <div class="item item_before">
+                          <div class="testimonials-item">
+                              <img src="static/app1/img/at.png" alt="">
+                              <div class="text-content">
+                                <a id="creer_annonce" href="#myModal" data-toggle="modal" data-target="#annonce_modal">
+                                  <h4 style="color: #209eff;">Cliquez ICI pour ajouter une nouvelle annonce</h4>
+                                </a>
+                                  <a id="modifier_annonce" href="#" data-toggle="modal" data-target="#modifier_annonce_modal">
+                                  <h4 style="color: #1ca339;">Cliquez ICI pour modifier une annonce</h4>
+                                      <a id="supprimer_annonce" href="#myModal" data-toggle="modal" data-target="#supprimer_annonce_modal">
+                                  <h4 style="color: #9c1111;">Cliquez ICI pour supprimer une annonce</h4>
+                                </a>
+                                  </a>
+                              </div>
+                          </div>
+                       </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+
+    <!--
+    <div class="row">
+              <div class="col-md-12">
+                  <div id="owl-testimonials" class="owl-carousel owl-theme">
+                      <div class="item">
+                          <div class="testimonials-item">
+                              <a href="img/hadj.png" data-lightbox="image-1"><img src="img/mecque_2015.png" alt=""></a>
+                              <div class="text-content">
+                                  <h4>Loterie du Hajj</h4><br><span>Jusqu'à 12/03/2021</span>
+
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="item">
+                          <div class="testimonials-item">
+                              <a href="img/hadj.png" data-lightbox="image-1"><img src="img/Port-Say.png" alt=""></a>
+                              <div class="text-content">
+                                  <h4>Vacances d'été Port-Say Tlemcen</h4><span>Jusqu'à 12/03/2021</span>
+
+                              </div>
+                          </div>
+                      </div>
+
+                       <div class="item">
+                          <div class="testimonials-item">
+                              <img src="img/at.png" alt="">
+                              <div class="text-content">
+
+                                <a href="#myModal" data-toggle="modal" data-target="#myModal">
+                                  <h4 style="color: #209eff;">Cliquez ICI pour ajouter une nouvelle annonce</h4>
+                                </a><br>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      </div>
+    </div>
+    -->
+
+    <div class="tabs-content" id="programme">
+      <div class="container">
+           <!-- Search in program -->
+          <form action="" id="search_form" class="search-bar">
+            <input type="search" id="search_input" placeholder="Rechercher dans le programme" name="search" pattern=".*\S.*" required>
+            <button class="search-btn" type="submit">
+              <span>Search</span>
+            </button>
+          </form>
+        <div class="row">
+          <div class="col-md-4">
+              <div class="left-text">
+                  <h4>A propos du programme des oeuvres sociales</h4>
+                  <div class="line-dec"></div>
+                  <p>Le service des oeuvres sociales de l'ESI SBA est institué en vue de promouvoir la vie sociale du travailleur à travers l’organisation d’activités citées dans le <a rel="nofollow" href="./pdf.pdf" style="color:silver">programme des oeuvres sociales</a> allant dans le sens du bien être de celui-ci et de sa famille.</p>
+                  <ul>
+                      <li>- Sont bénéficiaires des œuvres sociales de l’organisme, les travailleurs et retraités ainsi que les familles qui sont à leur charge.</li>
+                  </ul><br>
+                  
+                  <div>
+                    <button type="button" class="btn-open first">Consulter</button>
+                  <button type="button" class="btn-open second">Mise à jour</button>
+                </div> 
+              </div>
+          </div>
+          <div class="col-md-8">
+              <div class="row">
+                  <div class="col-md-6">
+                      <div class="service-item">
+                          <h4>L'octroi des prêts</h4>
+                          <div class="line-dec"></div>
+                          <p>Tout salarié en difficulté peut demander un prêt qui lui sera accordé sans intérêt.</p>
+                          <div class="pret-button">
+
+                        </div>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="service-item">
+                          <h4>L'octroi des dons</h4>
+                          <div class="line-dec"></div>
+                          <p>Les membres du COS peuvent, lors d'une réunion, voter l'attribution d'une certaine somme à des salariés à titre de secours.</p>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="service-item">
+                          <h4>Primes allocations diverses</h4>
+                          <div class="line-dec"></div>
+                          <p>Le service des oeuvres sociales attribue aux salariés un certain nombre de primes versées en diverses occasions.</p>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="service-item">
+                          <h4>Activités sociales et culturelles</h4>
+                          <div class="line-dec"></div>
+                          <p>Tout salarié peut bénéficier des différentes activités et offres en formulant une demande après avoir consulter l'article correspondant.</p>
+                      </div>
+                  </div>
+              </div>
+          </div>                
+      </div>
+
+
+        <div class="zeynep first" data-menu-name="first">
+            <ul>
+                <label>Programmes</label>
+                {% for partie in parties %}
+                <li class="has-submenu">
+                    <a href="#" data-submenu="partie{{partie.id}}">{{partie}}</a>
+                    <div id="partie{{partie.id}}" class="submenu">
+                        <div class="submenu-header">
+                            <a href="#" data-submenu-close="partie{{partie.id}}">Parties</a>
+                        </div>
+                        <label>{{partie}}</label>
+                        {% for chapitre in partie.chapitre_set.all %}
+                        <ul>
+                            <li class="has-submenu">
+                                <a href="#" data-submenu="chapitre{{chapitre.id}}">{{chapitre}}</a>
+                                <div id="chapitre{{chapitre.id}}" class="submenu">
+                                    <div class="submenu-header">
+                                        <a href="#" data-submenu-close="chapitre{{chapitre.id}}">Chapitres</a>
+                                    </div>
+                                    <label>{{chapitre}}</label>
+                                    <ul>
+                                        {% for article in chapitre.article_set.all %}
+                                        <li>
+                                            <a href="#article{{article.id}}">{{article}}</a>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                        {% endfor %}
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>   
+        <div class="zeynep second" data-menu-name="second">
+          <ul>
+            <label>Menu</label>
+            <li class="has-submenu">
+              <a href="#" data-submenu="ajout">Ajouter</a>
+              <div id="ajout" class="submenu">
+                <div class="submenu-header">
+                  <a href="#" data-submenu-close="ajout">Menu</a>
+                </div>
+                <label>Ajout</label>
+                <ul>
+                  <li>
+                      {% if chapitres|length == 0 %}
+                    <a href="#programme" id="ajouter_article" data-toggle="modal" data-target="#aucun_chapitre_modal">Ajouter un article</a>
+                      {% else %}
+                      <a href="#" data-toggle="modal" data-target="#ajouter_article_modal">Ajouter un article</a>
+                      {% endif %}
+                  </li>
+                  <li>
+                      {% if parties|length == 0 %}
+                    <a href="#" id="ajouter_chapitre" data-toggle="modal" data-target="#aucune_partie_modal">Ajouter un chapitre</a>
+                      {% else %}
+                      <a href="#" data-toggle="modal" data-target="#ajouter_chapitre_modal">Ajouter un chapitre</a>
+                      {% endif %}
+                  </li>
+                  <li>
+                    <a href="#ajouter_partie_modal" data-toggle="modal">Ajouter une partie</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="has-submenu">
+              <a href="#" data-submenu="suppression">Supprimer</a>
+              <div id="suppression" class="submenu">
+                <div class="submenu-header">
+                  <a href="#" data-submenu-close="suppression">Menu</a>
+                </div>
+                <label>Suppression</label>
+                <ul>
+                  <li>
+                      {% if articles|length == 0 %}
+                        <a href="#programme" id="supprimer_article" data-toggle="modal" data-target="#aucun_article_modal">Supprimer un article</a>
+                      {% else %}
+                        <a href="#" data-toggle="modal" data-target="#supprimer_article_modal">Supprimer un article</a>
+                      {% endif %}
+                  </li>
+                  <li>
+                      {% if chapitres|length == 0 %}
+                        <a href="#programme" id="supprimer_chapitre" data-toggle="modal" data-target="#aucun_chapitre_modal">Supprimer un chapitre</a>
+                      {% else %}
+                        <a href="#" data-toggle="modal" data-target="#supprimer_chapitre_modal">Supprimer un chapitre</a>
+                      {% endif %}
+                  </li>
+                  <li>
+                      {% if parties|length == 0 %}
+                        <a href="#" id="supprimer_partie" data-toggle="modal" data-target="#aucune_partie_modal">Supprimer une partie</a>
+                      {% else %}
+                        <a href="#" data-toggle="modal" data-target="#supprimer_partie_modal">Supprimer une partie</a>
+                      {% endif %}
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="has-submenu">
+              <a href="#" data-submenu="modif">Modifier</a>
+              <div id="modif" class="submenu">
+                <div class="submenu-header">
+                  <a href="#" data-submenu-close="modif">Menu</a>
+                </div>
+                <label>Modification</label>
+                <ul>
+                  <li>
+                      {% if articles|length == 0 %}
+                        <a href="#programme" id="modifier_article" data-toggle="modal" data-target="#aucun_article_modal">Modifier un article</a>
+                      {% else %}
+                        <a href="#" data-toggle="modal" data-target="#modifier_article_modal">Modifier un article</a>
+                      {% endif %}
+                  </li>
+                  <li>
+                      {% if chapitres|length == 0 %}
+                        <a href="#programme" id="modifier_chapitre" data-toggle="modal" data-target="#aucun_chapitre_modal">Modifier un chapitre</a>
+                      {% else %}
+                        <a href="#" data-toggle="modal" data-target="#modifier_chapitre_modal">Modifier un chapitre</a>
+                      {% endif %}
+                  </li>
+                  <li>
+                      {% if parties|length == 0 %}
+                        <a href="#programme" id="modifier_partie" data-toggle="modal" data-target="#aucune_partie_modal" >Modifier une partie</a>
+                      {% else %}
+                        <a href="#" data-toggle="modal" data-target="#modifier_partie_modal">Modifier une partie</a>
+                      {% endif %}
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+      <!-- <button type="button" class="btn-open first">Open!</button> <button type="button" class="btn-openn first">Modifier</button> -->
+      <div class="main">
+        <div class="col-md-7 mx-auto">
+          <div>
+            <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script><script  src="js/search-popup.js"></script>
+            <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+            <script src='https://codepen.io/MilanMilosev/pen/EoLBjo.js'></script>
+            <script  src="js/script.js"></script>
+            <script>
+            </script>
+          </div>
+          <div class="wrapper">
+            {% for article in articles %}
+              <div id="article{{article.id}}" class="overlay">
+                <div class="popup">
+                    <h6>{{article}}</h6>
+                    <a class="close" id="cls_popup" href="#">&times;</a>
+                    <div class="content">
+                        <p>{{ article.contenu }}</p>
+                    </div>
+                  <!--
+                    <div>
+                        <button type="button" id="{{article.id}}" data-toggle="modal" data-target="#demande_modal" class="dmd-button">Demander</button>
+                    </div>
+                    -->
+                </div>
+              </div>
+              {% endfor %}
+          </div>
+        </div>  
+      </div>
+          <div class="wrapper">
+              <div class="overlay_" style="display: none;">
+                <div class="popup" >
+                    <h6>Article</h6>
+                    <a class="close" id="cls_search" href="#">&times;</a>
+                    <div class="content" style="justify-content: center;">
+                        <p></p>
+                    </div>
+                  <!--
+                    <div>
+                        <button type="button" id="{{article.id}}" data-toggle="modal" data-target="#demande_modal" class="dmd-button">Demander</button>
+                    </div>
+                    -->
+                </div>
+              </div>
+          </div>
+
+        <!-- Recherche modal -->
+    <div class="modal fade search_modal" id="search_modal"
+                tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+             <div class="modal-dialog" role="document">
+               <div class="modal-content">
+                 <div class="modal-header">
+                   <h3 style="margin-left: 50px;">Résultats de la recherche:</h3>
+                   <button type="button" class="close cls_rech" data-dismiss="modal" aria-label="Close">
+                     <span style="color: black;" aria-hidden="true">&times;</span>
+                   </button>
+                 </div>
+                 <div class="modal-body">
+                   <h4></h4>
+                   <p></p>
+                     </div>
+                 </div>
+               </div>
+             </div>
+<!-- Empty modals -->
+        <div class="modal fade ajouter_partie_modal" id="aucune_partie_modal" data-url="" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Aucune partie pour le moment</h3>
+        <button type="button" class="cls_modal" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      </div>
+    </div>
+  </div>
+        <div class="modal fade ajouter_partie_modal" id="aucun_chapitre_modal" data-url="" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Aucun chapitre pour le moment</h3>
+        <button type="button" class="cls_modal" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      </div>
+    </div>
+  </div>
+        <div class="modal fade ajouter_partie_modal" id="aucun_article_modal" data-url="" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Aucun article pour le moment</h3>
+        <button type="button" class="cls_modal" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      </div>
+    </div>
+  </div>
+    <!-- Modal Ajouter Partie-->
+<div class="modal fade ajouter_partie_modal" id="ajouter_partie_modal" data-url="" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Ajouter une partie</h3>
+        <button type="button" class="cls_modal" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          {% include 'app1/AjouterPartie.html' %}
+      </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Modal Ajouter Chapitre-->
+<div class="modal fade ajouter_chapitre_modal" id="ajouter_chapitre_modal" data-url="" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Ajouter un chapitre</h3>
+        <button type="button" class="cls_modal" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          {% include 'app1/AjouterChapitre.html' %}
+      </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Modal Ajouter Article-->
+    <div class="modal fade ajouter_article_modal" id="ajouter_article_modal" data-url="" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Ajouter un article</h3>
+        <button type="button" class="cls_modal" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         {% include 'app1/AjouterArticle.html' %}
+      </div>
+      </div>
+    </div>
+  </div>
+
+        <!-- Modal Modifier Partie-->
+<div class="modal fade modifier_partie_modal" id="modifier_partie_modal" data-url="" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Modifier une partie</h3>
+        <button type="button" class="cls_modal" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          {% include 'app1/ModifierPartie.html' %}
+      </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Modal Modifier Chapitre-->
+<div class="modal fade modifier_chapitre_modal" id="modifier_chapitre_modal" data-url="" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Modifier un chapitre</h3>
+        <button type="button" class="cls_modal" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          {% include 'app1/ModifierChapitre.html' %}
+      </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Modal Modifier Article-->
+<div class="modal fade modifier_article_modal" id="modifier_article_modal" data-url="" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Modifier un article</h3>
+        <button type="button" class="cls_modal" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          {% include 'app1/ModifierArticle.html' %}
+      </div>
+      </div>
+    </div>
+  </div>
+
+        <!-- Modal Supprimer Partie-->
+<div class="modal fade supprimer_partie_modal" id="supprimer_partie_modal" data-url="" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Supprimer une partie</h3>
+        <button type="button" class="cls_modal" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {% include 'app1/SupprimerPartie.html' %}
+      </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Modal Supprimer Chapitre-->
+<div class="modal fade supprimer_chapitre_modal" id="supprimer_chapitre_modal" data-url="" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Supprimer un chapitre</h3>
+        <button type="button" class="cls_modal" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {% include 'app1/SupprimerChapitre.html' %}
+      </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Modal Supprimer Article-->
+<div class="modal fade supprimer_article_modal" id="supprimer_article_modal" data-url="" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Supprimer un article</h3>
+        <button type="button" class="cls_modal" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {% include 'app1/SupprimerArticle.html' %}
+      </div>
+      </div>
+    </div>
+  </div>
+        </div>
+    </div>
+      <div class="Bilan" id="Bilan">
+        <h5>BILAN PARTIEL</h5>
+        <div class="hero-text-box">
+          <a class="btn btn-second" href="#popup2" >Bilan total</a>
+          <a class="btn btn-full" href="#" data-toggle="modal" data-target="#budget_modal">Ajouter budget</a>
+          <a class="btn btn-ghoast" href="#" data-toggle="modal" data-target="#recette_modal" >Subvention</a>
+        </div>
+        <div class="wrapper">
+          <section>
+            <div class="tbl-header">
+              <table cellpadding="0" cellspacing="0" border="0">
+                <thead>
+                  <tr>
+                    <th>Article</th>
+                    <th>Budget Initial</th>
+
+                    <th>Dépenses</th>
+                    <th>Solde</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+            <div class="tbl-content">
+              <table cellpadding="0" cellspacing="0" border="0">
+                <tbody>
+                {% for article in articles %}
+                  <tr>
+                    <td>Article{{ forloop.counter }} </td>
+                    <td>{{ article.budget }} da </td>
+
+                    <td>{{ article.debit }} da</td>
+                    <td>{{ article.solde }} da</td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <div id="popup2" class="overlay">
+            <div class="popup">
+                <h6>BILAN TOTAL</h6>
+                <a class="close" href="#wrapper" >&times;</a>
+                <div class="">
+                    {% if budget_object %}
+                  <h7><b> Budget initial : </b> {{ budget_object.montant }} da <br></h7>
+                  <h7><b> Dépenses : </b>{{ budget_object.debit }} da<br></h7>
+                  <h7><b> Recettes : </b>{{ budget_object.credit }} da<br></h7>
+                  <h7><b> Solde : </b>{{ solde }} da <br></h7>
+                    {% else %}
+                        <h7><b> Budget initial : </b> 0 da <br></h7>
+                  <h7><b> Dépenses : </b>0 da<br></h7>
+                  <h7><b> Recettes : </b>0 da<br></h7>
+                  <h7><b> Solde : </b> 0 da <br></h7>
+                    {% endif %}
+                </div>
+                <!--
+                <a class="btn" href="form/ModifierBudgetTotal.html">Modifier</a>
+                <a class="btn" href="#wrapper">Imprimer</a>
+                -->
+            </div>
+          </div>
+          <!-- partial -->
+          <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="./js-admin/script.js"></script>
+       </div>
+      </div>
+                      <!-- Ajouter Budget modal -->
+                      <div class="modal fade PV_modal" id="budget_modal" data-url="" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content" style="background: white; color: black;">
+                              <div class="modal-header">
+                                <h3>Ajouter un Budget</h3>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span style="color: black;" aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                  <form method="post" action="" id="ajouter_budget_form">
+                                      {% csrf_token %}
+                                      <div class="form-group">
+                                          <label for="date_budget">Date</label>
+                                          <input type="date" name="date" id="date_budget" class="form-control" placeholder="Date">
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="montant_budget">Montant</label>
+                                          <input type="number" name="montant" min="0" id="montant_budget" class="form-control" placeholder="Montant( en da)">
+                                      </div>
+                                      <div class="alert alert-success text-center" style="display: none;">
+                                          <span class="close_alert" >&times;</span>
+                                          <p>Budget ajouté</p>
+                                      </div>
+                                      <div class="alert alert-danger text-center" style="display: none;">
+                                          <span class="close_alert" >&times;</span>
+                                          <p>Un budget existe déjà dans cette année</p>
+                                      </div>
+                                      <div class="modal-footer">
+                                          <button class="btn btn-secondary" data-dismiss="modal">fermer</button>
+                                          <button class="btn btn-primary" type="submit">Ajouter</button>
+                                      </div>
+                                  </form>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+
+                        <!-- Ajouter Recette modal -->
+                      <div class="modal fade PV_modal" id="recette_modal" data-url="" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content" style="background: white; color: black;">
+                              <div class="modal-header">
+                                <h3>Ajouter une recette</h3>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span style="color: black;" aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                  <form method="post" action="" id="ajouter_recette_form">
+                                      {% csrf_token %}
+                                      <div class="form-group">
+                                          <label for="subvention">Subvention</label>
+                                          <input type="text" name="subvention" id="subvention" required class="form-control" placeholder="Subvention">
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="date_budget">Date</label>
+                                          <input type="date" name="date" id="date_subvention" required  class="form-control" placeholder="Date">
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="montant_budget">Montant</label>
+                                          <input type="number" name="montant" min="0" required id="montant_subvention" class="form-control" placeholder="Montant( en da)">
+                                      </div>
+
+                                      <div class="alert alert-success text-center" style="display: none;">
+                                          <span class="close_alert" >&times;</span>
+                                          <p>Recette ajouté</p>
+                                      </div>
+                                      <div class="alert alert-danger text-center" style="display: none;">
+                                          <span class="close_alert" >&times;</span>
+                                          <p>Aucun budget n'existe dans cette année</p>
+                                      </div>
+                                      <div class="modal-footer">
+                                          <button class="btn btn-secondary" data-dismiss="modal">fermer</button>
+                                          <button class="btn btn-primary" type="submit">Ajouter</button>
+                                      </div>
+                                  </form>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+
+
+      <div class="PVs" id="Reunion">
+        <div class="container">
+          <div class="row">
+              <div class="col-md-10">
+                  <div class="PVContent">
+                    <h3>Procès Verbaux de la COS</h3>
+                      {% for pv in pvs %}
+                      <div id="{{pv.id}}">
+                          <p><span style="text-decoration: underline; color: #3781e2;"><strong>{{ pv.date|date:"Y-m-d"}}</strong></span></p>
+                      <ol>
+                          <li>
+                              <a id="pv_link" href="{{ pv.pv.url }}" rel="alternate">{{ pv }}</a>
+                          </li>
+                      </ol>
+                      </div>
+
+                      {% endfor %}
+                      <!--
+                    <p><span style="text-decoration: underline;"><strong>Année 2018</strong></span></p>
+                    <ol>
+                        <li><a href="/COSUB/documents/2019/1-PV%20_DELIBERATION_COS_25_11_2018_sans.pdf" target="_blank">Procès verbal provisoire N° 1-2018 remis à la structure de gestion le 04 Décembre 2018. </a></li>
+                        <li><a href="/COSUB/documents/2019/2-PV%20_DELIBERATION_COS_04_12_2018_sans.pdf" target="_blank">Procès verbal provisoire N° 2-2018 remis à la structure de gestion le 13 Décembre 2018.</a></li>
+                        <li><a href="/COSUB/documents/2019/3-PV _DELIBERATION_REGULARISATION.pdf" target="_blank" rel="alternate">Procès verbal provisoire N° 3-2018 Regularisation . </a></li>
+                        <li><a href="/COSUB/documents/2019/4-PV_CREDITS_109.pdf" target="_blank" rel="alternate">Procès verbal provisoire N° 4-2018 Credits. </a></li>
+                        <li><a href="/COSUB/documents/2019/5-ETAT_LIQUID_DOSSIERS_AIDES.pdf" target="_blank" rel="alternate">Procès verbal provisoire N° 5-2018 Aides . </a></li>
+                        <li><a href="/COSUB/documents/2020/14_PV_13_Regularisation_2018.pdf" target="_blank" rel="alternate">Procès verbal N° 13 dossiers de 2018 . </a></li>
+                    </ol>
+                    -->
+
+                      <a href="#" data-toggle="modal" id="ajout_pv" style="color: #3781e2;" data-target="#PV_modal">Ajouter un nouveau PV</a>
+                      <a href="#" data-toggle="modal" id="modifier_pv" style="color: #3fd460;" data-target="#modifier_PV_modal">Modifier un PV</a>
+                      <a href="#" data-toggle="modal" id="supprimer_pv" style="color: #e84f4f;" data-target="#supprimer_PV_modal">Supprimer un PV</a>
+
+                      <!-- Ajouter PV modal -->
+                      <div class="modal fade PV_modal" id="PV_modal" data-url="" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content" style="background: white; color: black;">
+                              <div class="modal-header">
+                                <h3>Ajouter un PV</h3>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span style="color: black;" aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                  {% include 'app1/AjouterPv.html' %}
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+
+                          <!-- Modifier PV modal -->
+                      <div class="modal fade ModifierPvModal" id="modifier_PV_modal" data-url="" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content" style="background: white; color: black;">
+                              <div class="modal-header">
+                                <h3>Modifier un PV</h3>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span style="color: black;" aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                  {% include 'app1/ModifierPv.html' %}
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+
+                      <!-- Supprimer PV modal -->
+                      <div class="modal fade SupprimerPvModal" id="supprimer_PV_modal" data-url="" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content" style="background: white; color: black;">
+                              <div class="modal-header">
+                                <h3>Supprimer un PV</h3>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span style="color: black;" aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                  {% include 'app1/SupprimerPv.html' %}
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+
+                      <div class="wrapper">
+              <div class="overlay2" style="display: none;">
+                <div class="popup">
+                    <h6>Nouveau message</h6>
+                    <a class="close" id="cls_message" href="#">&times;</a>
+                    <div class="content" style="justify-content: center;">
+                        <p></p>
+                    </div>
+                    <!--
+                    <div>
+                  <a href="#" data-toggle="modal"  data-target="#demande_modal"><button type="button" data-url="" class="dmd-button" >Demander</button></a>
+                    </div>
+                    -->
+                </div>
+              </div>
+
+                  </div>
+              </div>
+          </div>
+        </div>
+        </div>
+      </div>
+
+
+      <div class="zeynep-overlay"></div>
+      
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+
+     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+      <script src="static/app1/js/js-admin/vendor/bootstrap.min.js"></script>
+      <script src="static/app1/js/js-admin/plugins.js"></script>
+      <script src="static/app1/js/js-admin/main.js"></script>
+
+      <script src="static/app1/dist/zeynep.js"></script>
+      <script src="static/app1/js/js-admin/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+      <script src="static/app1/js/js-admin/demande.js"></script>
+      <script>
+        window.onclick = function(event) {
+         openCloseDropdown(event)
+           }
+
+           function closeAllDropdown() {
+          var dropdowns = document.getElementsByClassName('dropdown-expand1')
+          for (var i = 0; i < dropdowns.length; i++) {
+            dropdowns[i].classList.remove('dropdown-expand1')
+          }
+          }
+
+           function openCloseDropdown(event) {
+           if (!event.target.matches('.dropdown-toggle1')) {
+             //
+             // Close dropdown when click out of dropdown menu
+             //
+           closeAllDropdown()
+           } else {
+          var toggle = event.target.dataset.toggle
+         var content = document.getElementById(toggle)
+         if (content.classList.contains('dropdown-expand1')) {
+          closeAllDropdown()
+         } else {
+          closeAllDropdown()
+        content.classList.add('dropdown-expand1')
+        }
+        }
+          }
+      </script>
+      <script>
+        function openCity(cityName) {
+            var i;
+            var x = document.getElementsByClassName("city");
+            for (i = 0; i < x.length; i++) {
+               x[i].style.display = "none";
+            }
+            document.getElementById(cityName).style.display = "block";
+        }
+      </script>
+
+      <script>
+          $(document).ready(function(){
+            // Add smooth scrolling to all links
+            $(".fixed-side-navbar a, .primary-button a").on('click', function(event) {
+
+              // Make sure this.hash has a value before overriding default behavior
+              if (this.hash !== "") {
+                // Prevent default anchor click behavior
+                event.preventDefault();
+
+                // Store hash
+                var hash = this.hash;
+
+                // Using jQuery's animate() method to add smooth page scroll
+                // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+                $('html, body').animate({
+                  scrollTop: $(hash).offset().top
+                }, 800, function(){
+
+                  // Add hash (#) to URL when done scrolling (default click behavior)
+                  window.location.hash = hash;
+                });
+              } // End if
+            });
+          });
+      </script>
+
+      <script>
+        $(function() {
+          // loop all zeynepjs menus for initialization
+          $('.zeynep').each(function () {
+            // init zeynepjs side menu
+            $(this).zeynep({
+              opened: function (el) {
+                // log
+                console.log(el.attr('data-menu-name') + ' side menu opened')
+              },
+              closed: function (el) {
+                // log
+                console.log(el.attr('data-menu-name') + ' side menu closed')
+              }
+            })
+          })
+
+          // handle zeynepjs overlay click
+          $('.zeynep-overlay').on('click', function () {
+            // close all zeynepjs menus
+            $('.zeynep.opened').each(function () {
+              $(this).data('zeynep').close()
+            })
+          });
+
+          // open first zeynepjs side menu
+          $('.btn-open.first').on('click', function () {
+            $('.zeynep.first').data('zeynep').open();
+          });
+
+          // open second zeynepjs side menu
+          $('.btn-open.second').on('click', function () {
+            $('.zeynep.second').data('zeynep').open();
+          });
+        });
+      </script>
+
+         <script>
+            $(function(){
+                $("#search_input").autocomplete({
+                    source: "search",
+                    select: function(event, ui){
+                      $("#search_modal").fadeIn(300);
+                      $(".search_modal .modal-body").html(`<h4>Article</h4><p>${ui.item.value}</p>`);
+                      //$(".search_modal .modal-body p").text(ui.item.value);
+                    }
+                });
+
+                $("#cls_modal").click(function(){
+                    $("#search_modal").fadeOut(300);
+
+                    return false;
+                });
+
+                $("#search_form").submit(function(){
+                  var searched = $("#search_input").val();
+                  $.ajax({
+                    url: 'search',
+                    data: {"searched": searched},
+                    success: function(data){
+                      $(".search_modal .modal-body").html("");
+                      for(article in data.result){
+                        var i = `${article}+1`;
+                        $("#search_modal").fadeIn(300);
+                        $(".search_modal .modal-body").append(`<div class="card">
+                                                                  <div class="card-body">
+                                                                    <h4>Article${i}</h4><p>${data.result[article]}</p>
+                                                                  </div>
+                                                               </div>`);
+                      }
+                    }
+                  });
+                  return false;
+                });
+            });
+        </script>
+
+
+        <script>
+            $(document).on("click", "#annonce", function(){
+                $(".detail_modal img").attr("src", $(this).attr("src"));
+            });
+        </script>
+
+  <script>
+  $(function(){
+                $("#search_input").autocomplete({
+                    source: "search",
+                    select: function(event, ui){
+                        $.ajax({
+                            url:"search",
+                            data:{"value": ui.item.value},
+                            dataType: 'json',
+                            success: function(data){
+                                $(".overlay_").fadeIn(300);
+                                $(".overlay_ h6").text("المادة "+data.article.numero_article);
+                                $(".overlay_ p").text(data.article.contenu);
+                            }
+                        });
+
+                    }
+                });
+                $("#search_form").submit(function(){
+                  var searched = $("#search_input").val();
+
+                  $.ajax({
+                    url: 'search',
+                    data: {"searched": searched},
+                    success: function(data){
+                    $(".search_modal .modal-body").html("");
+                    $(".search_modal").modal("show");
+                    if (data.result.length == 0)
+                        $(".search_modal .modal-header h3").text("Aucun résultat");
+                    else{
+                        $(".search_modal .modal-header h3").text("Résultats de la recherche");
+                        for(article in data.result){
+                            var numero = data.result[article].numero_article;
+                            var contenu = data.result[article].contenu;
+                            var id = data.result[article].id;
+
+                            $(".search_modal .modal-body").append(`
+                                <div class="card">
+                                  <div class="card-body">
+                                        <h6>المادة ${numero}</h6>
+                                        <div class="content">
+                                            <p>${contenu}</p>
+                                       </div>
+                                  </div>
+                                </div>
+                            `);
+                        }
+                    }
+                  }
+                  });
+                  return false;
+                });
+
+      $("#cls_search").click(function(){
+        $(".overlay_").fadeOut(300);
+        return false;
+      });
+
+      $("#cls_popup").click(function(){
+        $(".overlay").fadeOut(300);
+        //My love
+        return false;
+      });
+
+      $(".cls_rech").click(function(){
+        $(".search_modal").fadeOut(300);
+      });
+      });
+  </script>
+
+  <script>
+      var count_read = 0;
+      $(".notification").click(function(){
+        $(".number2").text("");
+        /*
+        $.ajax({
+            url:'ajax_notification',
+            success: function(data){
+            }
+        });
+        */
+      });
+
+      $(".message_list").click(function(){
+
+        $(".overlay2").fadeIn(300);
+        var id=$(this).attr("data-url");
+        $("#"+id).css("font-weight", "normal");
+        $.ajax({
+            url:"ajax_notification",
+            data:{"message_id": id},
+            success: function(data){
+                if(data.read)
+                    $(".overlay2 h6").text("Message lu");
+                else
+                    $(".overlay2 h6").text("Nouveau message");
+                $(".overlay2 p").text(data.message.message);
+            }
+        });
+        return false;
+      });
+
+      $("#cls_message").click(function(){
+        $(".overlay2").fadeOut(300);
+      });
+
+  </script>
+  <script>
+      $("#ajouter_budget_form").submit(function(){
+        $.ajax({
+            url: 'ajouter_budget',
+            data: $(this).serialize(),
+            method: 'post',
+            success: function(data){
+                if(data.exists){
+                    $("#budget_modal .alert-success").hide();
+                    $("#budget_modal .alert-danger").fadeIn(300);
+                }
+                else{
+                    $("#budget_modal .alert-danger").hide();
+                    $("#budget_modal .alert-success").fadeIn(300);
+                }
+            }
+        });
+        return false;
+      });
+  </script>
+  <script>
+      $("#ajouter_recette_form").submit(function(){
+        $.ajax({
+            url: 'ajouter_recette',
+            data: $(this).serialize(),
+            method: 'post',
+            success: function(data){
+                if(!data.exists){
+                    $("#recette_modal .alert-success").hide();
+                    $("#recette_modal .alert-danger").fadeIn(300);
+                }
+                else{
+                    $("#recette_modal .alert-danger").hide();
+                    $("#recette_modal .alert-success").fadeIn(300);
+                }
+            }
+        });
+        return false;
+      });
+  </script>
+</body>
+</html>

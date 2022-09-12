@@ -1,0 +1,99 @@
+{% load i18n %}
+{% load l10n %}
+
+<form id="ajouter_pv_form" method="post" action="" enctype="multipart/form-data">
+                                      {% csrf_token %}
+                                      <div class="form-group">
+                                          <b><label for="titre_pv">Titre du PV</label></b><br>
+                                          <input id="titre_pv" name='titre' type="text" class="form-control" required placeholder="Entrer un titre"/>
+                                          <p class="error" style="color: #751a15;"></p>
+                                      </div>
+                                      <div class="form-group">
+                                          <b><label for="pv">Joindre fichier(pdf)</label></b><br>
+                                          <input style="color: black;" id="pv" name='pv' type="file" required accept="application/pdf"/>
+                                      </div>
+                                      <div style="display: none;" class="form-group alert alert-success text-center">
+                                          <span class="close_alert" >&times;</span>
+                                          <p>Pv ajouté</p>
+                                      </div>
+                                      <div style="display: none; background-color: #751a15;" class="form-group alert alert-danger text-center">
+                                          <span class="close_alert" >&times;</span>
+                                          <p>Echec. Veuillez réessayer</p>
+                                      </div>
+
+                                      <div class="modal-footer">
+                                          <button id="fermer_ajouter_pv_modal" type="button" class="btn btn-secondary fermer_modal" data-dismiss="modal">Fermer</button>
+                                          <button class="submit_btn_pv btn" type="submit">Confirmer</button>
+                                      </div>
+                                  </form>
+
+
+<script>
+          $(function(){
+              $("#ajouter_pv_form").submit(function(){
+                form = $(this)[0];
+                formData = new FormData(form);
+                $.ajax({
+                    url: 'ajouter_pv',
+                    data: formData,
+                    method: 'post',
+                    processData: false,
+                    contentType: false,
+                    dataType: 'json',
+                    mimeType: 'multipart/form-data',
+                    success: function(data){
+                       if(data.valid){
+                        $(".PV_modal .alert-success").fadeIn(300);
+                        $(".PV_modal .alert-danger").hide();
+                        $(".PV_modal .error").text("");
+                        var id = data.id;
+                        var date = data.date;
+                        var titre = data.titre;
+                        var pdf = data.pv;
+                        $(".PVContent").append(`
+                            <div id=${id}>
+                            <p><span style="text-decoration: underline; color: #3781e2;"><strong>{% language 'fr' %}${date} {% endlanguage %}</strong></span></p>
+                              <ol>
+                                  <li>
+                                      <a id="pv_link" href=${pdf} rel="alternate">${titre}</a>
+                                  </li>
+                              </ol>
+                            </div>
+                        `);
+                        $("#"+id).insertBefore("#ajout_pv");
+                        $("#pv_id").append(`
+                            <option value=${id}>${titre}</option>
+                        `);
+                        $("#pv_select2").append(`
+                            <option id=${id}2 value=${id}>${titre}</option>
+                        `);
+                      }
+                      else{
+                        $(".PV_modal .alert-success").hide();
+                        $(".PV_modal .alert-danger").fadeIn(300);
+                        $(".PV_modal .error").text("Ce titre existe déjà");
+                      }
+                    }
+                });
+                return false;
+              });
+
+              $(document).on("click", ".PVContent #pv_link", function(){
+                window.open($(this).attr("href"));
+                return false;
+              });
+
+              //The buttons
+                $(".close_alert").click(function(){
+                    $(".PV_modal .alert-success").fadeOut(300);
+                    $(".PV_modal .alert-danger").fadeOut(300);
+                });
+
+            $("#fermer_ajouter_pv_modal").click(function(){
+                $("#ajouter_pv_form").trigger("reset");
+                $(".PV_modal .alert-success").hide();
+                $(".PV_modal .alert-danger").hide();
+                $(".PV_modal .error").text("");
+            });
+              });
+          </script>

@@ -1,0 +1,194 @@
+<form id="modifier_article_form" action="" method="post">
+        {% csrf_token %}
+
+        <label for="article_select2">Chapitre</label>
+        <select id="article_select2" name="article" class="form-select form-control form-group" aria-label="Default " required>
+            <option value="">Choisir un article</option>
+            {% for article in articles_ %}
+                <option value="{{article.id}}">{{article}}</option>
+            {% endfor %}
+        </select>
+
+		<div class="form-group">
+			<label for="budget2">Budget</label>
+			<input type="number" placeholder="Entrez un budget(en da)" class="form-control" name="budget" id="budget2" required>
+            <p style="color:#d9534f;" class="error" id="budget_error4"></p>
+		</div>
+
+        <div class="form-group">
+			<label  for="montant2">Montant</label>
+			<input type="number" placeholder="Entrez un montant(en da)" class="form-control" name="montant" id="montant2" required>
+            <p style="color:#d9534f;" class="error" id="montant_error4"></p>
+		</div>
+
+        <div class="form-group">
+            <label for="contenu2">Contenu</label>
+            <textarea placeholder="Entrez un contenu" class="form-control" name="contenu" id="contenu2" rows="3" required></textarea>
+        </div>
+
+        <label for="chapitre_select3">Chapitre</label>
+        <select id="chapitre_select3" name="chapitre" class="form-select form-control form-group" aria-label="Default " required>
+            <option selected id="first_select" value="">Choisir un chapitre</option>
+            {% for chapitre in chapitres %}
+                <option id="chapitre2{{chapitre.id}}" value="{{chapitre.id}}">{{chapitre}}</option>
+            {% endfor %}
+        </select>
+
+        <div class="form-group alert alert-info text-center">
+			<p></p>
+		</div>
+
+        <div style="display: none;" class="form-group alert alert-success text-center">
+            <span class="close_alert" >&times;</span>
+			<p></p>
+		</div>
+
+        <div style="display: none;" class="form-group alert alert-danger text-center">
+            <span class="close_alert" >&times;</span>
+			<p></p>
+		</div>
+              <div class="modal-footer">
+            <button id="fermer_modifier_article_modal" type="button" class="btn btn-secondary fermer_modal" data-dismiss="modal">Fermer</button>
+            <button id="submit_btn" type="submit" class="btn">Confirmer</button>
+        </div>
+	</form>
+
+<script>
+    $(function(){
+        $(".modifier_article_modal .alert-info").hide();
+
+        $("#modifier_article_form").on("submit", function(event){
+            var form = $(this);
+            $.ajax({
+                data: form.serialize(),
+                dataType: 'json',
+                method: 'post',
+                url: 'article_update',
+                success: function(data){
+                    if(data.valid_form){
+                        if(data.depassement){
+                            $(".modifier_article_modal .alert-success").hide();
+                            $(".modifier_article_modal .alert-danger").fadeIn(300);
+                            $(".modifier_article_modal .alert-danger p").text(data.message);
+                        }
+                        else{
+                            $(".modifier_article_modal .alert-danger").hide();
+                            $(".modifier_article_modal .alert-success").fadeIn(300);
+                            $(".modifier_article_modal .alert-success p").text(data.message);
+                            $("#budget_error4").text("");
+                            $("#montant_error4").text("");
+                            $(".modifier_article_modal .alert-info p").text("Budget restant de ce chapitre: "+ data.solde+ " da");
+                        }
+                    }
+                    else{
+                        $(".modifier_article_modal .alert-success").hide();
+                        $(".modifier_article_modal .alert-danger").fadeIn(300);
+
+                        if(!data.changed){
+                            alert("no changes");
+                            $("#budget_error4").text("");
+                            $("#montant_error4").text("");
+                            $(".modifier_article_modal .alert-danger p").text("Aucun changement effectué");
+                        }
+
+                        else{
+                            for(field in data.field_errors)
+                                $("#"+field+"_error2").text(data.field_errors[field]);
+
+                            for(field in data.valid_fields)
+                                $("#"+data.valid_fields[field]+"_error4").text("");
+
+                            $(".modifier_article_modal .alert-danger p").text("Echec. Veuillez réessayer");
+                        }
+                    }
+                }
+            });
+            return false;
+        });
+
+        $("#article_select2").change(function(){
+            var article = $(this).val();
+
+            if (article != ""){
+                $.ajax({
+                    url:"ajax_update_article",
+                    data: {"article": article},
+                    success: function(data){
+                        //$(".alert-info").fadeIn(300);
+                        //$(".alert-info p").text("Budget restant de cette partie :"+data.partie.solde+" da");
+                        $("#budget2").val(data.article.budget);
+                        $("#montant2").val(data.article.montant);
+                        $("#contenu2").val(data.article.contenu);
+
+                        //$('#partie_select3 option[value='+data.partie.id+']').val('');
+                        //$("#partie_select3 option[value='']").text(data.partie.titre);
+                        //$("#partie_select3").find("option:selected").val(data.partie.id);
+                        $(".modifier_article_modal .alert-info").fadeIn(300);
+                        $(".modifier_article_modal .alert-info p").text("Budget restant de ce chapitre :"+data.chapitre.budget_restant+" da");
+                        $(".modifier_article_modal .alert-danger").hide();
+                        $(".modifier_article_modal .alert-success").hide();
+                        $(".modifier_article_modal .error").hide();
+                        $("#chapitre_select3").html(`
+                            <option value=${data.chapitre.id}>${data.chapitre.titre}</option>
+                        `);
+
+                        for(var i=0; i<data.chapitres.length; i++){
+                            chapitre = data.chapitres[i];
+                            if(chapitre.id != data.chapitre.id){
+                                $("#chapitre_select3").append(`
+                                    <option value=${chapitre.id}>${chapitre.titre}</option>
+                                `);
+                            }
+                        }
+                    }
+                });
+            }
+            else{
+                $("#chapitre_select3").prepend(
+                     '<option value="">Choisir un chapitre</option>'
+                );
+                $("#chapitre_select3").val("");
+                $("#budget2").val("");
+                $("#montant2").val("");
+                $("#contenu2").val("");
+                $(".modifier_article_modal .alert-info").hide();
+            }
+        });
+
+        $("#chapitre_select3").change(function(){
+            var chapitre = $(this).val();
+            if (chapitre != ""){
+                $.ajax({
+                    url:"ajax_create_article",
+                    data: {"chapitre": chapitre},
+                    success: function(data){
+                        $(".modifier_article_modal .alert-info").fadeIn(300);
+                        $(".modifier_article_modal .alert-info p").text("Budget restant de ce chapitre :"+data.solde+" da");
+                    }
+                });
+            }
+            else
+                $(".modifier_article_modal .alert-info").hide();
+        });
+
+        //The buttons
+        $(".close_alert").click(function(){
+            $(".modifier_article_modal .alert-success").fadeOut(300);
+            $(".modifier_article_modal .alert-danger").fadeOut(300);
+        });
+
+        $("#fermer_modifier_article_modal").click(function(){
+
+            $(".modifier_article_modal .alert-danger").hide();
+            $(".modifier_article_modal .alert-success").hide();
+            $(".modifier_article_modal .alert-info").hide();
+            $(".modifier_article_modal .error").text("");
+            if(!$('#chapitre_select3 option[value=""]').length){
+                $("#chapitre_select3").prepend(
+                         '<option value="">Choisir un chapitre</option>'
+                );
+            }
+            $("#modifier_article_form").trigger("reset");
+        });
+    });
+</script>

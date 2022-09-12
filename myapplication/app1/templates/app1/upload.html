@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            Excel file upload and processing
+        </title>
+    </head>
+    <body style="margin-top: 30px;margin-left: 30px;">
+        <form action="" method="POST" enctype="multipart/form-data"  >
+            {% csrf_token %}
+            <input type="file"
+                   title="Upload excel file"
+                   name="filename"
+                   style="border: 1px solid black; padding: 5px;"
+                   required="required">
+
+            <input type="submit"
+                   value="Upload"
+                   style="border: 1px solid green; padding:5px; border-radius: 2px; cursor: pointer;">
+        </form>
+    </body>
+</html>

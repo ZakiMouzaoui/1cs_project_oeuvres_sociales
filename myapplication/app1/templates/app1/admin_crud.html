@@ -1,0 +1,1007 @@
+{% load custom_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Bootstrap CRUD Data Table for Database with Modal Form</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- Bootstrap 4 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+    <!-- Font Awesome -->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+
+
+	<script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
+<style>
+body {
+	color: #566787;
+	background: #f5f5f5;
+	font-family: 'Varela Round', sans-serif;
+	font-size: 13px;
+	background-image: url("static/app1/img/webb.jpg");
+}
+
+.table{
+    color: white;
+}
+.table-responsive {
+    margin: 30px 0;
+    overflow-y: auto;
+}
+.table-wrapper {
+	background: transparent;
+	padding: 20px 25px;
+	border-radius: 3px;
+	min-width: 1500px;
+	box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+.table-title {
+	padding-bottom: 15px;
+	background: transparent;#435d7d;
+	color: #fff;
+	padding: 16px 30px;
+	min-width: 100%;
+	margin: -20px -25px 10px;
+	border-radius: 3px 3px 0 0;
+}
+.table-title h2 {
+	margin: 5px 0 0;
+	font-size: 24px;
+}
+.table-title .btn-group {
+	float: right;
+}
+.table-title .btn {
+	color: #fff;
+	float: right;
+	font-size: 13px;
+	border: none;
+	min-width: 50px;
+	border-radius: 2px;
+	border-color: white;none;
+	outline: none !important;
+	margin-left: 10px;
+}
+.table-title .btn i {
+	float: left;
+	font-size: 21px;
+	margin-right: 5px;
+}
+.table-title .btn span {
+	float: left;
+	margin-top: 2px;
+}
+table.table tr th, table.table tr td {
+	border-color: #e9e9e9;
+	padding: 12px 15px;
+	vertical-align: middle;
+}
+table.table tr th:first-child {
+	width: 60px;
+}
+table.table tr th:last-child {
+	width: 600px;
+}
+table.table-striped tbody tr:nth-of-type(odd) {
+	background-color: transparent;#fcfcfc;
+}
+table.table-striped.table-hover tbody tr:hover {
+	background: transparent;#f5f5f5;
+	color: white;
+}
+table.table th i {
+	font-size: 13px;
+	margin: 0 5px;
+	cursor: pointer;
+}
+table.table td:last-child i {
+	opacity: 0.9;
+	font-size: 22px;
+	margin: 0 5px;
+}
+table.table td a {
+	font-weight: bold;
+	color: #566787;
+	display: inline-block;
+	text-decoration: none;
+	outline: none !important;
+}
+table.table td a:hover {
+	color: white;#2196F3;
+}
+table.table td a.edit {
+	color: #FFC107;
+}
+table.table td a.delete {
+	color: #F44336;
+}
+table.table td i {
+	font-size: 19px;
+}
+table.table .avatar {
+	border-radius: 50%;
+	vertical-align: middle;
+	margin-right: 10px;
+}
+.pagination {
+	float: left;
+	margin: 0 0 5px;
+}
+.pagination li a {
+	border: none;
+	font-size: 17px;
+	min-width: 30px;
+	min-height: 30px;
+	color: white;
+	margin: 0 2px;
+	line-height: 30px;
+	border-radius: 2px !important;
+	text-align: center;
+	padding: 0 6px;
+}
+.pagination li a:hover {
+	color: #666;
+}
+.pagination li.active a, .pagination li.active a.page-link {
+	background: #03A9F4;
+}
+.pagination li.active a:hover {
+	background: #0397d6;
+}
+.pagination li.disabled i {
+	color: #ccc;
+}
+.pagination li i {
+	font-size: 16px;
+	padding-top: 6px
+}
+.hint-text {
+	float: left;
+	margin-top: 10px;
+	font-size: 13px;
+}
+/* Custom checkbox */
+.custom-checkbox {
+	position: relative;
+}
+.custom-checkbox input[type="checkbox"] {
+	opacity: 0;
+	position: absolute;
+	margin: 5px 0 0 3px;
+	z-index: 9;
+}
+.custom-checkbox label:before{
+	width: 18px;
+	height: 18px;
+}
+.custom-checkbox label:before {
+	content: '';
+	margin-right: 10px;
+	display: inline-block;
+	vertical-align: text-top;
+	background: white;
+	border: 1px solid #bbb;
+	border-radius: 2px;
+	box-sizing: border-box;
+	z-index: 2;
+}
+.custom-checkbox input[type="checkbox"]:checked + label:after {
+	content: '';
+	position: absolute;
+	left: 6px;
+	top: 3px;
+	width: 6px;
+	height: 11px;
+	border: solid #000;
+	border-width: 0 3px 3px 0;
+	transform: inherit;
+	z-index: 3;
+	transform: rotateZ(45deg);
+}
+.custom-checkbox input[type="checkbox"]:checked + label:before {
+	border-color: #03A9F4;
+	background: #03A9F4;
+}
+.custom-checkbox input[type="checkbox"]:checked + label:after {
+	border-color: #fff;
+}
+.custom-checkbox input[type="checkbox"]:disabled + label:before {
+	color: #b8b8b8;
+	cursor: auto;
+	box-shadow: none;
+	background: #ddd;
+}
+/* Modal styles */
+.modal .modal-dialog {
+	max-width: 400px;
+	background-color: transparent;
+}
+.modal .modal-header, .modal .modal-body, .modal .modal-footer {
+	padding: 20px 30px;
+}
+.modal .modal-content {
+	border-radius: 3px;
+	font-size: 14px;
+}
+.modal .modal-footer {
+	background: #ecf0f1;
+	border-radius: 0 0 3px 3px;
+}
+.modal .modal-title {
+	display: inline-block;
+}
+.modal .form-control {
+	border-radius: 10px;
+	box-shadow: none;
+	border-color: #dddddd;
+}
+.modal textarea.form-control {
+	resize: vertical;
+}
+.modal .btn {
+	border-radius: 2px;
+	min-width: 100px;
+}
+
+.close:focus {
+	outline: none;
+	border: none;
+
+}
+.modal form label {
+	font-weight: normal;
+}
+
+.alert{
+	margin: auto;
+	border-radius: 5px;
+	width: 50%;
+}
+
+.error-class{
+  border-color: red;
+}
+
+.modal .modal-dialog {
+	max-width: 400px;
+	background: transparent;
+}
+
+.custom-file-input{
+    display: block;
+    border: solid 1px;
+}
+
+</style>
+<script>
+$(document).ready(function(){
+	// Activate tooltip
+	$('[data-toggle="tooltip"]').tooltip();
+
+	// Select/Deselect checkboxes
+	var checkbox = $('table tbody input[type="checkbox"]');
+	$(document).on("click", "#selectAll", function(){
+		if(this.checked){
+			$("input[name='employees']").each(function(){
+				this.checked = true;
+			});
+		} else{
+			$("input[name='employees']").each(function(){
+				this.checked = false;
+			});
+		}
+	});
+	$(document).on("click", 'table tbody input[type="checkbox"]', function(){
+		if(!this.checked){
+			$("#selectAll").prop("checked", false);
+		}
+	});
+});
+</script>
+</head>
+<body>
+<div class="container-xl">
+	<div class="table-responsive">
+		<div class="table-wrapper">
+			<div class="table-title">
+				<div class="row">
+					<div class="col-sm-6">
+						<h2>Gestion des <b>Employés</b></h2>
+					</div>
+					<div class="col-sm-6">
+                        <div style="float:left; margin: auto;">
+                            <button style="float:left;" data-toggle="modal" data-target="#importerModal" id="import_btn" class="btn btn-primary"><i class="material-icons">&#xE147;</i> <span>Importer un fichier excel</span></button>
+						    <button style="float:left;" class="btn btn-success js-create-employee"><i class="material-icons">&#xE147;</i> <span>Ajouter des employés</span></button>
+						    <a style="float:left;" href="#" class="btn btn-danger js-delete-multiple-employees" id="delete_multiple_btn"><i class="material-icons">&#xE15C;</i> <span>Supprimer</span></a>
+                        </div>
+
+					</div>
+				</div>
+			</div>
+			<table class="table table-striped table-hover" id="employee_table">
+				<thead>
+					<tr>
+						<th>
+							<span class="custom-checkbox">
+								<input type="checkbox" id="selectAll">
+								<label for="selectAll"></label>
+							</span>
+						</th>
+						{% for field in fields %}
+							{% if field.name != 'id' and field.name != 'photo' %}
+								<th>{{ field|get_verbose_name|capfirst }}</th>
+							{% endif %}
+						{% endfor %}
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+                {% for employee in employees %}
+<tr id="row{{ employee.id }}">
+  <td>
+    <span class="custom-checkbox">
+      <input type="checkbox" id="checkbox{{ employee.id }}" name="employees" value="{{ employee.id }}">
+      <label for="checkbox{{ employee.id }}"></label>
+    </span>
+  </td>
+  <td>{{ employee.nom }}</td>
+  <td>{{ employee.prenom }}</td>
+  <td>{{ employee.date_naissance }}</td>
+  <td>{{ employee.adresse }}</td>
+  <td>{{ employee.poste }}</td>
+  <td>{{ employee.ccp }}</td>
+  <td>{{ employee.nss }}</td>
+  <td>{{ employee.email }}</td>
+  <td>0{{ employee.num_tel }}</td>
+    <!--
+  <td>{{ employee.date_deb }}</td>
+  <td>{{ employee.date_sortie }}</td>
+  -->
+  <td>{{ employee.sex }}</td>
+
+  <td>
+    <a href="#" data-url="{{ employee.id }}" class="js-update-employee edit"><i class="material-icons" title="Edit">&#xE254;</i></a>
+    <a href="#" id="delete_btn{{ employee.id }}" data-url="{{ employee.id }}" class="js-delete-employee delete"><i class="material-icons" title="Delete">&#xE872;</i></a>
+  </td>
+</tr>
+{% endfor %}
+                </tbody>
+			</table>
+			<div class="clearfix">
+				<!--<div class="hint-text">Showing <b>{{ employees|length }}</b> out of <b>{{ employees|length }}</b> entries</div>-->
+				<ul class="pagination">
+					<!--
+					<li class="page-item disabled"><a href="#">Previous</a></li>
+					<li class="page-item"><a href="#" class="page-link">1</a></li>
+					<li class="page-item"><a href="#" class="page-link">2</a></li>
+					<li class="page-item active"><a href="#" class="page-link">3</a></li>
+					<li class="page-item"><a href="#" class="page-link">4</a></li>
+					<li class="page-item"><a href="#" class="page-link">5</a></li>
+					<li class="page-item"><a href="#" class="page-link">Next</a></li>
+					-->
+					<li><a href="{% url 'admin_' %}" class="text-center">retour</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="importerModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Importation du fichier excel</h4>
+            <button type="button" data-dismiss="modal" class="close" aria-hidden="true">&times;</button>
+          </div>
+          <div class="modal-body">
+              <form method="post" action="" class="importer_form" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <div class="form-group">
+                    <label for="file">Fichier excel</label>
+                    <input type="file" name="file" class="form-control-file" required
+                           accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" id="file">
+                  </div>
+                  <div class="modal-footer" style="background: white;">
+                      <button class="btn btn-primary" type="submit">Importer</button>
+                      <button class="btn btn-secondary" style="background: grey;" data-dismiss="modal">fermer</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+</div>
+</div>
+
+<div class="modal fade" id="addEmployeeModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+          <form method="post" action="" class="js_create_employee_form">
+  {% csrf_token %}
+  <div class="modal-header">
+    <h4 class="modal-title">Ajouter un employé</h4>
+    <button type="button" data-dismiss="modal" id="close_add_form" class="close" aria-hidden="true">&times;</button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <label>Nom</label>
+      <input type="text" class="form-control" id="nom" name="nom" required
+      oninvalid="this.setCustomValidity('Veuillez entrer le nom')"
+                         oninput="this.setCustomValidity('')">
+        <p class="nom" style="color:red"></p>
+    </div>
+    <div class="form-group">
+      <label>Prénom</label>
+      <input type="text" class="form-control" id="prenom" name="prenom" required
+      oninvalid="this.setCustomValidity('Veuillez entrer le prénom')"
+                         oninput="this.setCustomValidity('')">
+        <p class="prenom" style="color:red;"></p>
+    </div>
+
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" class="form-control" id="email" name="email" required
+      oninvalid="this.setCustomValidity('Veuillez entrer l'email')"
+                         oninput="this.setCustomValidity('')">
+      <p class="email" style="color:red;"></p>
+    </div>
+    <div class="form-group">
+      <label>Poste</label>
+      <input type="text" class="form-control" id="poste" name="poste" required
+      oninvalid="this.setCustomValidity('Veuillez entrer le poste')"
+                         oninput="this.setCustomValidity('')">
+        <p class="poste" style="color:red;"></p>
+    </div>
+    <div class="form-group">
+      <label>Address</label>
+      <input class="form-control" id="adresse" name="adresse" required
+      oninvalid="this.setCustomValidity('Veuillez entrer l'addresse')"
+                         oninput="this.setCustomValidity('')">
+        <p class="adresse" style="color:red;"></p>
+    </div>
+
+    <div class="form-group">
+      <label>Num de téléphone</label>
+      <input type="tel" class="form-control" id="num_tel" name="num_tel" required
+      oninvalid="this.setCustomValidity('Veuillez entrer le numéro de téléphone')"
+                         oninput="this.setCustomValidity('')">
+        <p class="num_tel" style="color:red;"></p>
+    </div>
+
+    <div class="form-group">
+      <label>CCP</label>
+      <input type="number" class="form-control" id="ccp" name="ccp" required
+      oninvalid="this.setCustomValidity('Veuillez entrer le ccp')"
+                         oninput="this.setCustomValidity('')">
+        <p class="ccp" style="color:red;"></p>
+    </div>
+
+    <div class="form-group">
+      <label>NSS</label>
+      <input type="number" class="form-control" id="nss" name="nss" required
+      oninvalid="this.setCustomValidity('Veuillez entrer le nss')"
+                         oninput="this.setCustomValidity('')">
+        <p class="nss" style="color:red;">{{ form.nss.errors.as_text }}</p>
+    </div>
+
+    <div class="form-group">
+        <label>Date naissance</label>
+        <input type="date" class="form-control" id="date_naissance" name="date_naissance" required
+        oninvalid="this.setCustomValidity('Veuillez entrer la date de naissance')"
+                         oninput="this.setCustomValidity('')">
+        <p class="date_naissance" style="color: red;"></p>
+    </div>
+    <!--
+    <div class="form-group">
+      <label>Date debut</label>
+      <input type="date" class="form-control" id="date_deb" name="date_deb" required>
+        <p class="date_deb" style="color: red;"></p>
+    </div>
+
+    <div class="form-group">
+      <label>Date sortie</label>
+      <input type="date" class="form-control" id="date_sortie" name="date_sortie" required>
+        <p class="date_sortie" style="color: red;">{{ form.date_sortie.errors.as_text }}</p>
+    </div>
+    -->
+      <div class="form-group">
+      <label>Sex</label>
+      <select class="form-control" id="sex" name="sex" required>
+          <option>Homme</option>
+          <option>Femme</option>
+      </select>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+        <button class="btn btn-default" id="cancel_add_form" data-dismiss="modal">Annuler</button>
+        <input type="submit" class="btn btn-success" id="add" name="add" value="add">
+  </div>
+</form>
+      </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editEmployeeModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form method="post" action="" class="js-employee-update-form">
+    {% csrf_token %}
+    <div class="modal-header">
+        <h4 class="modal-title">Editer un employé</h4>
+        <button type="button" data-dismiss="modal" id="close_edit_form" aria-label="Close" class="close" aria-hidden="true">&times;</button>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+          <label>Nom</label>
+          <input type="text" class="form-control" id="nom2" name="nom" required>
+            <p class="nom2" style="color:red"></p>
+        </div>
+        <div class="form-group">
+          <label>Prénom</label>
+          <input type="text" class="form-control" id="prenom2" name="prenom" required>
+            <p class="prenom2" style="color:red;"></p>
+        </div>
+
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" class="form-control" id="email2" name="email" required>
+          <p class="email2" style="color:red;"></p>
+        </div>
+        <div class="form-group">
+          <label>Poste</label>
+          <input type="text" class="form-control" id="poste2" name="poste" required>
+            <p class="poste2" style="color:red;"></p>
+        </div>
+        <div class="form-group">
+          <label>Address</label>
+          <input class="form-control" id="adresse2" name="adresse" required>
+            <p class="adresse2" style="color:red;"></p>
+        </div>
+
+        <div class="form-group">
+          <label>Num de téléphone</label>
+          <input type="tel" class="form-control" id="num_tel2" name="num_tel" required>
+            <p class="num_tel2" style="color:red;"></p>
+        </div>
+
+        <div class="form-group">
+          <label>CCP</label>
+          <input type="number" class="form-control" id="ccp2" name="ccp" required>
+            <p class="ccp2" style="color:red;"></p>
+        </div>
+
+        <div class="form-group">
+          <label>NSS</label>
+          <input type="number" class="form-control" id="nss2" name="nss" required>
+            <p class="nss2" style="color:red;">{{ form.nss.errors.as_text }}</p>
+        </div>
+
+        <div class="form-group">
+            <label>Date naissance</label>
+            <input type="date" class="form-control" id="date_naissance2" name="date_naissance" required>
+            <p class="date_naissance2" style="color: red;"></p>
+        </div>
+
+        <!--
+        <div class="form-group">
+          <label>Date debut</label>
+          <input type="date" class="form-control" id="date_deb2" name="date_deb" required>
+            <p class="date_deb2" style="color: red;"></p>
+        </div>
+
+        <div class="form-group">
+          <label>Date sortie</label>
+          <input type="date" class="form-control" id="date_sortie2" name="date_sortie" required>
+            <p class="date_sortie2" style="color: red;">{{ form.date_sortie.errors.as_text }}</p>
+        </div>
+        -->
+        <div class="form-group">
+      <label>Sex</label>
+      <select class="form-control" id="sex2" name="sex" required>
+          <option>Homme</option>
+          <option>Femme</option>
+      </select>
+        <div class="modal-footer">
+            <button class="btn btn-default" id="cancel_edit_form" data-dismiss="modal">Annuler</button>
+            <input type="submit" class="btn btn-success" id="edit_submit" name="edit" value="edit">
+        </div>
+    </div>
+    </div>
+</form>
+            </div>
+		</div>
+	</div>
+
+<div class="modal fade" id="deleteEmployeeModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+            <form method="post" action="" class="js-employee-delete-form">
+    {% csrf_token %}
+    <div class="modal-header">
+        <h4 class="modal-title">Supprimer un employé</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    </div>
+    <div class="modal-body">
+        <p id="confirm_message">Etes-vous sûr que vous voulez supprimer "<span style="font-weight:bold;"></span> "?</p>
+        <p class="text-warning"><small>Cette action ne peut pas être annulée.</small></p>
+    </div>
+    <div class="modal-footer">
+        <input type="button" class="btn btn-default" data-dismiss="modal" value="Annuler">
+        <input type="submit" class="btn btn-danger" name="delete" value="delete">
+    </div>
+</form>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="deleteMultipleEmployeeModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+            <form action="" data-id="" class="js-multiple-employee-delete-form">
+    {% csrf_token %}
+                <input type="hidden" name="id" value="">
+    <div class="modal-header">
+        <h4 class="modal-title">Supprimer un employé</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    </div>
+    <div class="modal-body">
+        <p id="confirm_message2">Etes-vous sûr vous voulez supprimez ce(s) employé(s)?</p>
+        <p class="text-warning"><small>Cette action ne peut pas être annulée.</small></p>
+    </div>
+    <div class="modal-footer">
+        <input type="button" class="btn btn-default" data-dismiss="modal" value="Annuler">
+        <input type="submit" class="btn btn-danger" name="delete" value="delete">
+    </div>
+</form>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="delete_alert">
+	<div class="modal-dialog">
+		<div class="modal-content" style="background:#781111; color: white;">
+
+    <div class="modal-header" style="border-bottom: none;">
+        <h4 class="modal-title">Veuillez selectionner au moins un employé</h4>
+        <button type="button" class="close" style="color: white;" data-dismiss="modal" aria-hidden="true">&times;</button>
+    </div>
+		</div>
+	</div>
+</div>
+
+    <script>
+    </script>
+<script>
+    $(function(){
+        $(document).on("click", "#cancel_add_form", function(){
+            $(".js_create_employee_form").trigger("reset");
+            $(".js_create_employee_form input").not("#add").css("border-color", "#dddddd");
+            $(".js_create_employee_form p").text("");
+        });
+
+        $(document).on("click", "#close_add_form", function(){
+            $(".js_create_employee_form").trigger("reset");
+            $(".js_create_employee_form input").not("#add").css("border-color", "#dddddd");
+            $(".js_create_employee_form p").text("");
+        });
+
+        $(document).on("click", "#cancel_edit_form", function(){
+            $(".js-employee-update-form").trigger("reset");
+            $(".js-employee-update-form input").not("#edit").css("border-color", "#dddddd");
+            $(".js-employee-update-form p").text("");
+        });
+
+        $(document).on("click", "#close_edit_form", function(){
+            $(".js-employee-update-form").trigger("reset");
+            $(".js-employee-update-form input").not("#edit").css("border-color", "#dddddd");
+            $(".js-employee-update-form p").text("");
+        });
+
+    });
+
+</script>
+    <script>
+        $(".importer_form").submit(function(){
+            var formData = new FormData($(this)[0]);
+            $.ajax({
+                url:"upload",
+                data: formData,
+                processData: false,
+                contentType: false,
+                mimeType: "multipart/form-data",
+                method: 'post',
+                dataType:'json',
+                success: function(data){
+                    $("#importer_modal").modal("hide");
+                    for(e in data.employees){
+                    var employee = data.employees[e];
+                    $("tbody").append(`
+                    <tr id="row${employee.id}">
+                        <td>
+                            <span class="custom-checkbox">
+                                <input type="checkbox" id="checkbox${employee.id}" name="employees" value=${employee.id}>
+                                <label for="checkbox${employee.id}"></label>
+                            </span>
+                        </td>
+                        <td>${employee.nom}</td>
+                        <td>${employee.prenom}</td>
+                        <td>${employee.date_naissance}</td>
+                        <td>${employee.adresse}</td>
+                        <td>${employee.poste}</td>
+                        <td>${employee.ccp}</td>
+                        <td>${employee.nss}</td>
+                        <td>${employee.email}</td>
+                        <td>0${employee.num_tel}</td>
+                        <td>${employee.sex}</td>
+                        <td>
+                            <a href="#" data-url=${employee.id} class="js-update-employee edit"><i class="material-icons" title="Edit">&#xE254;</i></a>
+                            <a href="#" id="delete_btn${employee.id}" data-url=${employee.id} class="js-delete-employee delete"><i class="material-icons" title="Delete">&#xE872;</i></a>
+                        </td>
+                    </tr>
+                `);
+                }
+            }
+            });
+            return false;
+        });
+    </script>
+
+<script type="text/javascript">
+	$(function () {
+  	$(".js-create-employee").click(function () {
+    $.ajax({
+      url: 'add_employee',
+      dataType: 'json',
+      beforeSend: function () {
+        $("#addEmployeeModal").modal("show");
+      },
+      success: function (data) {
+      		//$("#addEmployeeModal .modal-content").html(data.html_form);
+      }
+    });
+    return false;
+  });
+});
+</script>
+
+    <script>
+    $(function(){
+    $("#addEmployeeModal").on("submit", ".js_create_employee_form", function (event) {
+    var form = $(this);
+    $.ajax({
+      url: "add_employee",
+      data: form.serialize(),
+      type: "post",
+      dataType: 'json',
+      success: function (data) {
+          if(data.form_valid){
+            $("#addEmployeeModal input").css("border-color", "#dddddd");
+            $(".js_create_employee_form").trigger("reset");
+            $("#addEmployeeModal").modal("hide");  // <-- Close the modal
+            $("#addEmployeeModal p").text("");
+
+            //update employee table
+            $("tbody").append(`
+            <tr id="row${data.employee.id}">
+                <td>
+                    <span class="custom-checkbox">
+                        <input type="checkbox" id="checkbox${data.employee.id}" name="employees" value=${data.employee.id}>
+                        <label for="checkbox${data.employee.id}"></label>
+                    </span>
+                </td>
+                <td>${data.employee.nom}</td>
+                <td>${data.employee.prenom}</td>
+                <td>${data.employee.date_naissance}</td>
+                <td>${data.employee.adresse}</td>
+                <td>${data.employee.poste}</td>
+                <td>${data.employee.ccp}</td>
+                <td>${data.employee.nss}</td>
+                <td>${data.employee.email}</td>
+                <td>0${data.employee.num_tel}</td>
+                <td>${data.employee.sex}</td>
+                <td>
+                    <a href="#" data-url=${data.employee.id} class="js-update-employee edit"><i class="material-icons" title="Edit">&#xE254;</i></a>
+                    <a href="#" id="delete_btn${data.employee.id}" data-url=${data.employee.id} class="js-delete-employee delete"><i class="material-icons" title="Delete">&#xE872;</i></a>
+                </td>
+            </tr>
+            `);
+          }
+
+          else{
+            for(field in data.field_errors){
+                $("."+field).text(data.field_errors[field]);
+                $("#"+field).css("border-color", "red");
+            }
+            for(field in data.field_valid){
+                //alert(data.field_valid[field]);
+                $("."+data.field_valid[field]).text("");
+                $("#"+data.field_valid[field]).css("border-color", "green");
+            }
+          }
+      }
+    });
+    return false;
+  });
+ });
+ </script>
+
+<script>
+    //Modal to update employee
+    $(function(){
+    $(document).on("click", ".js-update-employee", function() {
+    var id=$(this).attr('data-url');
+
+    $.ajax({
+      url: "edit_employee/"+id,
+      dataType: 'json',
+      beforeSend: function () {
+        $("#editEmployeeModal").modal("show");
+      },
+      success: function (data) {
+        $(".js-employee-update-form").trigger("reset");
+        $(".js-employee-update-form input").not("#edit").css("border-color", "#dddddd");
+        $(".js-employee-update-form p").text("");
+      	for(key in data.employee){
+      	    //alert(key);
+      	    $('#'+key+2).val(data.employee[key]);
+      	    if (key == "num_tel"){
+      	        $('#'+key+2).val('0'+data.employee[key]);
+      	    }
+      	}
+      	$(".js-employee-update-form").attr("action", "edit_employee/"+id);
+      }
+    });
+  });
+
+  // form submit
+  $("#editEmployeeModal").on("submit", ".js-employee-update-form", function (e) {
+        var form = $(this);
+        $.ajax({
+          url: form.attr("action"),
+          data: form.serialize(),
+          method: 'post',
+          dataType: 'json',
+          success: function (data) {
+              if(data.form_valid){
+                $("#editEmployeeModal input").css("border-color", "#dddddd");
+                $("#editEmployeeModal p").text("");
+                $("#editEmployeeModal").modal("hide");  // <-- Close the modal
+                //Update employee table
+
+                $("#row"+data.employee.id).html(`
+                    <td>
+                        <span class="custom-checkbox">
+                            <input type="checkbox" id="checkbox${data.employee.id}" name="employees" value=${data.employee.id}>
+                            <label for="checkbox${data.employee.id}"></label>
+                        </span>
+                    </td>
+                    <td>${data.employee.nom}</td>
+                    <td>${data.employee.prenom}</td>
+                    <td>${data.employee.date_naissance}</td>
+                    <td>${data.employee.adresse}</td>
+                    <td>${data.employee.poste}</td>
+                    <td>${data.employee.ccp}</td>
+                    <td>${data.employee.nss}</td>
+                    <td>${data.employee.email}</td>
+                    <td>0${data.employee.num_tel}</td>
+                    <td>${data.employee.sex}</td>
+                    <td>
+                        <a href="#" data-url=${data.employee.id} class="js-update-employee edit"><i class="material-icons" title="Edit">&#xE254;</i></a>
+                        <a href="#" id="delete_btn${data.employee.id}" data-url=${data.employee.id} class="js-delete-employee delete"><i class="material-icons" title="Delete">&#xE872;</i></a>
+                    </td>
+                `);
+
+              }
+              else{
+                for(field in data.field_errors){
+                    $("."+field+2).text(data.field_errors[field]);
+                    $("#"+field+2).css("border-color", "red");
+                }
+                for(field in data.field_valid){
+                    //alert(data.field_valid[field]);
+                    $("."+data.field_valid[field]+2).text("");
+                    $("#"+data.field_valid[field]+2).css("border-color", "green");
+                }
+              }
+          }
+        });
+    return false;
+  });
+  });
+</script>
+
+<script>
+  $(function() {
+    $(document).on("click", ".js-delete-employee", function () {
+        $("#deleteEmployeeModal").modal("show");
+        $.ajax({
+            url: "delete_employee/"+$(this).attr("data-url"),
+            dataType: 'json',
+
+            success: function (data) {
+                $("#confirm_message span").text(data.employee.nom+" " + data.employee.prenom);
+                $(".js-employee-delete-form").attr('action', "delete_employee/"+data.employee.id);
+            }
+        });
+    return false;
+  });
+
+
+$("#deleteEmployeeModal").on("submit", ".js-employee-delete-form", function () {
+    var form = $(this);
+    $.ajax({
+      url: form.attr("action"),
+      data: form.serialize(),
+      type: form.attr("method"),
+      dataType: 'json',
+      success: function (data) {
+          $("#deleteEmployeeModal").modal("hide");  // <-- Close the modal
+          $("#delete_btn"+data.employee_id).closest("tr").remove();
+        }
+    });
+    return false;
+  });
+});
+</script>
+
+<script>
+    $(".js-delete-multiple-employees").click(function(){
+    var id=[];
+     $("input[name='employees']").each(function(){
+        if($(this).is(":checked")){
+            id.push($(this).val());
+        }
+
+     });
+
+     if(id.length > 0){
+        $("#deleteMultipleEmployeeModal").modal("show");
+        $(".js-multiple-employee-delete-form").attr("data-id", id);
+     }
+     else
+        $("#delete_alert").modal("show");
+ });
+</script>
+
+<script type="text/javascript">
+    $(".js-multiple-employee-delete-form").submit(function(){
+    var id = $(this).attr("data-id");
+
+    $("input[name='id']").val(id);
+    var form = $(this);
+    $.ajax({
+        url: 'delete_multiple_employee',
+        data: {"id": id},
+        success: function(data){
+            $("#deleteMultipleEmployeeModal").modal("hide");  // <-- Close the modal
+            for(id in data.employees){
+                var employee_id = data.employees[id];
+                $("#delete_btn"+employee_id).closest("tr").remove();
+            }
+
+        }
+    });
+    return false;
+ });
+</script>
+
+
+</body>
+</html>
+

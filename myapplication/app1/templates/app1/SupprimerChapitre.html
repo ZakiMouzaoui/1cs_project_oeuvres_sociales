@@ -1,0 +1,64 @@
+<form id="supprimer_chapitre_form" action="" method="post">
+        {% csrf_token %}
+
+        <label for="chapitre_select4">Chapitre</label>
+        <select id="chapitre_select4" name="chapitre" class="form-select form-control form-group" aria-label="Default " required>
+            <option selected id="first_select" value="">Choisir un chapitre</option>
+            {% for chapitre in chapitres %}
+                <option id="chapitre3{{partie.id}}" value="{{chapitre.id}}">{{chapitre}}</option>
+            {% endfor %}
+        </select>
+
+        <div style="display: none;" class="form-group alert alert-success text-center">
+            <span class="close_alert" >&times;</span>
+			<p></p>
+		</div>
+
+              <div class="modal-footer">
+            <button id="fermer_supprimer_chapitre_modal" type="button" class="btn btn-secondary fermer_modal" data-dismiss="modal">Fermer</button>
+            <button id="submit_btn" type="submit" class="btn">Confirmer</button>
+        </div>
+	</form>
+
+<script>
+      $(function(){
+        $("#supprimer_chapitre_form").submit(function(){
+          var form = $(this);
+          $.ajax({
+            url: 'chapitre_delete',
+            method: 'post',
+            data: form.serialize(),
+            success: function(data){
+              $(".supprimer_chapitre_modal .alert-success").fadeIn(300);
+              $(".supprimer_chapitre_modal .alert-success p").text(data.message);
+
+              $('#chapitre_select option[value='+data.chapitre.id+']').remove();
+              $('#chapitre_select2 option[value='+data.chapitre.id+']').remove();
+              $('#chapitre_select3 option[value='+data.chapitre.id+']').remove();
+              $('#chapitre_select4 option[value='+data.chapitre.id+']').remove();
+
+              if(data.count == 0){
+               $("#supprimer_chapitre").attr("data-toggle", "modal");
+               $("#supprimer_chapitre").attr("data-target", "#aucun_chapitre_modal");
+               $("#modifier_chapitre").attr("data-toggle", "modal");
+               $("#modifier_chapitre").attr("data-target", "#aucun_chapitre_modal");
+               $("#ajouter_article").attr("data-toggle", "modal");
+               $("#ajouter_article").attr("data-target", "#aucun_chapitre_modal");
+            }
+
+          }
+          });
+          return false;
+        });
+
+        //The buttons
+        $(".close_alert").click(function(){
+            $(".supprimer_chapitre_modal .alert-success").fadeOut(500);
+        });
+
+        $("#fermer_supprimer_chapitre_modal").click(function(){
+            $("#supprimer_chapitre_form").trigger("reset");
+            $(".supprimer_chapitre_modal .alert-success").hide();
+        });
+      });
+    </script>
